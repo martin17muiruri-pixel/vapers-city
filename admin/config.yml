@@ -17,6 +17,8 @@ collections:
     folder: "data/products"
     create: true
     delete: true
+    extension: md
+    format: frontmatter
     fields:
       - { label: "Product Name", name: "name", widget: "string" }
       - { label: "Flavor", name: "flavor", widget: "string" }
@@ -37,4 +39,3 @@ collections:
           - { label: "Phone Number (WhatsApp)", name: "phone", widget: "string", default: "254714693283" }
           - { label: "Location", name: "location", widget: "string", default: "Ruiru, Kenya" }
           - { label: "Delivery Areas", name: "delivery_areas", widget: "string", default: "Ruiru · Nairobi · Thika" }
-          - { label: "Tagline", name: "tagline", widget: "string", default: "premium vapor · Ruiru · same-day delivery" }
