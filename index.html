@@ -598,8 +598,8 @@ body{
 
 <div class="slide-viewport">
   <div class="progress-bar" id="progressBar"></div>
-  <button class="nav-arrow nav-prev" id="prevBtn" onclick="navigate(-1)">&#8592;</button>
-  <button class="nav-arrow nav-next" id="nextBtn" onclick="navigate(1)">&#8594;</button>
+  <button class="nav-arrow nav-prev" id="prevBtn">&#8592;</button>
+  <button class="nav-arrow nav-next" id="nextBtn">&#8594;</button>
   <div class="dots" id="dotsNav"></div>
   <div class="slide-track" id="slideTrack"></div>
 </div>
@@ -625,95 +625,94 @@ body{
 <a href="#" id="floatWa" class="float-wa" target="_blank">💬</a>
 
 <script>
-const PHONE = "254714693283";
+// ============================================
+// LOAD DATA FROM CMS (data/settings.json & data/products/)
+// ============================================
+
 const WA_MSG = "Hello%20Vapers%20City%2C%20I%20want%20to%20order%3A%20";
 
-const products = [
-  {
-    name:"Geek Bar Pulse X",
-    flavor:"Mexico Mango Ice",
-    price:"KES 2,500",
-    puffs:"15,000",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/1a003a/cc00ff?text=Geek+Bar\nPulse+X",
-    tagline:"PULSE DIFFERENT",
-  },
-  {
-    name:"Elf Bar Ultra 9000",
-    flavor:"Blue Razz Lemonade",
-    price:"KES 2,200",
-    puffs:"9,000",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/00050a/00aaff?text=Elf+Bar\nUltra",
-    tagline:"ULTRA SMOOTH HITS",
-  },
-  {
-    name:"Vozol Star 9000",
-    flavor:"Strawberry Watermelon",
-    price:"KES 2,600",
-    puffs:"9,000",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/050a00/00ff88?text=Vozol\nStar+9000",
-    tagline:"STAR POWER",
-  },
-  {
-    name:"HQD Cuvie Plus",
-    flavor:"Mango Ice",
-    price:"KES 1,300",
-    puffs:"1,200",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/0a0500/ff6600?text=HQD+Cuvie\nPlus",
-    tagline:"CLASSIC DRIP",
-  },
-  {
-    name:"RandM Tornado 7000",
-    flavor:"Grape Soda Pop",
-    price:"KES 2,400",
-    puffs:"7,000",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/0a0000/ff0055?text=RandM\nTornado",
-    tagline:"SPIN THE BLOCK",
-  },
-  {
-    name:"Bang King 12000",
-    flavor:"Blueberry Bubblegum",
-    price:"KES 3,200",
-    puffs:"12,000",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/000a0a/00ddff?text=Bang+King\n12000",
-    tagline:"KING SIZE CLOUDS",
-  },
-  {
-    name:"Maskking High GT",
-    flavor:"Cool Mint Blast",
-    price:"KES 1,800",
-    puffs:"2,500",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/050005/cc00cc?text=Maskking\nHigh+GT",
-    tagline:"STAY HIGH, STAY COOL",
-  },
-  {
-    name:"Vapes Bars Ghost",
-    flavor:"Pink Lemonade Rush",
-    price:"KES 2,100",
-    puffs:"3,500",
-    refillable:false,
-    imgFallback:"https://placehold.co/400x600/0a0800/ffaa00?text=Vapes+Bars\nGhost",
-    tagline:"GHOST MODE ON",
-  },
-];
+let products = [];
+let settings = {
+  phone: "254714693283",
+  location: "Ruiru, Kenya",
+  delivery_areas: "Ruiru · Nairobi · Thika"
+};
 
 const colors = ["#cc00ff","#00aaff","#00ff88","#ff6600","#ff0055","#00ddff","#cc00cc","#ffaa00"];
 const cornerTags = ["PULSE","ULTRA","STAR","CUVIE","TORNADO","BANG","HIGH","GHOST"];
 
-const realCount = products.length;
+// Helper function to format phone for display
+function formatPhoneForDisplay(phone) {
+  if (phone && phone.startsWith('254')) {
+    return '0' + phone.slice(3, 5) + ' ' + phone.slice(5, 8) + ' ' + phone.slice(8);
+  }
+  return phone || '0714 693 283';
+}
+
+// Load settings from CMS
+async function loadSettings() {
+  try {
+    const response = await fetch('/data/settings.json');
+    if (response.ok) {
+      settings = await response.json();
+      // Update header with settings
+      const headerInfo = document.querySelector('.header-info');
+      if (headerInfo) {
+        headerInfo.innerHTML = `📍 ${settings.delivery_areas || 'RUIRU · NAIROBI · THIKA'}<br>${formatPhoneForDisplay(settings.phone)}`;
+      }
+      // Update age strip
+      const ageStrip = document.querySelector('.age-strip');
+      if (ageStrip) {
+        ageStrip.innerHTML = `⚠ 18+ NICOTINE PRODUCTS FOR ADULTS ONLY · VAPERS CITY · ${settings.location || 'RUIRU KENYA'}`;
+      }
+    }
+  } catch (error) {
+    console.log('Using default settings');
+  }
+}
+
+// Default products (fallback if CMS files don't exist)
+function getDefaultProducts() {
+  return [
+    { name: "Geek Bar Pulse X", flavor: "Mexico Mango Ice", price: "KES 2,500", puffs: "15,000", tagline: "PULSE DIFFERENT", imgFallback: "https://placehold.co/400x600/1a003a/cc00ff?text=Geek+Bar%0APulse+X", refillable: false },
+    { name: "Elf Bar Ultra 9000", flavor: "Blue Razz Lemonade", price: "KES 2,200", puffs: "9,000", tagline: "ULTRA SMOOTH HITS", imgFallback: "https://placehold.co/400x600/00050a/00aaff?text=Elf+Bar%0AUltra", refillable: false },
+    { name: "Vozol Star 9000", flavor: "Strawberry Watermelon", price: "KES 2,600", puffs: "9,000", tagline: "STAR POWER", imgFallback: "https://placehold.co/400x600/050a00/00ff88?text=Vozol%0AStar+9000", refillable: false },
+    { name: "HQD Cuvie Plus", flavor: "Mango Ice", price: "KES 1,300", puffs: "1,200", tagline: "CLASSIC DRIP", imgFallback: "https://placehold.co/400x600/0a0500/ff6600?text=HQD+Cuvie%0APlus", refillable: false },
+    { name: "RandM Tornado 7000", flavor: "Grape Soda Pop", price: "KES 2,400", puffs: "7,000", tagline: "SPIN THE BLOCK", imgFallback: "https://placehold.co/400x600/0a0000/ff0055?text=RandM%0ATornado", refillable: false },
+    { name: "Bang King 12000", flavor: "Blueberry Bubblegum", price: "KES 3,200", puffs: "12,000", tagline: "KING SIZE CLOUDS", imgFallback: "https://placehold.co/400x600/000a0a/00ddff?text=Bang+King%0A12000", refillable: false },
+    { name: "Maskking High GT", flavor: "Cool Mint Blast", price: "KES 1,800", puffs: "2,500", tagline: "STAY HIGH, STAY COOL", imgFallback: "https://placehold.co/400x600/050005/cc00cc?text=Maskking%0AHigh+GT", refillable: false },
+    { name: "Vapes Bars Ghost", flavor: "Pink Lemonade Rush", price: "KES 2,100", puffs: "3,500", tagline: "GHOST MODE ON", imgFallback: "https://placehold.co/400x600/0a0800/ffaa00?text=Vapes+Bars%0AGhost", refillable: false }
+  ];
+}
+
+// Load products from CMS
+async function loadProducts() {
+  try {
+    const response = await fetch('/data/products.json');
+    if (response.ok) {
+      products = await response.json();
+    } else {
+      products = getDefaultProducts();
+    }
+  } catch (error) {
+    console.log('Using default products');
+    products = getDefaultProducts();
+  }
+}
+
+// Get phone number for WhatsApp
+function getPhone() {
+  return settings.phone || "254714693283";
+}
 
 function buildSlide(p, i) {
   const slide = document.createElement('div');
-  slide.className = `slide slide-product slide-p${i % realCount}`;
-  const c = colors[i % realCount];
-  const tag = cornerTags[i % realCount];
-  const realIdx = i % realCount;
+  slide.className = `slide slide-product slide-p${i % 8}`;
+  const c = colors[i % 8];
+  const tag = cornerTags[i % 8];
+  const realIdx = i % 8;
+  const imageUrl = p.imgFallback || p.image || `https://placehold.co/400x600/1a1a1a/${c.slice(1)}?text=${encodeURIComponent(p.name)}`;
+  
   slide.innerHTML = `
     <div class="prod-bg"></div>
     <div class="corner-tag tr" style="color:${c}">${tag}</div>
@@ -721,7 +720,7 @@ function buildSlide(p, i) {
     <div class="prod-number" style="color:${c}">0${realIdx + 1}</div>
     <div class="prod-layout">
       <div class="prod-text">
-        <div class="prod-brand-label">VAPERS CITY · RUIRU</div>
+        <div class="prod-brand-label">VAPERS CITY · ${settings.location || 'RUIRU'}</div>
         <div class="prod-name" style="color:${c};filter:drop-shadow(0 0 20px ${c}88)">${p.name}</div>
         <div class="prod-flavor" style="color:${c}aa">✦ ${p.flavor}</div>
         <div class="prod-stats">
@@ -750,7 +749,7 @@ function buildSlide(p, i) {
           <div class="smoke-puff" style="background:radial-gradient(circle,${c}44 0%,transparent 70%)"></div>
         </div>
         <div class="vape-float">
-          <img class="vape-img" src="${p.imgFallback}" alt="${p.name}" style="box-shadow:0 0 40px ${c}66,0 0 80px ${c}33;border:2px solid ${c}44;" onerror="this.src='${p.imgFallback}'">
+          <img class="vape-img" src="${imageUrl}" alt="${p.name}" style="box-shadow:0 0 40px ${c}66,0 0 80px ${c}33;border:2px solid ${c}44;" onerror="this.src='https://placehold.co/400x600/1a1a1a/${c.slice(1)}?text=${encodeURIComponent(p.name)}'">
         </div>
         <div class="sparkle" style="top:-10px;right:10px;animation-delay:0.3s;color:${c}">💎</div>
         <div class="sparkle" style="bottom:10px;left:5px;animation-delay:0.9s;color:#FFD700">✦</div>
@@ -762,24 +761,12 @@ function buildSlide(p, i) {
   return slide;
 }
 
-const track = document.getElementById('slideTrack');
-products.forEach((p, i) => track.appendChild(buildSlide(p, i)));
-const cloneLast = buildSlide(products[realCount - 1], realCount - 1);
-track.insertBefore(cloneLast, track.firstChild);
-const cloneFirst = buildSlide(products[0], 0);
-track.appendChild(cloneFirst);
-
 let current = 0;
 let isTransitioning = false;
 let pendingJump = null;
-
-const dotsNav = document.getElementById('dotsNav');
-for (let i = 0; i < realCount; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i === 0 ? ' active' : '');
-  dot.onclick = () => goTo(i);
-  dotsNav.appendChild(dot);
-}
+let autoTimer;
+const AUTO_DELAY = 4000;
+let track, dotsNav;
 
 function setTrackPos(vpos, animated) {
   track.style.transition = animated ? 'transform 0.7s cubic-bezier(.77,0,.175,1)' : 'none';
@@ -788,21 +775,23 @@ function setTrackPos(vpos, animated) {
 
 function updateUI(realIdx) {
   document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === realIdx));
-  document.getElementById('progressBar').style.width = `${(realIdx / (realCount - 1)) * 100}%`;
+  document.getElementById('progressBar').style.width = `${(realIdx / (products.length - 1)) * 100}%`;
   const allSlides = track.querySelectorAll('.slide-product');
   allSlides.forEach((s, vi) => { s.classList.toggle('active', vi === realIdx + 1); });
 }
 
 function goTo(realIdx) {
+  if (isTransitioning) return;
+  resetAutoPlay();
   current = realIdx;
   setTrackPos(realIdx + 1, true);
   updateUI(realIdx);
-  resetAutoPlay();
 }
 
 function navigate(dir) {
-  if (isTransitioning) return;
+  if (isTransitioning || !products.length) return;
   resetAutoPlay();
+  const realCount = products.length;
   const next = (current + dir + realCount) % realCount;
   if (dir > 0 && current === realCount - 1) {
     isTransitioning = true;
@@ -824,52 +813,90 @@ function navigate(dir) {
   }
 }
 
-track.addEventListener('transitionend', () => {
-  if (pendingJump !== null) {
-    const vpos = pendingJump;
-    pendingJump = null;
-    setTrackPos(vpos, false);
-    track.getBoundingClientRect();
-    track.style.transition = 'transform 0.7s cubic-bezier(.77,0,.175,1)';
-  }
-  isTransitioning = false;
-});
-
-const AUTO_DELAY = 4000;
-let autoTimer = setInterval(() => navigate(1), AUTO_DELAY);
-function resetAutoPlay() { clearInterval(autoTimer); autoTimer = setInterval(() => navigate(1), AUTO_DELAY); }
-
-let touchX = 0;
-document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
-document.addEventListener('touchend', e => {
-  const diff = touchX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
-}, {passive:true});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
-});
+function resetAutoPlay() {
+  if (autoTimer) clearInterval(autoTimer);
+  if (products.length) autoTimer = setInterval(() => navigate(1), AUTO_DELAY);
+}
 
 function openPanel(idx) {
   const p = products[idx];
-  document.getElementById('panelProdName').textContent = `${p.name} · ${p.flavor}`;
-  document.getElementById('panelProdPrice').textContent = p.price;
+  const phone = getPhone();
+  document.getElementById('panelProdName').innerHTML = `${p.name} · ${p.flavor}`;
+  document.getElementById('panelProdPrice').innerHTML = p.price;
   document.getElementById('panelWaBtn').onclick = () => {
-    window.open(`https://wa.me/${PHONE}?text=${WA_MSG}${encodeURIComponent(p.name + ' (' + p.flavor + ') - ' + p.price)}`, '_blank');
+    window.open(`https://wa.me/${phone}?text=${WA_MSG}${encodeURIComponent(p.name + ' (' + p.flavor + ') - ' + p.price)}`, '_blank');
   };
   document.getElementById('orderPanel').classList.add('open');
   document.getElementById('overlay').classList.add('show');
 }
+
 function closePanel() {
   document.getElementById('orderPanel').classList.remove('open');
   document.getElementById('overlay').classList.remove('show');
 }
 
-document.getElementById('floatWa').href = `https://wa.me/${PHONE}?text=${WA_MSG}Hi%20I%27d%20like%20to%20browse%20your%20collection`;
+// Initialize the entire site
+async function init() {
+  await loadSettings();
+  await loadProducts();
+  
+  track = document.getElementById('slideTrack');
+  dotsNav = document.getElementById('dotsNav');
+  
+  // Clear and rebuild slides
+  track.innerHTML = '';
+  products.forEach((p, i) => track.appendChild(buildSlide(p, i)));
+  
+  const realCount = products.length;
+  // Add clones for infinite scroll
+  if (realCount > 0) {
+    const cloneLast = buildSlide(products[realCount - 1], realCount - 1);
+    track.insertBefore(cloneLast, track.firstChild);
+    const cloneFirst = buildSlide(products[0], 0);
+    track.appendChild(cloneFirst);
+  }
+  
+  // Rebuild dots
+  dotsNav.innerHTML = '';
+  for (let i = 0; i < realCount; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsNav.appendChild(dot);
+  }
+  
+  // Set up navigation buttons
+  document.getElementById('prevBtn').onclick = () => navigate(-1);
+  document.getElementById('nextBtn').onclick = () => navigate(1);
+  
+  // Floating WA
+  document.getElementById('floatWa').href = `https://wa.me/${getPhone()}?text=${WA_MSG}Hi%20I%27d%20like%20to%20browse%20your%20collection`;
+  
+  // Touch events
+  let touchX = 0;
+  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive: true});
+  document.addEventListener('touchend', e => {
+    const diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+  }, {passive: true});
+  
+  // Keyboard events
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+  });
+  
+  // Initialize position
+  if (realCount > 0) {
+    current = 0;
+    setTrackPos(1, false);
+    updateUI(0);
+    resetAutoPlay();
+  }
+}
 
-setTrackPos(1, false);
-updateUI(0);
+// Start everything
+init();
 </script>
 </body>
 </html>
