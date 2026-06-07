@@ -695,7 +695,20 @@ body{
 const PHONE = "254714693283";
 const WA_MSG = "Hello%20Vapers%20City%2C%20I%20want%20to%20order%3A%20";
 
-const products = [
+let products = [];
+
+async function loadProductsFromJSON() {
+  try {
+    const response = await fetch('/data/products.json');
+    products = await response.json();
+    renderSite(); // Your existing function to build slides
+  } catch (error) {
+    console.error('Failed to load products:', error);
+  }
+}
+
+// Call this instead of using hardcoded products
+loadProductsFromJSON(); [
   {
     name:"Geek Bar Pulse X",
     flavor:"Mexico Mango Ice",
