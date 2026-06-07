@@ -3,30 +3,20 @@ backend:
   repo: martin17muiruri-pixel/vapers-city
   branch: main
 
+media_folder: "images"
+public_folder: "/images"
+
 site_url: https://martin17muiruri-pixel.github.io/vapers-city
 
 collections:
-  - name: products
-    label: Products
-    folder: data/products
+  - name: "products"
+    label: "Products"
+    folder: "data/products"
     create: true
     fields:
-      - name: name
-        label: Name
-        widget: string
-      - name: price
-        label: Price
-        widget: string
-      - name: flavor
-        label: Flavor
-        widget: string
-      - name: puffs
-        label: Puff Count
-        widget: string
-      - name: tagline
-        label: Tagline
-        widget: string
-      - name: refillable
-        label: Refillable
-        widget: boolean
-        default: false
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "price", label: "Price", widget: "string" }
+      - { name: "flavor", label: "Flavor", widget: "string" }
+      - { name: "puffs", label: "Puff Count", widget: "string" }
+      - { name: "tagline", label: "Tagline", widget: "string" }
+      - { name: "refillable", label: "Refillable", widget: "boolean", default: false }
