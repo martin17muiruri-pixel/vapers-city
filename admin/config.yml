@@ -4,6 +4,11 @@ backend:
   branch: main
   use_graphql: true
 
+# DO NOT include any of these:
+# - base_url
+# - auth_endpoint
+# - site_id
+
 site_url: https://martin17muiruri-pixel.github.io/vapers-city
 
 media_folder: "images"
