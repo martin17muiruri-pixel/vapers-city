@@ -3,7 +3,7 @@ backend:
   repo: martin17muiruri-pixel/vapers-city
   branch: main
   base_url: https://vapers-city-oauth.martin17muiruri.workers.dev
-  # No auth_endpoint needed - your worker handles /auth and /callback
+  auth_endpoint: auth  # THIS LINE IS CRITICAL
 
 media_folder: "images"
 public_folder: "/images"
