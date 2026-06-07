@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "data/products"
+    create: true
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Flavor", name: "flavor", widget: "string" }
+      - { label: "Price (KES)", name: "price", widget: "string" }
+      - { label: "Puff Count", name: "puffs", widget: "string" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Refillable", name: "refillable", widget: "boolean", default: false }
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "data/settings.json"
+        fields:
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "WhatsApp Message", name: "wa_message", widget: "text" }
