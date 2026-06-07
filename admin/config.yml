@@ -4,10 +4,7 @@ backend:
   branch: main
   use_graphql: true
 
-# DO NOT include any of these:
-# - base_url
-# - auth_endpoint
-# - site_id
+# IMPORTANT: No base_url, no auth_endpoint, no site_id
 
 site_url: https://martin17muiruri-pixel.github.io/vapers-city
 
