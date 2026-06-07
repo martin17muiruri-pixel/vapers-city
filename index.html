@@ -25,7 +25,7 @@ body{
   user-select:none;
 }
 
-/* ── SLIDING SMOKY VIDEO BACKGROUND (ADDED - DOES NOT AFFECT EXISTING) ── */
+/* ── SLIDING SMOKY VIDEO BACKGROUND ── */
 .smoky-bg-container {
   position: fixed;
   top: 0;
@@ -66,7 +66,7 @@ body{
   z-index: -1;
 }
 
-/* ── SITE HEADER (logo always at top) ── */
+/* ── SITE HEADER ── */
 .site-header{
   position:fixed;
   top:0;left:0;right:0;
@@ -112,7 +112,7 @@ body{
   line-height:1.6;
 }
 
-/* ── SLIDE VIEWPORT (below the header) ── */
+/* ── SLIDE VIEWPORT ── */
 .slide-viewport{
   position:fixed;
   top:var(--header-h);
@@ -120,7 +120,6 @@ body{
   overflow:hidden;
 }
 
-/* ── SLIDE TRACK ── */
 .slide-track{
   display:flex;
   width:100%;
@@ -140,9 +139,7 @@ body{
   justify-content:center;
 }
 
-/* ── PRODUCT SLIDES ── */
 .slide-product{position:relative;}
-
 .slide-p0{background:#0a0005;}
 .slide-p1{background:#00050a;}
 .slide-p2{background:#050a00;}
@@ -156,7 +153,6 @@ body{
   position:absolute;inset:0;
   pointer-events:none;z-index:0;
 }
-
 .slide-p0 .prod-bg{background:radial-gradient(ellipse at 70% 40%,rgba(200,0,255,0.25) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(255,215,0,0.15) 0%,transparent 50%);}
 .slide-p1 .prod-bg{background:radial-gradient(ellipse at 30% 40%,rgba(0,150,255,0.28) 0%,transparent 60%),radial-gradient(ellipse at 75% 65%,rgba(0,255,200,0.15) 0%,transparent 50%);}
 .slide-p2 .prod-bg{background:radial-gradient(ellipse at 60% 35%,rgba(0,255,100,0.25) 0%,transparent 60%),radial-gradient(ellipse at 30% 70%,rgba(255,215,0,0.18) 0%,transparent 50%);}
@@ -176,11 +172,9 @@ body{
   position:relative;z-index:2;
   gap:2rem;
 }
-
 @media(max-width:700px){
   .prod-layout{flex-direction:column;justify-content:center;padding:1rem 1.5rem;gap:1rem;}
 }
-
 .prod-text{
   flex:1;
   display:flex;
@@ -233,8 +227,6 @@ body{
   font-size:clamp(0.7rem,1.5vw,0.9rem);
 }
 .stat-icon{font-size:1.2rem;}
-.stat-label{opacity:0.6;font-size:0.65rem;letter-spacing:2px;display:block;}
-.stat-val{font-weight:700;font-size:clamp(1rem,2.5vw,1.4rem);}
 .puff-count{
   font-family:'Bebas Neue',cursive;
   font-size:clamp(2rem,5vw,3.5rem);
@@ -270,7 +262,6 @@ body{
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 15px rgba(255,165,0,0.6));
 }
-
 .prod-image-wrap{
   flex:1;
   display:flex;
@@ -308,7 +299,6 @@ body{
   0%,100%{opacity:0.35;transform:scale(0.95);}
   50%{opacity:0.7;transform:scale(1.05);}
 }
-
 .smoke-puffs{
   position:absolute;
   top:-20px;
@@ -331,7 +321,6 @@ body{
   60%{opacity:0.3;}
   100%{transform:translateY(-80px) scale(2.5);opacity:0;}
 }
-
 .sparkle{
   position:absolute;
   font-size:1.2rem;
@@ -342,8 +331,6 @@ body{
   0%,100%{opacity:0;transform:scale(0.5) rotate(0deg);}
   50%{opacity:1;transform:scale(1.2) rotate(180deg);}
 }
-
-/* ── NAV ARROWS (inside viewport) ── */
 .nav-arrow{
   position:absolute;
   top:50%;
@@ -363,8 +350,6 @@ body{
 .nav-arrow:hover{background:rgba(255,215,0,0.25);border-color:#FFD700;transform:translateY(-50%) scale(1.1);}
 .nav-prev{left:12px;}
 .nav-next{right:12px;}
-
-/* ── DOTS (inside viewport) ── */
 .dots{
   position:absolute;
   bottom:36px;
@@ -383,8 +368,6 @@ body{
   transition:all 0.25s;
 }
 .dot.active{background:#FFD700;width:24px;border-radius:4px;box-shadow:0 0 10px rgba(255,215,0,0.7);}
-
-/* ── ORDER POPUP ── */
 .order-trigger{
   position:absolute;
   bottom:2.5rem;
@@ -404,7 +387,6 @@ body{
   transition:all 0.2s;
 }
 .order-trigger:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(37,211,102,0.7);}
-
 .order-panel{
   position:fixed;
   right:-340px;
@@ -472,7 +454,6 @@ body{
   transition:all 0.2s;
 }
 .panel-close:hover{background:rgba(255,0,0,0.1);border-color:rgba(255,0,0,0.3);color:#ff6666;}
-
 .overlay{
   position:fixed;inset:0;
   background:rgba(0,0,0,0.6);
@@ -482,8 +463,6 @@ body{
   backdrop-filter:blur(3px);
 }
 .overlay.show{opacity:1;pointer-events:all;}
-
-/* ── FLOATING WA ── */
 .float-wa{
   position:fixed;
   bottom:52px;right:16px;
@@ -504,26 +483,6 @@ body{
   50%{box-shadow:0 0 40px rgba(37,211,102,0.9);}
 }
 .float-wa:hover{transform:scale(1.1);}
-
-/* ── PRODUCT COLOR ACCENTS ── */
-.color-0{color:#cc00ff;}
-.color-1{color:#00aaff;}
-.color-2{color:#00ff88;}
-.color-3{color:#ff6600;}
-.color-4{color:#ff0055;}
-.color-5{color:#00ddff;}
-.color-6{color:#cc00cc;}
-.color-7{color:#ffaa00;}
-
-.bg-glow-0{background:#cc00ff;}
-.bg-glow-1{background:#00aaff;}
-.bg-glow-2{background:#00ff88;}
-.bg-glow-3{background:#ff6600;}
-.bg-glow-4{background:#ff0055;}
-.bg-glow-5{background:#00ddff;}
-.bg-glow-6{background:#cc00cc;}
-.bg-glow-7{background:#ffaa00;}
-
 .corner-tag{
   position:absolute;
   font-family:'Bebas Neue',cursive;
@@ -536,8 +495,6 @@ body{
 }
 .corner-tag.tr{top:5%;right:-1%;text-align:right;}
 .corner-tag.bl{bottom:8%;left:-1%;}
-
-/* slide-in animation when slide becomes active */
 .slide-product .prod-text{
   opacity:0;transform:translateX(-40px);
   transition:opacity 0.6s 0.2s ease, transform 0.6s 0.2s ease;
@@ -550,8 +507,6 @@ body{
 .slide-product.active .prod-image-wrap{
   opacity:1;transform:translateX(0);
 }
-
-/* progress bar inside viewport */
 .progress-bar{
   position:absolute;
   top:0;left:0;
@@ -561,8 +516,6 @@ body{
   transition:width 0.5s ease;
   box-shadow:0 0 8px rgba(255,165,0,0.8);
 }
-
-/* ── 18+ strip ── */
 .age-strip{
   position:fixed;
   bottom:0;left:0;right:0;
@@ -575,8 +528,6 @@ body{
   z-index:100;
   pointer-events:none;
 }
-
-/* Mobile tweaks */
 @media(max-width:700px){
   .nav-arrow{width:36px;height:36px;font-size:1rem;}
   .nav-prev{left:6px;}
@@ -591,7 +542,6 @@ body{
 </head>
 <body>
 
-<!-- ── ADDED: SLIDING SMOKY VIDEO BACKGROUNDS (DOES NOT AFFECT EXISTING CONTENT) ── -->
 <div class="smoky-bg-container">
   <video class="smoky-bg" autoplay loop muted playsinline>
     <source src="https://cdn.pixabay.com/video/2021/11/02/95092-643266719_large.mp4" type="video/mp4">
@@ -605,7 +555,6 @@ body{
 </div>
 <div class="smoky-overlay"></div>
 
-<!-- ── ADDED: AGE GATE POPUP (VERIFICATION BEFORE ENTERING) ── -->
 <div id="ageGate" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);backdrop-filter:blur(20px);z-index:10000;display:flex;align-items:center;justify-content:center;">
   <div style="background:rgba(0,0,0,0.9);border-radius:2rem;padding:2rem;max-width:320px;text-align:center;border:1px solid #FFD700;box-shadow:0 0 50px rgba(255,215,0,0.3);">
     <h2 style="color:#FFD700;font-family:'Bebas Neue',cursive;font-size:2rem;">🔞 AGE VERIFICATION</h2>
@@ -619,7 +568,6 @@ body{
 </div>
 
 <script>
-// ── ADDED: AGE GATE LOGIC (PURELY ADDED, DOES NOT OVERWRITE ANYTHING) ──
 (function() {
   const ageGate = document.getElementById('ageGate');
   if (localStorage.getItem('vapersCityAgeVerified') === 'true') {
@@ -642,38 +590,24 @@ body{
 })();
 </script>
 
-<!-- ── SITE HEADER ── -->
 <header class="site-header">
   <div class="header-logo">🔥 VAPERS CITY</div>
   <div class="header-info">📍 RUIRU · NAIROBI · THIKA<br>0714 693 283</div>
   <div class="header-chain"></div>
 </header>
 
-<!-- ── SLIDE VIEWPORT (everything below the logo) ── -->
 <div class="slide-viewport">
-
-  <!-- Progress bar -->
   <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Nav arrows -->
   <button class="nav-arrow nav-prev" id="prevBtn" onclick="navigate(-1)">&#8592;</button>
   <button class="nav-arrow nav-next" id="nextBtn" onclick="navigate(1)">&#8594;</button>
-
-  <!-- Dots nav -->
   <div class="dots" id="dotsNav"></div>
-
-  <!-- Slide track (populated by JS, includes loop clones) -->
   <div class="slide-track" id="slideTrack"></div>
-
 </div>
 
-<!-- Age strip -->
 <div class="age-strip">⚠ 18+ NICOTINE PRODUCTS FOR ADULTS ONLY · VAPERS CITY · RUIRU KENYA</div>
 
-<!-- Overlay for order panel -->
 <div class="overlay" id="overlay" onclick="closePanel()"></div>
 
-<!-- Order side panel -->
 <div class="order-panel" id="orderPanel">
   <div class="order-panel-chain"></div>
   <div class="panel-title">🛒 ORDER NOW</div>
@@ -688,27 +622,13 @@ body{
   <button class="panel-close" onclick="closePanel()">✕ CLOSE</button>
 </div>
 
-<!-- Floating WA -->
 <a href="#" id="floatWa" class="float-wa" target="_blank">💬</a>
 
 <script>
 const PHONE = "254714693283";
 const WA_MSG = "Hello%20Vapers%20City%2C%20I%20want%20to%20order%3A%20";
 
-let products = [];
-
-async function loadProductsFromJSON() {
-  try {
-    const response = await fetch('/data/products.json');
-    products = await response.json();
-    renderSite(); // Your existing function to build slides
-  } catch (error) {
-    console.error('Failed to load products:', error);
-  }
-}
-
-// Call this instead of using hardcoded products
-loadProductsFromJSON(); [
+const products = [
   {
     name:"Geek Bar Pulse X",
     flavor:"Mexico Mango Ice",
@@ -786,50 +706,42 @@ loadProductsFromJSON(); [
 const colors = ["#cc00ff","#00aaff","#00ff88","#ff6600","#ff0055","#00ddff","#cc00cc","#ffaa00"];
 const cornerTags = ["PULSE","ULTRA","STAR","CUVIE","TORNADO","BANG","HIGH","GHOST"];
 
-const realCount = products.length; // 8
+const realCount = products.length;
 
 function buildSlide(p, i) {
   const slide = document.createElement('div');
   slide.className = `slide slide-product slide-p${i % realCount}`;
-
   const c = colors[i % realCount];
   const tag = cornerTags[i % realCount];
   const realIdx = i % realCount;
-
   slide.innerHTML = `
     <div class="prod-bg"></div>
     <div class="corner-tag tr" style="color:${c}">${tag}</div>
     <div class="corner-tag bl" style="color:${c}">${realIdx + 1}</div>
     <div class="prod-number" style="color:${c}">0${realIdx + 1}</div>
-
     <div class="prod-layout">
       <div class="prod-text">
         <div class="prod-brand-label">VAPERS CITY · RUIRU</div>
         <div class="prod-name" style="color:${c};filter:drop-shadow(0 0 20px ${c}88)">${p.name}</div>
         <div class="prod-flavor" style="color:${c}aa">✦ ${p.flavor}</div>
-
         <div class="prod-stats">
           <div>
             <div class="puff-count">${p.puffs}</div>
             <div class="puff-label">TOTAL PUFFS</div>
           </div>
-
           <div class="stat-row">
             <span class="stat-icon">🔄</span>
             <span class="${p.refillable ? 'refill-yes' : 'refill-no'} refill-badge">
               ${p.refillable ? '✓ REFILLABLE' : '✗ DISPOSABLE'}
             </span>
           </div>
-
           <div style="margin-top:0.3rem;">
             <div style="font-family:'Orbitron',monospace;font-size:0.55rem;letter-spacing:3px;opacity:0.5;margin-bottom:0.2rem;">PRICE</div>
             <div class="prod-price">${p.price}</div>
           </div>
         </div>
-
         <div style="font-family:'Bebas Neue',cursive;font-size:0.9rem;letter-spacing:4px;opacity:0.4;margin-top:0.5rem;">${p.tagline}</div>
       </div>
-
       <div class="prod-image-wrap">
         <div class="vape-glow bg-glow-${realIdx}" style="background:${c};"></div>
         <div class="smoke-puffs">
@@ -838,46 +750,29 @@ function buildSlide(p, i) {
           <div class="smoke-puff" style="background:radial-gradient(circle,${c}44 0%,transparent 70%)"></div>
         </div>
         <div class="vape-float">
-          <img class="vape-img"
-            src="${p.imgFallback}"
-            alt="${p.name}"
-            style="box-shadow:0 0 40px ${c}66,0 0 80px ${c}33;border:2px solid ${c}44;"
-            onerror="this.src='${p.imgFallback}'">
+          <img class="vape-img" src="${p.imgFallback}" alt="${p.name}" style="box-shadow:0 0 40px ${c}66,0 0 80px ${c}33;border:2px solid ${c}44;" onerror="this.src='${p.imgFallback}'">
         </div>
         <div class="sparkle" style="top:-10px;right:10px;animation-delay:0.3s;color:${c}">💎</div>
         <div class="sparkle" style="bottom:10px;left:5px;animation-delay:0.9s;color:#FFD700">✦</div>
         <div class="sparkle" style="top:30%;right:-15px;animation-delay:1.5s;color:${c}">★</div>
       </div>
     </div>
-
-    <button class="order-trigger" onclick="openPanel(${realIdx})">
-      💬 ORDER
-    </button>
+    <button class="order-trigger" onclick="openPanel(${realIdx})">💬 ORDER</button>
   `;
-
   return slide;
 }
 
 const track = document.getElementById('slideTrack');
-
-// Build real slides
 products.forEach((p, i) => track.appendChild(buildSlide(p, i)));
-
-// Add clone of last slide at the FRONT (for backward wrap)
 const cloneLast = buildSlide(products[realCount - 1], realCount - 1);
 track.insertBefore(cloneLast, track.firstChild);
-
-// Add clone of first slide at the END (for forward wrap)
 const cloneFirst = buildSlide(products[0], 0);
 track.appendChild(cloneFirst);
 
-// Virtual positions in track: 0=clone-last, 1..realCount=real, realCount+1=clone-first
-// current is always 0-indexed real index (0..realCount-1)
 let current = 0;
 let isTransitioning = false;
 let pendingJump = null;
 
-// Build dots (one per real slide)
 const dotsNav = document.getElementById('dotsNav');
 for (let i = 0; i < realCount; i++) {
   const dot = document.createElement('div');
@@ -887,31 +782,20 @@ for (let i = 0; i < realCount; i++) {
 }
 
 function setTrackPos(vpos, animated) {
-  track.style.transition = animated
-    ? 'transform 0.7s cubic-bezier(.77,0,.175,1)'
-    : 'none';
+  track.style.transition = animated ? 'transform 0.7s cubic-bezier(.77,0,.175,1)' : 'none';
   track.style.transform = `translateX(-${vpos * 100}vw)`;
 }
 
 function updateUI(realIdx) {
-  // Dots
-  document.querySelectorAll('.dot').forEach((d, i) =>
-    d.classList.toggle('active', i === realIdx));
-  // Progress bar
-  document.getElementById('progressBar').style.width =
-    `${(realIdx / (realCount - 1)) * 100}%`;
-  // Slide active class (for enter animation)
-  // All slides in track (skip clone at index 0 and last)
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === realIdx));
+  document.getElementById('progressBar').style.width = `${(realIdx / (realCount - 1)) * 100}%`;
   const allSlides = track.querySelectorAll('.slide-product');
-  allSlides.forEach((s, vi) => {
-    // vi: 0=clone-last, 1..8=real, 9=clone-first
-    s.classList.toggle('active', vi === realIdx + 1);
-  });
+  allSlides.forEach((s, vi) => { s.classList.toggle('active', vi === realIdx + 1); });
 }
 
 function goTo(realIdx) {
   current = realIdx;
-  setTrackPos(realIdx + 1, true); // +1 offset for clone-last at position 0
+  setTrackPos(realIdx + 1, true);
   updateUI(realIdx);
   resetAutoPlay();
 }
@@ -919,22 +803,16 @@ function goTo(realIdx) {
 function navigate(dir) {
   if (isTransitioning) return;
   resetAutoPlay();
-
   const next = (current + dir + realCount) % realCount;
-
   if (dir > 0 && current === realCount - 1) {
-    // Forward wrap: last → first
-    // Animate to clone-first (position realCount + 1)
     isTransitioning = true;
-    pendingJump = 1; // after animation jump to real first (vpos 1)
+    pendingJump = 1;
     current = 0;
     updateUI(0);
     setTrackPos(realCount + 1, true);
   } else if (dir < 0 && current === 0) {
-    // Backward wrap: first → last
-    // Animate to clone-last (position 0)
     isTransitioning = true;
-    pendingJump = realCount; // after animation jump to real last (vpos realCount)
+    pendingJump = realCount;
     current = realCount - 1;
     updateUI(realCount - 1);
     setTrackPos(0, true);
@@ -946,30 +824,21 @@ function navigate(dir) {
   }
 }
 
-// After transition ends, handle clone jump
 track.addEventListener('transitionend', () => {
   if (pendingJump !== null) {
     const vpos = pendingJump;
     pendingJump = null;
     setTrackPos(vpos, false);
-    // Force reflow so the instant jump is not visible
     track.getBoundingClientRect();
-    // Re-enable transitions
     track.style.transition = 'transform 0.7s cubic-bezier(.77,0,.175,1)';
   }
   isTransitioning = false;
 });
 
-// ── AUTO-PLAY (keeps going round and round) ──
 const AUTO_DELAY = 4000;
 let autoTimer = setInterval(() => navigate(1), AUTO_DELAY);
+function resetAutoPlay() { clearInterval(autoTimer); autoTimer = setInterval(() => navigate(1), AUTO_DELAY); }
 
-function resetAutoPlay() {
-  clearInterval(autoTimer);
-  autoTimer = setInterval(() => navigate(1), AUTO_DELAY);
-}
-
-// Touch / swipe
 let touchX = 0;
 document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
 document.addEventListener('touchend', e => {
@@ -977,13 +846,11 @@ document.addEventListener('touchend', e => {
   if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
 }, {passive:true});
 
-// Keyboard
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
 });
 
-// Panel
 function openPanel(idx) {
   const p = products[idx];
   document.getElementById('panelProdName').textContent = `${p.name} · ${p.flavor}`;
@@ -999,11 +866,8 @@ function closePanel() {
   document.getElementById('overlay').classList.remove('show');
 }
 
-// Floating WA
-document.getElementById('floatWa').href =
-  `https://wa.me/${PHONE}?text=${WA_MSG}Hi%20I%27d%20like%20to%20browse%20your%20collection`;
+document.getElementById('floatWa').href = `https://wa.me/${PHONE}?text=${WA_MSG}Hi%20I%27d%20like%20to%20browse%20your%20collection`;
 
-// Init: position at first real slide (vpos 1), no animation
 setTrackPos(1, false);
 updateUI(0);
 </script>
