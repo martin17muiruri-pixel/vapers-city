@@ -2,39 +2,15 @@ backend:
   name: github
   repo: martin17muiruri-pixel/vapers-city
   branch: main
-  use_graphql: true
 
 site_url: https://martin17muiruri-pixel.github.io/vapers-city
 
-media_folder: "images"
-public_folder: "/images"
-
 collections:
   - name: "products"
-    label: "🛒 Products"
-    label_singular: "Product"
+    label: "Products"
     folder: "data/products"
     create: true
-    delete: true
-    extension: md
-    format: frontmatter
     fields:
-      - { label: "Product Name", name: "name", widget: "string" }
-      - { label: "Flavor", name: "flavor", widget: "string" }
-      - { label: "Price (KES)", name: "price", widget: "string" }
-      - { label: "Puff Count", name: "puffs", widget: "string" }
-      - { label: "Tagline", name: "tagline", widget: "string" }
-      - { label: "Product Image", name: "image", widget: "image", required: false }
-      - { label: "Refillable", name: "refillable", widget: "boolean", default: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
-
-  - name: "settings"
-    label: "⚙️ Settings"
-    files:
-      - name: "general"
-        label: "General Settings"
-        file: "data/settings.json"
-        fields:
-          - { label: "Phone Number (WhatsApp)", name: "phone", widget: "string", default: "254714693283" }
-          - { label: "Location", name: "location", widget: "string", default: "Ruiru, Kenya" }
-          - { label: "Delivery Areas", name: "delivery_areas", widget: "string", default: "Ruiru · Nairobi · Thika" }
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "price", label: "Price", widget: "string" }
+      - { name: "flavor", label: "Flavor", widget: "string" }
