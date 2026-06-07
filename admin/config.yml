@@ -2,7 +2,7 @@ backend:
   name: github
   repo: martin17muiruri-pixel/vapers-city
   branch: main
-  base_url: https://YOUR_WORKER_URL
+  base_url: https://vapers-city-oauth.martin17muiruri.workers.dev
   use_graphql: true
 
 site_url: https://martin17muiruri-pixel.github.io/vapers-city
