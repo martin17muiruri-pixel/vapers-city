@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Geek Bar Pulse X",
+    "flavor": "Mexico Mango Ice",
+    "price": "2,500 KES",
+    "puffs": "15,000",
+    "tagline": "PULSE DIFFERENT",
+    "image": "",
+    "refillable": false,
+    "order": 1
+  },
+  {
+    "name": "Elf Bar Ultra 9000",
+    "flavor": "Blue Razz Lemonade",
+    "price": "2,200 KES",
+    "puffs": "9,000",
+    "tagline": "ULTRA SMOOTH HITS",
+    "image": "",
+    "refillable": false,
+    "order": 2
+  },
+  {
+    "name": "Vozol Star 9000",
+    "flavor": "Strawberry Watermelon",
+    "price": "2,600 KES",
+    "puffs": "9,000",
+    "tagline": "STAR POWER",
+    "image": "",
+    "refillable": false,
+    "order": 3
+  },
+  {
+    "name": "HQD Cuvie Plus",
+    "flavor": "Mango Ice",
+    "price": "1,300 KES",
+    "puffs": "1,200",
+    "tagline": "CLASSIC DRIP",
+    "image": "",
+    "refillable": false,
+    "order": 4
+  },
+  {
+    "name": "RandM Tornado 7000",
+    "flavor": "Grape Soda Pop",
+    "price": "2,400 KES",
+    "puffs": "7,000",
+    "tagline": "SPIN THE BLOCK",
+    "image": "",
+    "refillable": false,
+    "order": 5
+  },
+  {
+    "name": "Bang King 12000",
+    "flavor": "Blueberry Bubblegum",
+    "price": "3,200 KES",
+    "puffs": "12,000",
+    "tagline": "KING SIZE CLOUDS",
+    "image": "",
+    "refillable": false,
+    "order": 6
+  },
+  {
+    "name": "Maskking High GT",
+    "flavor": "Cool Mint Blast",
+    "price": "1,800 KES",
+    "puffs": "2,500",
+    "tagline": "STAY HIGH, STAY COOL",
+    "image": "",
+    "refillable": false,
+    "order": 7
+  },
+  {
+    "name": "Vapes Bars Ghost",
+    "flavor": "Pink Lemonade Rush",
+    "price": "2,100 KES",
+    "puffs": "3,500",
+    "tagline": "GHOST MODE ON",
+    "image": "",
+    "refillable": false,
+    "order": 8
+  }
+]
