@@ -2,7 +2,7 @@ backend:
   name: github
   repo: martin17muiruri-pixel/vapers-city
   branch: main
-   base_url: https://vapers-city-oauth.martin17muiruri.workers.dev
+  base_url: https://vapers-city-oauth.martin17muiruri.workers.dev
   auth_endpoint: auth
 
 media_folder: "images"
@@ -17,3 +17,6 @@ collections:
       - { name: "name", label: "Name", widget: "string" }
       - { name: "price", label: "Price", widget: "string" }
       - { name: "flavor", label: "Flavor", widget: "string" }
+      - { name: "puffs", label: "Puff Count", widget: "string" }
+      - { name: "tagline", label: "Tagline", widget: "string" }
+      - { name: "refillable", label: "Refillable", widget: "boolean", default: false }
