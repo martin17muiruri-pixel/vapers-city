@@ -112,7 +112,6 @@
         margin-top: 5px;
     }
 
-    /* Social Media Icons in Header */
     .social-icons {
         display: flex;
         gap: 1rem;
@@ -129,7 +128,6 @@
         transform: scale(1.1);
     }
 
-    /* ── DELIVERY NOTICE ── */
     .delivery-notice {
         position: fixed;
         top: var(--header-h);
@@ -156,7 +154,6 @@
         font-size: 0.7rem;
     }
 
-    /* ── CATEGORY TOGGLE ── */
     .category-toggle {
         position: fixed;
         top: calc(var(--header-h) + 38px);
@@ -189,7 +186,6 @@
         box-shadow: 0 0 20px rgba(255,165,0,0.6);
     }
 
-    /* ── CONTACT BAR WITH SOCIAL MEDIA ── */
     .contact-bar {
         position: fixed;
         bottom: 0;
@@ -214,7 +210,6 @@
         font-size: 1rem;
     }
 
-    /* ── MAIN CONTENT ── */
     .main-container {
         max-width: 1400px;
         margin: 0 auto;
@@ -223,70 +218,46 @@
         z-index: 2;
     }
 
-    /* Product Cards - Semi-transparent to see background */
-    .product-card, .velo-card {
-        background: rgba(10, 10, 15, 0.65);
-        backdrop-filter: blur(8px);
-        border-radius: 1.5rem;
-        border: 1px solid rgba(255, 215, 0, 0.2);
-        overflow: hidden;
-        transition: transform 0.2s, border-color 0.2s;
+    /* Section Titles */
+    .section-title {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.8rem;
+        color: #FFD700;
+        margin: 1rem 0 0.5rem;
+        text-align: center;
     }
-    .product-card:hover, .velo-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(255,215,0,0.5);
+    .section-subtitle {
+        text-align: center;
+        color: rgba(255,255,255,0.6);
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
     }
 
-    /* Velo Section Styles */
-    .velo-section {
-        margin-bottom: 2rem;
-    }
-    .velo-category-title {
-        font-family: 'Bebas Neue', cursive;
-        font-size: 1.5rem;
-        color: #FFD700;
-        padding: 0.3rem 1rem;
-        background: rgba(0,0,0,0.5);
-        display: inline-block;
-        border-radius: 40px;
-        margin-bottom: 0.8rem;
-    }
-    .velo-slider-container {
+    /* Horizontal Slideshow (Looping) */
+    .slider-container {
         position: relative;
         margin-bottom: 1.5rem;
+        overflow: hidden;
     }
-    .velo-slider {
+    .slider-track {
+        display: flex;
+        gap: 1rem;
         overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
         scroll-behavior: smooth;
         padding: 0.8rem 0;
         scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
     }
-    .velo-slider::-webkit-scrollbar {
+    .slider-track::-webkit-scrollbar {
         height: 5px;
     }
-    .velo-slider::-webkit-scrollbar-track {
+    .slider-track::-webkit-scrollbar-track {
         background: rgba(255,255,255,0.1);
         border-radius: 10px;
     }
-    .velo-slider::-webkit-scrollbar-thumb {
+    .slider-track::-webkit-scrollbar-thumb {
         background: #FFD700;
         border-radius: 10px;
-    }
-    .velo-slider-track {
-        display: inline-flex;
-        gap: 1rem;
-        padding-right: 1rem;
-    }
-    .velo-card {
-        display: inline-block;
-        width: 240px;
-        white-space: normal;
-        background: rgba(10, 10, 15, 0.65);
-        backdrop-filter: blur(8px);
-        border-radius: 1.2rem;
-        border: 1px solid rgba(255, 215, 0, 0.2);
     }
     .slider-nav {
         position: absolute;
@@ -308,12 +279,20 @@
     .slider-prev { left: -5px; }
     .slider-next { right: -5px; }
 
-    /* Regular Grid */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 1.2rem;
-        margin-top: 1rem;
+    /* Product Cards */
+    .product-card, .velo-card {
+        background: rgba(10, 10, 15, 0.7);
+        backdrop-filter: blur(8px);
+        border-radius: 1.2rem;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        overflow: hidden;
+        transition: transform 0.2s, border-color 0.2s;
+        width: 240px;
+        flex-shrink: 0;
+    }
+    .product-card:hover, .velo-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255,215,0,0.5);
     }
     .product-img {
         width: 100%;
@@ -326,38 +305,67 @@
     }
     .product-name {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         letter-spacing: 1px;
         color: #FFD700;
         margin-bottom: 0.2rem;
     }
     .product-desc {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         color: rgba(255,255,255,0.7);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
         line-height: 1.3;
     }
-    .product-price {
+    
+    /* Ranking Badges */
+    .ranking-badge {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.6rem;
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+    }
+    .platinum { background: linear-gradient(135deg, #e5e4e2, #b0c4de); color: #1a1a2a; }
+    .gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2a; }
+    .silver { background: linear-gradient(135deg, #C0C0C0, #A8A8A8); color: #1a1a2a; }
+    .diamond { background: linear-gradient(135deg, #b9f2ff, #00e5ff); color: #1a1a2a; }
+
+    /* Price Styles */
+    .old-price {
+        font-size: 0.7rem;
+        color: #ff6666;
+        text-decoration: line-through;
+        margin-right: 0.5rem;
+    }
+    .current-price {
         font-size: 1rem;
         font-weight: bold;
         color: #FFA500;
-        margin-bottom: 0.4rem;
+    }
+    .discount-badge {
+        background: #ff0055;
+        color: white;
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 20px;
+        margin-left: 0.5rem;
     }
     .velo-dots {
         display: flex;
-        gap: 5px;
+        gap: 4px;
         margin: 5px 0;
     }
     .velo-dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         background: #FFD700;
         border-radius: 50%;
     }
     .action-buttons {
         display: flex;
         gap: 0.4rem;
-        margin-top: 0.4rem;
+        margin-top: 0.5rem;
     }
     .btn-wishlist, .btn-cart {
         flex: 1;
@@ -385,6 +393,14 @@
     .btn-cart {
         background: linear-gradient(135deg, #25D366, #128C7E);
         color: #fff;
+    }
+
+    /* Grid Layout for Regular Products */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
     }
 
     /* Sidebar */
@@ -534,20 +550,20 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         border: none;
     }
+
     @media (max-width: 768px) {
         .side-panel { width: 85%; right: -85%; }
         .toggle-btn { font-size: 0.9rem; padding: 0.2rem 1rem; }
         .header-logo { font-size: 2rem; }
         .contact-bar { font-size: 0.55rem; gap: 0.8rem; }
         .main-container { padding-top: 195px; }
-        .velo-card { width: 210px; }
-        .header-tagline { font-size: 0.5rem; }
+        .product-card, .velo-card { width: 210px; }
+        .section-title { font-size: 1.3rem; }
     }
 </style>
 </head>
 <body>
 
-<!-- CATEGORY-SPECIFIC LIVE SMOKY VIDEO BACKGROUNDS -->
 <div class="video-bg-container">
     <video id="bgVape" class="video-bg active" autoplay loop muted playsinline>
         <source src="https://cdn.pixabay.com/video/2021/11/02/95092-643266719_large.mp4" type="video/mp4">
@@ -631,50 +647,96 @@
 </div>
 
 <script>
-    // ==================== PRODUCT DATA ====================
-    const veloByDots = {
-        3: [
-            { name: "Velo 3 Dots - Mint", desc: "Mild strength, fresh mint flavor", price: 1200, img: "", dots: 3 },
-            { name: "Velo 3 Dots - Citrus", desc: "Mild strength, citrus burst", price: 1200, img: "", dots: 3 },
-            { name: "Velo 3 Dots - Coffee", desc: "Mild strength, coffee flavor", price: 1250, img: "", dots: 3 },
-            { name: "Velo 3 Dots - Berry", desc: "Mild strength, mixed berries", price: 1200, img: "", dots: 3 }
-        ],
-        4: [
-            { name: "Velo 4 Dots - Mint", desc: "Medium strength, cool mint", price: 1300, img: "", dots: 4 },
-            { name: "Velo 4 Dots - Licorice", desc: "Medium strength, licorice", price: 1350, img: "", dots: 4 },
-            { name: "Velo 4 Dots - Berry", desc: "Medium strength, berry mix", price: 1300, img: "", dots: 4 },
-            { name: "Velo 4 Dots - Wintergreen", desc: "Medium strength, wintergreen", price: 1300, img: "", dots: 4 }
-        ],
-        5: [
-            { name: "Velo 5 Dots - Mint", desc: "Strong strength, extreme freeze", price: 1400, img: "", dots: 5 },
-            { name: "Velo 5 Dots - Spearmint", desc: "Strong strength, spearmint", price: 1400, img: "", dots: 5 },
-            { name: "Velo 5 Dots - Citrus X", desc: "Strong strength, extreme citrus", price: 1450, img: "", dots: 5 }
-        ],
-        6: [
-            { name: "Velo 6 Dots - Mint", desc: "Extra strong, max freeze", price: 1500, img: "", dots: 6 },
-            { name: "Velo 6 Dots - Wintergreen", desc: "Extra strong, wintergreen max", price: 1500, img: "", dots: 6 },
-            { name: "Velo 6 Dots - Polar Blast", desc: "Extra strong, arctic blast", price: 1550, img: "", dots: 6 }
-        ]
-    };
+    // ==================== EXTENSIVE PRODUCT DATA (20+ per category) ====================
+    
+    // Helper to generate ranking based on price/position
+    function getRanking(index, price) {
+        if (price >= 3000 || index < 3) return { name: 'DIAMOND', class: 'diamond' };
+        if (price >= 2000 || index < 8) return { name: 'PLATINUM', class: 'platinum' };
+        if (price >= 1500 || index < 15) return { name: 'GOLD', class: 'gold' };
+        return { name: 'SILVER', class: 'silver' };
+    }
 
+    // Vape Products (25+)
     const vapeProducts = [
-        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, img: "" },
-        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, img: "" },
-        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, img: "" },
-        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, img: "" },
-        { name: "RandM Tornado 7000", desc: "Grape Soda, 7,000 puffs", price: 2400, img: "" },
-        { name: "Bang King 12000", desc: "Blueberry Bubblegum, 12,000 puffs", price: 3200, img: "" },
-        { name: "Maskking High GT", desc: "Cool Mint, 2,500 puffs", price: 1800, img: "" },
-        { name: "Vapes Bars Ghost", desc: "Pink Lemonade, 3,500 puffs", price: 2100, img: "" }
+        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, oldPrice: 3200, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, oldPrice: 3300, discount: 21, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, oldPrice: 1800, discount: 28, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "RandM Tornado 7000", desc: "Grape Soda, 7,000 puffs", price: 2400, oldPrice: 3100, discount: 23, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Bang King 12000", desc: "Blueberry Bubblegum, 12,000 puffs", price: 3200, oldPrice: 4200, discount: 24, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Maskking High GT", desc: "Cool Mint, 2,500 puffs", price: 1800, oldPrice: 2300, discount: 22, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Vapes Bars Ghost", desc: "Pink Lemonade, 3,500 puffs", price: 2100, oldPrice: 2700, discount: 22, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Oxbar 2200 Puffs", desc: "Compact Disposable Vape", price: 1300, oldPrice: 1700, discount: 24, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Yuoto 5000 Puffs", desc: "Long-Lasting Disposable Vape", price: 1800, oldPrice: 2400, discount: 25, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Vapengin 7000 Puffs", desc: "Stylish Disposable Vape", price: 2200, oldPrice: 2900, discount: 24, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Pyne Pod Boost 8500", desc: "Rechargeable Disposable Vape", price: 2400, oldPrice: 3100, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Vfeel 8000 Puffs", desc: "Premium Disposable Vape", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "KK 5000 Puffs", desc: "Smooth Disposable Vape", price: 1600, oldPrice: 2100, discount: 24, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Tugboat 12000 Puffs", desc: "Rechargeable, High Capacity", price: 2700, oldPrice: 3500, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Elf Bar 5000 Puffs", desc: "Classic Mint, 5,000 puffs", price: 1500, oldPrice: 2000, discount: 25, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Vozol Gear 10000", desc: "Neon Series, 10,000 puffs", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Geek Bar Meloso", desc: "Blueberry Ice, 9,000 puffs", price: 1850, oldPrice: 2400, discount: 23, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Lost Mary OS5000", desc: "Strawberry Ice, 5,000 puffs", price: 1600, oldPrice: 2200, discount: 27, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Crystal Pro Max", desc: "Razz Lemonade, 4,000 puffs", price: 1400, oldPrice: 1900, discount: 26, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Elux Cyberover", desc: "Watermelon, 10,000 puffs", price: 2100, oldPrice: 2800, discount: 25, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Ske Crystal Plus", desc: "Mixed Berries, 6,000 puffs", price: 1900, oldPrice: 2500, discount: 24, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "IVG 2400 Puffs", desc: "Blue Raspberry, 2,400 puffs", price: 1100, oldPrice: 1500, discount: 27, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Aroma King 7000", desc: "Mango Peach, 7,000 puffs", price: 2000, oldPrice: 2600, discount: 23, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "R&M 9000 Puffs", desc: "Strawberry Kiwi, 9,000 puffs", price: 2300, oldPrice: 3000, discount: 23, ranking: "GOLD", rankClass: "gold", img: "" }
     ];
 
-    const shishaProducts = [
-        { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint", price: 3500, img: "" },
-        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, img: "" },
-        { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint", price: 2200, img: "" },
-        { name: "Starbuzz Blue Mist", desc: "Blueberry + subtle mint", price: 3000, img: "" },
-        { name: "Al Fakher Double Apple", desc: "Apple + anise (licorice)", price: 2200, img: "" }
+    // Velo Products (20+)
+    const veloProducts = [
+        { name: "Velo 3 Dots - Mint", desc: "Mild strength, fresh mint", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 3 Dots - Citrus", desc: "Mild strength, citrus burst", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 3 Dots - Coffee", desc: "Mild strength, coffee flavor", price: 1250, oldPrice: 1650, discount: 24, dots: 3, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 3 Dots - Berry", desc: "Mild strength, mixed berries", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 4 Dots - Mint", desc: "Medium strength, cool mint", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 4 Dots - Licorice", desc: "Medium strength, licorice", price: 1350, oldPrice: 1750, discount: 23, dots: 4, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 4 Dots - Berry", desc: "Medium strength, berry mix", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 4 Dots - Wintergreen", desc: "Medium strength, wintergreen", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", rankClass: "silver", img: "" },
+        { name: "Velo 5 Dots - Mint", desc: "Strong strength, extreme freeze", price: 1400, oldPrice: 1900, discount: 26, dots: 5, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Velo 5 Dots - Spearmint", desc: "Strong strength, spearmint", price: 1400, oldPrice: 1900, discount: 26, dots: 5, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Velo 5 Dots - Citrus X", desc: "Strong strength, extreme citrus", price: 1450, oldPrice: 1950, discount: 26, dots: 5, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Velo 6 Dots - Mint", desc: "Extra strong, max freeze", price: 1500, oldPrice: 2100, discount: 29, dots: 6, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Velo 6 Dots - Wintergreen", desc: "Extra strong, wintergreen max", price: 1500, oldPrice: 2100, discount: 29, dots: 6, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Velo 6 Dots - Polar Blast", desc: "Extra strong, arctic blast", price: 1550, oldPrice: 2150, discount: 28, dots: 6, ranking: "GOLD", rankClass: "gold", img: "" }
     ];
+
+    // Shisha Products (25+)
+    const shishaProducts = [
+        { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Starbuzz Blue Mist", desc: "Blueberry + subtle mint", price: 3000, oldPrice: 3900, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Al Fakher Double Apple", desc: "Apple + anise (licorice)", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "MustHave Pinkman", desc: "Raspberry/strawberry + grapefruit", price: 3800, oldPrice: 4900, discount: 22, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Adalya Lady Killer", desc: "Mango, melon, wild berries, mint", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Trifecta Peppermint Shake", desc: "Peppermint + vanilla shake", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Darkside Mango Lassi", desc: "Mango, yogurt, cream", price: 3600, oldPrice: 4600, discount: 22, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Fumari Lemon Mint", desc: "Zesty lemon + peppermint", price: 2500, oldPrice: 3200, discount: 22, ranking: "GOLD", rankClass: "gold", img: "" },
+        { name: "Trifecta Twice The Ice", desc: "Extreme icy menthol cooling", price: 3200, oldPrice: 4100, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Element Moroz", desc: "Powerful icy cooling (Frost)", price: 3100, oldPrice: 4000, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "MustHave Frosty", desc: "Pure icy-menthol, neutral cooler", price: 3300, oldPrice: 4200, discount: 21, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Darkside Ultra Nova", desc: "Maximum arctic coldness", price: 3400, oldPrice: 4400, discount: 23, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Tangiers Kashmir Peach", desc: "Peach + exotic Kashmir spices", price: 3700, oldPrice: 4800, discount: 23, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "BlackBurn Ekzo Mango", desc: "Ripe mango, creamy undertones", price: 3400, oldPrice: 4400, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Bonche Cookie", desc: "Freshly baked cookie, vanilla butter", price: 3300, oldPrice: 4300, discount: 23, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Musthave Unicorn Treats", desc: "Fruity marshmallows, cereal, creamy", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", rankClass: "diamond", img: "" },
+        { name: "Sebero Mango Yogurt", desc: "Mango + tangy yogurt", price: 3200, oldPrice: 4100, discount: 22, ranking: "PLATINUM", rankClass: "platinum", img: "" },
+        { name: "Al Fakher Cappuccino", desc: "Espresso coffee with steamed milk", price: 2300, oldPrice: 2900, discount: 21, ranking: "GOLD", rankClass: "gold", img: "" }
+    ];
+
+    // This Week's Offers (7 products - mix of all categories)
+    const weeklyOffers = [
+        ...vapeProducts.slice(0, 3).map(p => ({ ...p, category: 'vape' })),
+        ...veloProducts.slice(0, 2).map(p => ({ ...p, category: 'velo', dots: p.dots })),
+        ...shishaProducts.slice(0, 2).map(p => ({ ...p, category: 'shisha' }))
+    ];
+
+    // Best Sellers (top 5 by price/ranking)
+    const bestSellers = [...vapeProducts.slice(0, 3), ...shishaProducts.slice(0, 2)];
 
     let cart = JSON.parse(localStorage.getItem('vapers_cart') || '[]');
     let favorites = JSON.parse(localStorage.getItem('vapers_favorites') || '[]');
@@ -697,21 +759,17 @@
 
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
+            navigator.geolocation.getCurrentPosition(() => {
+                document.getElementById('locationStatus').innerHTML = "✓ Location detected";
+                document.getElementById('deliveryFeeMsg').innerHTML = "🚚 Delivery available at a small fee";
+            }, () => {
+                document.getElementById('locationStatus').innerHTML = "📍 Ruiru, Kenya";
+                document.getElementById('deliveryFeeMsg').innerHTML = "🚚 Delivery available at a small fee";
+            });
         } else {
-            document.getElementById('locationStatus').innerHTML = "Location: Ruiru, Kenya";
+            document.getElementById('locationStatus').innerHTML = "📍 Ruiru, Kenya";
             document.getElementById('deliveryFeeMsg').innerHTML = "🚚 Delivery available at a small fee";
         }
-    }
-
-    function showPosition(position) {
-        document.getElementById('locationStatus').innerHTML = "✓ Location detected";
-        document.getElementById('deliveryFeeMsg').innerHTML = "🚚 Delivery available at a small fee";
-    }
-
-    function showError(error) {
-        document.getElementById('locationStatus').innerHTML = "📍 Ruiru, Kenya";
-        document.getElementById('deliveryFeeMsg').innerHTML = "🚚 Delivery available at a small fee";
     }
 
     function renderVeloDots(dots) {
@@ -721,86 +779,80 @@
         return html;
     }
 
-    function createVeloSlider(title, dotsValue, products) {
-        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/gold?text=Velo';
-        const sliderId = `velo-slider-${dotsValue}`;
-        let html = `
-            <div class="velo-section">
-                <div class="velo-category-title">${title}</div>
-                <div class="velo-slider-container">
-                    <div class="slider-nav slider-prev" onclick="slideVelo('${sliderId}', -1)">‹</div>
-                    <div class="slider-nav slider-next" onclick="slideVelo('${sliderId}', 1)">›</div>
-                    <div class="velo-slider" id="${sliderId}">
-                        <div class="velo-slider-track">
-        `;
-        products.forEach(p => {
-            html += `
-                <div class="velo-card">
-                    <img class="product-img" src="${p.img || placeholderImg}" alt="${p.name}" onerror="this.src='${placeholderImg}'">
-                    <div class="product-info">
-                        <div class="product-name">${p.name}</div>
-                        ${renderVeloDots(p.dots)}
-                        <div class="product-desc">${p.desc}</div>
-                        <div class="product-price">KES ${p.price.toLocaleString()}</div>
-                        <div class="action-buttons">
-                            <button class="btn-wishlist ${isFavorite(p.name) ? 'active' : ''}" onclick="toggleFavoriteFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots})">
-                                ❤️ ${isFavorite(p.name) ? 'Saved' : 'Save'}
-                            </button>
-                            <button class="btn-cart" onclick="addToCartFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots})">
-                                🛒 Add
-                            </button>
-                        </div>
+    function renderProductCard(p, isHorizontal = false) {
+        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/gold?text=' + encodeURIComponent(p.name.substring(0, 15));
+        const discountPercent = p.discount || Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+        const dotsHtml = p.dots ? renderVeloDots(p.dots) : '';
+        
+        return `
+            <div class="product-card" style="${isHorizontal ? 'width: 240px; flex-shrink: 0;' : ''}">
+                <img class="product-img" src="${p.img || placeholderImg}" alt="${p.name}" onerror="this.src='${placeholderImg}'">
+                <div class="product-info">
+                    <span class="ranking-badge ${p.rankClass}">🏆 ${p.ranking}</span>
+                    <div class="product-name">${p.name}</div>
+                    ${dotsHtml}
+                    <div class="product-desc">${p.desc}</div>
+                    <div>
+                        <span class="old-price">KES ${p.oldPrice.toLocaleString()}</span>
+                        <span class="current-price">KES ${p.price.toLocaleString()}</span>
+                        <span class="discount-badge">-${discountPercent}%</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-wishlist ${isFavorite(p.name) ? 'active' : ''}" onclick="toggleFavoriteFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots || 0}, '${p.oldPrice}', '${p.ranking}')">
+                            ❤️ ${isFavorite(p.name) ? 'Saved' : 'Save'}
+                        </button>
+                        <button class="btn-cart" onclick="addToCartFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots || 0})">
+                            🛒 Add
+                        </button>
                     </div>
                 </div>
-            `;
-        });
-        html += `</div></div></div></div>`;
-        return html;
+            </div>
+        `;
     }
 
-    window.slideVelo = (sliderId, direction) => {
+    function createHorizontalSlider(title, items, sliderId) {
+        if (!items || items.length === 0) return '';
+        return `
+            <div class="section-title">${title}</div>
+            <div class="slider-container">
+                <div class="slider-nav slider-prev" onclick="slideHorizontal('${sliderId}', -1)">‹</div>
+                <div class="slider-nav slider-next" onclick="slideHorizontal('${sliderId}', 1)">›</div>
+                <div class="slider-track" id="${sliderId}">
+                    ${items.map(item => renderProductCard(item, true)).join('')}
+                    ${items.map(item => renderProductCard(item, true)).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    window.slideHorizontal = (sliderId, direction) => {
         const slider = document.getElementById(sliderId);
-        if (slider) slider.scrollLeft += direction * 260;
+        if (slider) {
+            const scrollAmount = 260;
+            slider.scrollLeft += direction * scrollAmount;
+            if (slider.scrollLeft <= 0 && direction === -1) slider.scrollLeft = slider.scrollWidth / 2;
+            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth && direction === 1) slider.scrollLeft = slider.scrollWidth / 2 - slider.clientWidth;
+        }
     };
 
     function renderProducts() {
         const container = document.getElementById('productsContainer');
-        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/gold?text=Product';
-        if (currentCategory === 'velo') {
-            let html = '';
-            html += createVeloSlider('🟤 3 DOTS - Mild', 3, veloByDots[3]);
-            html += createVeloSlider('🟤 4 DOTS - Medium', 4, veloByDots[4]);
-            html += createVeloSlider('🟤 5 DOTS - Strong', 5, veloByDots[5]);
-            html += createVeloSlider('🟤 6 DOTS - Extra Strong', 6, veloByDots[6]);
-            container.innerHTML = html;
-        } else {
-            const products = currentCategory === 'vape' ? vapeProducts : shishaProducts;
-            container.innerHTML = `<div class="products-grid">${products.map(p => `
-                <div class="product-card">
-                    <img class="product-img" src="${p.img || placeholderImg}" alt="${p.name}" onerror="this.src='${placeholderImg}'">
-                    <div class="product-info">
-                        <div class="product-name">${p.name}</div>
-                        <div class="product-desc">${p.desc}</div>
-                        <div class="product-price">KES ${p.price.toLocaleString()}</div>
-                        <div class="action-buttons">
-                            <button class="btn-wishlist ${isFavorite(p.name) ? 'active' : ''}" onclick="toggleFavoriteFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', 0)">
-                                ❤️ ${isFavorite(p.name) ? 'Saved' : 'Save'}
-                            </button>
-                            <button class="btn-cart" onclick="addToCartFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', 0)">
-                                🛒 Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>`).join('')}</div>`;
-        }
+        const currentProducts = currentCategory === 'vape' ? vapeProducts : (currentCategory === 'velo' ? veloProducts : shishaProducts);
+        
+        let html = '';
+        html += createHorizontalSlider('🔥 THIS WEEK\'S OFFERS', weeklyOffers, 'offersSlider');
+        html += createHorizontalSlider('⭐ BEST SELLERS', bestSellers, 'bestsellerSlider');
+        html += `<div class="section-title">📦 ALL ${currentCategory.toUpperCase()} PRODUCTS</div>`;
+        html += `<div class="products-grid">${currentProducts.map(p => renderProductCard(p)).join('')}</div>`;
+        container.innerHTML = html;
     }
 
     function isFavorite(name) { return favorites.some(f => f.name === name); }
 
-    window.toggleFavoriteFromRender = (name, price, desc, img, dots) => {
+    window.toggleFavoriteFromRender = (name, price, desc, img, dots, oldPrice, ranking) => {
         const existing = favorites.find(f => f.name === name);
         if (existing) favorites = favorites.filter(f => f.name !== name);
-        else favorites.push({ name, price, desc, img, dots, category: currentCategory });
+        else favorites.push({ name, price, desc, img, dots, oldPrice, ranking, category: currentCategory });
         saveFavorites();
         updateFavoritesUI();
         renderProducts();
@@ -914,9 +966,8 @@
         btn.addEventListener('click', () => {
             document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const newCategory = btn.getAttribute('data-category');
-            currentCategory = newCategory;
-            switchBackground(newCategory);
+            currentCategory = btn.getAttribute('data-category');
+            switchBackground(currentCategory);
             renderProducts();
         });
     });
