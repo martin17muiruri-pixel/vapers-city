@@ -2,901 +2,717 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vapers City | Premium Vapes Kenya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Vapers City | Premium Shisha Flavors</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Orbitron:wght@400;700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-:root{
-  --gold:#FFD700;
-  --gold2:#FFA500;
-  --dark:#050505;
-  --header-h:60px;
-}
+    :root {
+        --gold: #FFD700;
+        --gold2: #FFA500;
+        --dark: #050505;
+        --header-h: 70px;
+    }
 
-body{
-  font-family:'Montserrat',sans-serif;
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-  height:100vh;
-  width:100vw;
-  user-select:none;
-}
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: #0a0a0a;
+        color: #f0f0f0;
+        overflow-x: hidden;
+    }
 
-/* ── SLIDING SMOKY VIDEO BACKGROUND ── */
-.smoky-bg-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-.smoky-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: smokyKenBurns 24s infinite;
-  filter: brightness(0.45) contrast(1.2) saturate(1.3);
-}
-.smoky-bg:nth-child(1) { animation-delay: 0s; }
-.smoky-bg:nth-child(2) { animation-delay: 8s; }
-.smoky-bg:nth-child(3) { animation-delay: 16s; }
-@keyframes smokyKenBurns {
-  0% { opacity: 0; transform: scale(1) translate(0, 0); }
-  4% { opacity: 1; }
-  29% { opacity: 1; }
-  33% { opacity: 0; transform: scale(1.08) translate(2%, 1%); }
-  100% { opacity: 0; transform: scale(1.08) translate(2%, 1%); }
-}
-.smoky-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-  z-index: -1;
-}
+    /* ── SLIDING SMOKY VIDEO BACKGROUND ── */
+    .smoky-bg-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        overflow: hidden;
+    }
+    .smoky-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        animation: smokyKenBurns 24s infinite;
+        filter: brightness(0.45) contrast(1.2) saturate(1.3);
+    }
+    .smoky-bg:nth-child(1) { animation-delay: 0s; }
+    .smoky-bg:nth-child(2) { animation-delay: 8s; }
+    .smoky-bg:nth-child(3) { animation-delay: 16s; }
+    @keyframes smokyKenBurns {
+        0% { opacity: 0; transform: scale(1) translate(0, 0); }
+        4% { opacity: 1; }
+        29% { opacity: 1; }
+        33% { opacity: 0; transform: scale(1.08) translate(2%, 1%); }
+        100% { opacity: 0; transform: scale(1.08) translate(2%, 1%); }
+    }
+    .smoky-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+        z-index: -1;
+    }
 
-/* ── SITE HEADER ── */
-.site-header{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:var(--header-h);
-  z-index:200;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 1.5rem;
-  background:linear-gradient(180deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.85) 100%);
-  border-bottom:1px solid rgba(255,215,0,0.25);
-  backdrop-filter:blur(12px);
-}
-.header-chain{
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:2px;
-  background:repeating-linear-gradient(90deg,#FFD700 0px,#FFA500 4px,#fff8dc 8px,#FFD700 12px,#b8860b 16px,#FFD700 20px);
-  box-shadow:0 0 8px rgba(255,215,0,0.5);
-}
-.header-logo{
-  font-family:'Bebas Neue',cursive;
-  font-size:1.8rem;
-  letter-spacing:4px;
-  background:linear-gradient(135deg,#FFD700 0%,#fff 30%,#FFA500 55%,#FFD700 80%,#fff 95%,#FFD700 100%);
-  background-size:200% 200%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:goldShimmer 3s ease infinite;
-  filter:drop-shadow(0 0 12px rgba(255,215,0,0.4));
-  cursor:pointer;
-}
-@keyframes goldShimmer{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-.header-info{
-  font-family:'Orbitron',monospace;
-  font-size:0.5rem;
-  letter-spacing:2px;
-  color:rgba(255,215,0,0.65);
-  text-align:right;
-  line-height:1.6;
-}
+    /* ── SITE HEADER ── */
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-h);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+        background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%);
+        border-bottom: 1px solid rgba(255,215,0,0.25);
+        backdrop-filter: blur(12px);
+    }
+    .header-chain {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, #FFD700 0px, #FFA500 4px, #fff8dc 8px, #FFD700 12px, #b8860b 16px, #FFD700 20px);
+        box-shadow: 0 0 8px rgba(255,215,0,0.5);
+    }
+    .header-logo {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+        background: linear-gradient(135deg, #FFD700 0%, #fff 30%, #FFA500 55%, #FFD700 80%, #fff 95%, #FFD700 100%);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: goldShimmer 3s ease infinite;
+        cursor: pointer;
+    }
+    @keyframes goldShimmer {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .header-info {
+        font-family: 'Orbitron', monospace;
+        font-size: 0.5rem;
+        letter-spacing: 2px;
+        color: rgba(255,215,0,0.65);
+        text-align: right;
+        line-height: 1.6;
+    }
 
-/* ── SLIDE VIEWPORT ── */
-.slide-viewport{
-  position:fixed;
-  top:var(--header-h);
-  left:0;right:0;bottom:0;
-  overflow:hidden;
-}
+    /* ── CATEGORY TOGGLE ── */
+    .category-toggle {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        z-index: 150;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,215,0,0.2);
+    }
+    .toggle-btn {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.2rem;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid rgba(255,215,0,0.4);
+        background: transparent;
+        color: #fff;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .toggle-btn.active {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #000;
+        border-color: transparent;
+        box-shadow: 0 0 15px rgba(255,165,0,0.5);
+    }
 
-.slide-track{
-  display:flex;
-  width:100%;
-  height:100%;
-  transition:transform 0.7s cubic-bezier(.77,0,.175,1);
-  will-change:transform;
-}
+    /* ── MAIN CONTENT ── */
+    .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 120px 1rem 4rem;
+        position: relative;
+        z-index: 2;
+    }
 
-.slide{
-  min-width:100vw;
-  height:100%;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
+    /* Product Grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    .product-card {
+        background: rgba(20, 20, 30, 0.55);
+        backdrop-filter: blur(12px);
+        border-radius: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border-color: rgba(255,215,0,0.3);
+    }
+    .product-img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        background: #1a1a2a;
+    }
+    .product-img.placeholder {
+        background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,215,0,0.3);
+        font-size: 0.8rem;
+    }
+    .product-info {
+        padding: 1rem;
+    }
+    .product-name {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        color: #FFD700;
+        margin-bottom: 0.3rem;
+    }
+    .product-desc {
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+        max-height: 60px;
+        overflow-y: auto;
+    }
+    .product-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #FFA500;
+        margin-bottom: 0.5rem;
+    }
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .btn-wishlist, .btn-cart {
+        flex: 1;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    .btn-wishlist {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+    .btn-wishlist.active {
+        background: #ff0055;
+        color: #fff;
+    }
+    .btn-cart {
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        color: #fff;
+    }
+    .btn-cart:hover {
+        transform: scale(0.98);
+        filter: brightness(1.1);
+    }
 
-.slide-product{position:relative;}
-.slide-p0{background:#0a0005;}
-.slide-p1{background:#00050a;}
-.slide-p2{background:#050a00;}
-.slide-p3{background:#0a0500;}
-.slide-p4{background:#0a0000;}
-.slide-p5{background:#000a0a;}
-.slide-p6{background:#050005;}
-.slide-p7{background:#0a0800;}
+    /* Sidebar Panels */
+    .side-panel {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 380px;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0a0a, #111);
+        border-left: 1px solid rgba(255,215,0,0.3);
+        z-index: 1000;
+        padding: 2rem 1.5rem;
+        transition: right 0.3s cubic-bezier(.77,0,.175,1);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .side-panel.open {
+        right: 0;
+    }
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,215,0,0.2);
+        padding-bottom: 1rem;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.5rem;
+    }
+    .panel-close {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .panel-item {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 0.8rem 0;
+    }
+    .panel-item-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+    .panel-item-info {
+        flex: 1;
+    }
+    .panel-item-name {
+        font-weight: bold;
+    }
+    .panel-item-price {
+        color: #FFD700;
+        font-size: 0.9rem;
+    }
+    .panel-item-remove {
+        background: none;
+        border: none;
+        color: #ff4444;
+        cursor: pointer;
+    }
+    .panel-total {
+        margin-top: 1rem;
+        text-align: right;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .panel-wa-btn {
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        border: none;
+        padding: 0.8rem;
+        border-radius: 2rem;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
 
-.prod-bg{
-  position:absolute;inset:0;
-  pointer-events:none;z-index:0;
-}
-.slide-p0 .prod-bg{background:radial-gradient(ellipse at 70% 40%,rgba(200,0,255,0.25) 0%,transparent 60%),radial-gradient(ellipse at 20% 70%,rgba(255,215,0,0.15) 0%,transparent 50%);}
-.slide-p1 .prod-bg{background:radial-gradient(ellipse at 30% 40%,rgba(0,150,255,0.28) 0%,transparent 60%),radial-gradient(ellipse at 75% 65%,rgba(0,255,200,0.15) 0%,transparent 50%);}
-.slide-p2 .prod-bg{background:radial-gradient(ellipse at 60% 35%,rgba(0,255,100,0.25) 0%,transparent 60%),radial-gradient(ellipse at 30% 70%,rgba(255,215,0,0.18) 0%,transparent 50%);}
-.slide-p3 .prod-bg{background:radial-gradient(ellipse at 65% 40%,rgba(255,100,0,0.3) 0%,transparent 60%),radial-gradient(ellipse at 25% 60%,rgba(255,215,0,0.15) 0%,transparent 50%);}
-.slide-p4 .prod-bg{background:radial-gradient(ellipse at 35% 40%,rgba(255,0,80,0.28) 0%,transparent 60%),radial-gradient(ellipse at 70% 65%,rgba(255,200,0,0.15) 0%,transparent 50%);}
-.slide-p5 .prod-bg{background:radial-gradient(ellipse at 60% 35%,rgba(0,220,255,0.28) 0%,transparent 60%),radial-gradient(ellipse at 30% 70%,rgba(0,255,180,0.15) 0%,transparent 50%);}
-.slide-p6 .prod-bg{background:radial-gradient(ellipse at 35% 40%,rgba(180,0,255,0.28) 0%,transparent 60%),radial-gradient(ellipse at 70% 65%,rgba(255,0,200,0.18) 0%,transparent 50%);}
-.slide-p7 .prod-bg{background:radial-gradient(ellipse at 65% 40%,rgba(255,180,0,0.28) 0%,transparent 60%),radial-gradient(ellipse at 25% 65%,rgba(255,100,0,0.15) 0%,transparent 50%);}
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+    .overlay.show {
+        opacity: 1;
+        pointer-events: all;
+    }
 
-.prod-layout{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%;
-  height:100%;
-  padding:2rem 4vw;
-  position:relative;z-index:2;
-  gap:2rem;
-}
-@media(max-width:700px){
-  .prod-layout{flex-direction:column;justify-content:center;padding:1rem 1.5rem;gap:1rem;}
-}
-.prod-text{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:0.8rem;
-  max-width:500px;
-}
-.prod-number{
-  font-family:'Bebas Neue',cursive;
-  font-size:clamp(4rem,12vw,8rem);
-  line-height:0.85;
-  opacity:0.06;
-  position:absolute;
-  left:3vw;top:5vh;
-  pointer-events:none;
-}
-.prod-brand-label{
-  font-family:'Orbitron',monospace;
-  font-size:0.65rem;
-  letter-spacing:6px;
-  text-transform:uppercase;
-  opacity:0.7;
-  color:#FFD700;
-}
-.prod-name{
-  font-family:'Bebas Neue',cursive;
-  font-size:clamp(2.2rem,6vw,4.5rem);
-  line-height:1;
-  letter-spacing:2px;
-  color:#fff;
-  text-shadow:0 0 30px currentColor;
-}
-.prod-flavor{
-  font-size:0.85rem;
-  letter-spacing:2px;
-  font-style:italic;
-  opacity:0.8;
-}
-.prod-stats{
-  display:flex;
-  flex-direction:column;
-  gap:0.5rem;
-  margin-top:0.5rem;
-}
-.stat-row{
-  display:flex;
-  align-items:center;
-  gap:0.8rem;
-  font-family:'Orbitron',monospace;
-  font-size:clamp(0.7rem,1.5vw,0.9rem);
-}
-.stat-icon{font-size:1.2rem;}
-.puff-count{
-  font-family:'Bebas Neue',cursive;
-  font-size:clamp(2rem,5vw,3.5rem);
-  line-height:1;
-  color:#FFD700;
-  filter:drop-shadow(0 0 10px rgba(255,215,0,0.7));
-}
-.puff-label{
-  font-family:'Orbitron',monospace;
-  font-size:0.6rem;
-  letter-spacing:3px;
-  color:#FFD700;
-  opacity:0.8;
-}
-.refill-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:0.4rem;
-  padding:0.3rem 1rem;
-  border-radius:50px;
-  font-family:'Orbitron',monospace;
-  font-size:0.65rem;
-  letter-spacing:2px;
-  font-weight:700;
-}
-.refill-yes{background:rgba(0,255,140,0.15);border:1px solid rgba(0,255,140,0.5);color:#00ff8c;}
-.refill-no{background:rgba(255,60,0,0.15);border:1px solid rgba(255,80,0,0.5);color:#ff5c00;}
-.prod-price{
-  font-family:'Bebas Neue',cursive;
-  font-size:clamp(2rem,5vw,3rem);
-  letter-spacing:2px;
-  background:linear-gradient(135deg,#FFD700,#FFA500);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 15px rgba(255,165,0,0.6));
-}
-.prod-image-wrap{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  min-height:280px;
-}
-.vape-float{
-  position:relative;
-  animation:floatVape 4s ease-in-out infinite;
-  z-index:2;
-}
-@keyframes floatVape{
-  0%,100%{transform:translateY(0) rotate(-3deg);}
-  50%{transform:translateY(-20px) rotate(3deg);}
-}
-.vape-img{
-  width:clamp(130px,22vw,240px);
-  height:auto;
-  border-radius:30px;
-  object-fit:cover;
-  position:relative;z-index:2;
-}
-.vape-glow{
-  position:absolute;
-  inset:-30px;
-  border-radius:60px;
-  filter:blur(40px);
-  opacity:0.5;
-  z-index:1;
-  animation:glowPulse 3s ease-in-out infinite;
-}
-@keyframes glowPulse{
-  0%,100%{opacity:0.35;transform:scale(0.95);}
-  50%{opacity:0.7;transform:scale(1.05);}
-}
-.smoke-puffs{
-  position:absolute;
-  top:-20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:80px;
-  z-index:3;
-}
-.smoke-puff{
-  position:absolute;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 70%);
-  animation:smokePuff 3s ease-out infinite;
-}
-.smoke-puff:nth-child(1){width:20px;height:20px;left:30px;animation-delay:0s;}
-.smoke-puff:nth-child(2){width:28px;height:28px;left:24px;animation-delay:0.5s;}
-.smoke-puff:nth-child(3){width:16px;height:16px;left:34px;animation-delay:1s;}
-@keyframes smokePuff{
-  0%{transform:translateY(0) scale(0.5);opacity:0.8;}
-  60%{opacity:0.3;}
-  100%{transform:translateY(-80px) scale(2.5);opacity:0;}
-}
-.sparkle{
-  position:absolute;
-  font-size:1.2rem;
-  animation:sparkleSpin 2s linear infinite;
-  z-index:4;
-}
-@keyframes sparkleSpin{
-  0%,100%{opacity:0;transform:scale(0.5) rotate(0deg);}
-  50%{opacity:1;transform:scale(1.2) rotate(180deg);}
-}
-.nav-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:100;
-  background:rgba(255,215,0,0.1);
-  border:1px solid rgba(255,215,0,0.3);
-  color:#FFD700;
-  width:50px;height:50px;
-  border-radius:50%;
-  cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;
-  transition:all 0.2s;
-  backdrop-filter:blur(10px);
-}
-.nav-arrow:hover{background:rgba(255,215,0,0.25);border-color:#FFD700;transform:translateY(-50%) scale(1.1);}
-.nav-prev{left:12px;}
-.nav-next{right:12px;}
-.dots{
-  position:absolute;
-  bottom:36px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:100;
-  display:flex;
-  gap:8px;
-}
-.dot{
-  width:8px;height:8px;
-  border-radius:50%;
-  background:rgba(255,215,0,0.3);
-  border:1px solid rgba(255,215,0,0.5);
-  cursor:pointer;
-  transition:all 0.25s;
-}
-.dot.active{background:#FFD700;width:24px;border-radius:4px;box-shadow:0 0 10px rgba(255,215,0,0.7);}
-.order-trigger{
-  position:absolute;
-  bottom:2.5rem;
-  right:2rem;
-  z-index:10;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  border:none;
-  color:#fff;
-  font-family:'Bebas Neue',cursive;
-  font-size:0.9rem;
-  letter-spacing:2px;
-  padding:0.5rem 1rem;
-  border-radius:50px;
-  cursor:pointer;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 0 20px rgba(37,211,102,0.4);
-  transition:all 0.2s;
-}
-.order-trigger:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(37,211,102,0.7);}
-.order-panel{
-  position:fixed;
-  right:-340px;
-  top:0;bottom:0;
-  width:320px;
-  z-index:300;
-  background:linear-gradient(135deg,#0a0a0a,#111);
-  border-left:1px solid rgba(255,215,0,0.3);
-  padding:2rem 1.5rem;
-  display:flex;flex-direction:column;gap:1.2rem;
-  transition:right 0.4s cubic-bezier(.77,0,.175,1);
-  backdrop-filter:blur(20px);
-}
-.order-panel.open{right:0;}
-.order-panel-chain{
-  height:4px;
-  background:repeating-linear-gradient(90deg,#FFD700 0px,#FFA500 4px,#fff8dc 8px,#FFD700 12px,#b8860b 16px,#FFD700 20px);
-  margin:-2rem -1.5rem 0;
-  box-shadow:0 2px 10px rgba(255,215,0,0.4);
-}
-.panel-title{
-  font-family:'Bebas Neue',cursive;
-  font-size:1.8rem;
-  letter-spacing:2px;
-  color:#FFD700;
-  border-bottom:1px solid rgba(255,215,0,0.2);
-  padding-bottom:0.8rem;
-  margin-top:0.5rem;
-}
-.panel-prod-name{
-  font-family:'Orbitron',monospace;
-  font-size:0.85rem;
-  color:#fff;
-  letter-spacing:1px;
-}
-.panel-prod-price{
-  font-family:'Bebas Neue',cursive;
-  font-size:2.5rem;
-  color:#FFD700;
-  filter:drop-shadow(0 0 10px rgba(255,215,0,0.5));
-}
-.panel-wa-btn{
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  border:none;color:#fff;
-  font-family:'Bebas Neue',cursive;
-  font-size:1.2rem;letter-spacing:2px;
-  padding:1rem;border-radius:1rem;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(37,211,102,0.5);
-  transition:all 0.2s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-top:0.5rem;
-}
-.panel-wa-btn:hover{transform:scale(1.03);box-shadow:0 0 40px rgba(37,211,102,0.8);}
-.panel-close{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.15);
-  color:rgba(255,255,255,0.5);
-  font-size:0.75rem;
-  letter-spacing:2px;
-  padding:0.6rem;
-  border-radius:0.5rem;
-  cursor:pointer;
-  font-family:'Orbitron',monospace;
-  transition:all 0.2s;
-}
-.panel-close:hover{background:rgba(255,0,0,0.1);border-color:rgba(255,0,0,0.3);color:#ff6666;}
-.overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,0.6);
-  z-index:290;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.3s;
-  backdrop-filter:blur(3px);
-}
-.overlay.show{opacity:1;pointer-events:all;}
-.float-wa{
-  position:fixed;
-  bottom:52px;right:16px;
-  width:52px;height:52px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#25D366,#128C7E);
-  color:#fff;
-  font-size:24px;
-  display:flex;align-items:center;justify-content:center;
-  text-decoration:none;
-  z-index:99;
-  box-shadow:0 0 20px rgba(37,211,102,0.5);
-  animation:waFloat 2.5s ease-in-out infinite;
-  transition:transform 0.2s;
-}
-@keyframes waFloat{
-  0%,100%{box-shadow:0 0 20px rgba(37,211,102,0.5);}
-  50%{box-shadow:0 0 40px rgba(37,211,102,0.9);}
-}
-.float-wa:hover{transform:scale(1.1);}
-.corner-tag{
-  position:absolute;
-  font-family:'Bebas Neue',cursive;
-  opacity:0.07;
-  pointer-events:none;
-  z-index:1;
-  font-size:clamp(5rem,18vw,13rem);
-  letter-spacing:-3px;
-  line-height:1;
-}
-.corner-tag.tr{top:5%;right:-1%;text-align:right;}
-.corner-tag.bl{bottom:8%;left:-1%;}
-.slide-product .prod-text{
-  opacity:0;transform:translateX(-40px);
-  transition:opacity 0.6s 0.2s ease, transform 0.6s 0.2s ease;
-}
-.slide-product .prod-image-wrap{
-  opacity:0;transform:translateX(40px);
-  transition:opacity 0.6s 0.3s ease, transform 0.6s 0.3s ease;
-}
-.slide-product.active .prod-text,
-.slide-product.active .prod-image-wrap{
-  opacity:1;transform:translateX(0);
-}
-.progress-bar{
-  position:absolute;
-  top:0;left:0;
-  height:3px;
-  background:linear-gradient(90deg,#FFD700,#FFA500);
-  z-index:150;
-  transition:width 0.5s ease;
-  box-shadow:0 0 8px rgba(255,165,0,0.8);
-}
-.age-strip{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  text-align:center;
-  font-family:'Orbitron',monospace;
-  font-size:0.5rem;
-  letter-spacing:3px;
-  color:rgba(255,255,255,0.2);
-  padding:3px 0;
-  z-index:100;
-  pointer-events:none;
-}
-@media(max-width:700px){
-  .nav-arrow{width:36px;height:36px;font-size:1rem;}
-  .nav-prev{left:6px;}
-  .nav-next{right:6px;}
-  .prod-name{font-size:2rem;}
-  .vape-img{width:130px;}
-  .order-panel{width:90vw;}
-  .corner-tag{font-size:5rem;opacity:0.05;}
-  .header-logo{font-size:1.4rem;}
-}
+    /* Age Gate */
+    .age-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.98);
+        backdrop-filter: blur(20px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .age-card {
+        background: rgba(0,0,0,0.9);
+        border-radius: 2rem;
+        padding: 2rem;
+        max-width: 320px;
+        text-align: center;
+        border: 1px solid #FFD700;
+    }
+    .age-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.8rem;
+    }
+    .btn-yes {
+        background: #25D366;
+        padding: 0.7rem 1.4rem;
+        border: none;
+        border-radius: 3rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .btn-no {
+        background: #444;
+        padding: 0.7rem 1.4rem;
+        border: none;
+        border-radius: 3rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 2rem;
+        opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+        .side-panel { width: 90%; right: -90%; }
+        .toggle-btn { font-size: 0.9rem; padding: 0.3rem 1rem; }
+        .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    }
 </style>
 </head>
 <body>
 
 <div class="smoky-bg-container">
-  <video class="smoky-bg" autoplay loop muted playsinline>
-    <source src="https://cdn.pixabay.com/video/2021/11/02/95092-643266719_large.mp4" type="video/mp4">
-  </video>
-  <video class="smoky-bg" autoplay loop muted playsinline>
-    <source src="https://cdn.pixabay.com/video/2020/10/10/51663-471017590_large.mp4" type="video/mp4">
-  </video>
-  <video class="smoky-bg" autoplay loop muted playsinline>
-    <source src="https://cdn.pixabay.com/video/2021/10/16/93612-636581873_large.mp4" type="video/mp4">
-  </video>
+    <video class="smoky-bg" autoplay loop muted playsinline>
+        <source src="https://cdn.pixabay.com/video/2021/11/02/95092-643266719_large.mp4" type="video/mp4">
+    </video>
+    <video class="smoky-bg" autoplay loop muted playsinline>
+        <source src="https://cdn.pixabay.com/video/2020/10/10/51663-471017590_large.mp4" type="video/mp4">
+    </video>
+    <video class="smoky-bg" autoplay loop muted playsinline>
+        <source src="https://cdn.pixabay.com/video/2021/10/16/93612-636581873_large.mp4" type="video/mp4">
+    </video>
 </div>
 <div class="smoky-overlay"></div>
 
-<div id="ageGate" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);backdrop-filter:blur(20px);z-index:10000;display:flex;align-items:center;justify-content:center;">
-  <div style="background:rgba(0,0,0,0.9);border-radius:2rem;padding:2rem;max-width:320px;text-align:center;border:1px solid #FFD700;box-shadow:0 0 50px rgba(255,215,0,0.3);">
-    <h2 style="color:#FFD700;font-family:'Bebas Neue',cursive;font-size:2rem;">🔞 AGE VERIFICATION</h2>
-    <p style="margin:1rem 0;color:#fff;font-family:'Montserrat',sans-serif;">You must be 18+ to enter.<br>Nicotine products are for adults only.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;">
-      <button id="confirmAgeBtn" style="background:#25D366;border:none;padding:0.7rem 1.4rem;border-radius:3rem;font-weight:bold;cursor:pointer;font-family:'Bebas Neue',cursive;font-size:1rem;">✓ I AM 18+</button>
-      <button id="denyAgeBtn" style="background:#444;border:none;padding:0.7rem 1.4rem;border-radius:3rem;font-weight:bold;color:#fff;cursor:pointer;font-family:'Bebas Neue',cursive;font-size:1rem;">✗ UNDER 18</button>
+<!-- Age Gate -->
+<div id="ageGate" class="age-modal">
+    <div class="age-card">
+        <h2 style="color:#FFD700;">🔞 AGE VERIFICATION</h2>
+        <p>You must be 18+ to enter.<br>Nicotine products are for adults only.</p>
+        <div class="age-buttons">
+            <button class="btn-yes" id="confirmAge">✓ I AM 18+</button>
+            <button class="btn-no" id="denyAge">✗ UNDER 18</button>
+        </div>
     </div>
-    <p style="font-size:0.6rem;margin-top:1.5rem;color:rgba(255,255,255,0.4);">By entering you confirm legal age in Kenya</p>
-  </div>
 </div>
-
-<script>
-(function() {
-  const ageGate = document.getElementById('ageGate');
-  if (localStorage.getItem('vapersCityAgeVerified') === 'true') {
-    if (ageGate) ageGate.style.display = 'none';
-  }
-  const confirmBtn = document.getElementById('confirmAgeBtn');
-  const denyBtn = document.getElementById('denyAgeBtn');
-  if (confirmBtn) {
-    confirmBtn.addEventListener('click', function() {
-      localStorage.setItem('vapersCityAgeVerified', 'true');
-      if (ageGate) ageGate.style.display = 'none';
-    });
-  }
-  if (denyBtn) {
-    denyBtn.addEventListener('click', function() {
-      alert('Access denied. You must be 18+ to view this website.');
-      window.location.href = 'https://www.google.com';
-    });
-  }
-})();
-</script>
 
 <header class="site-header">
-  <div class="header-logo">🔥 VAPERS CITY</div>
-  <div class="header-info">📍 RUIRU · NAIROBI · THIKA<br>0714 693 283</div>
-  <div class="header-chain"></div>
+    <div class="header-logo">💨 VAPERS CITY</div>
+    <div class="header-info">📍 RUIRU · NAIROBI · THIKA<br>0714 693 283</div>
+    <div class="header-chain"></div>
 </header>
 
-<div class="slide-viewport">
-  <div class="progress-bar" id="progressBar"></div>
-  <button class="nav-arrow nav-prev" id="prevBtn">&#8592;</button>
-  <button class="nav-arrow nav-next" id="nextBtn">&#8594;</button>
-  <div class="dots" id="dotsNav"></div>
-  <div class="slide-track" id="slideTrack"></div>
+<!-- Category Toggle -->
+<div class="category-toggle">
+    <button class="toggle-btn active" data-category="vape">💨 VAPE</button>
+    <button class="toggle-btn" data-category="velo">🟤 VELO</button>
+    <button class="toggle-btn" data-category="shisha">🌙 SHISHA</button>
 </div>
 
-<div class="age-strip">⚠ 18+ NICOTINE PRODUCTS FOR ADULTS ONLY · VAPERS CITY · RUIRU KENYA</div>
-
-<div class="overlay" id="overlay" onclick="closePanel()"></div>
-
-<div class="order-panel" id="orderPanel">
-  <div class="order-panel-chain"></div>
-  <div class="panel-title">🛒 ORDER NOW</div>
-  <div class="panel-prod-name" id="panelProdName">Product</div>
-  <div class="panel-prod-price" id="panelProdPrice">KES 0</div>
-  <button class="panel-wa-btn" id="panelWaBtn">
-    <span>💬</span> ORDER ON WHATSAPP
-  </button>
-  <div style="font-family:'Orbitron',monospace;font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-align:center;">
-    SAME-DAY DELIVERY · MPESA ACCEPTED
-  </div>
-  <button class="panel-close" onclick="closePanel()">✕ CLOSE</button>
+<div class="main-container">
+    <div id="productsContainer" class="products-grid"></div>
 </div>
 
-<a href="#" id="floatWa" class="float-wa" target="_blank">💬</a>
+<!-- Cart Sidebar -->
+<div class="overlay" id="overlay"></div>
+<div class="side-panel" id="cartPanel">
+    <div class="panel-header">
+        <span>🛒 YOUR CART</span>
+        <button class="panel-close" id="closeCart">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="panel-total" id="cartTotal">Total: KES 0</div>
+    <button class="panel-wa-btn" id="checkoutWA">📲 ORDER ON WHATSAPP</button>
+</div>
+
+<!-- Favorites Sidebar -->
+<div class="side-panel" id="favoritesPanel">
+    <div class="panel-header">
+        <span>❤️ FAVORITES</span>
+        <button class="panel-close" id="closeFavorites">✕</button>
+    </div>
+    <div id="favoritesItems"></div>
+</div>
+
+<!-- Floating Buttons -->
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 10px;">
+    <button id="openCartBtn" style="background: #25D366; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">🛒</button>
+    <button id="openFavoritesBtn" style="background: #ff0055; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">❤️</button>
+</div>
+
+<footer>
+    © Vapers City Ruiru · Nicotine products for adults 18+ only · WhatsApp 0714693283
+</footer>
 
 <script>
-// ============================================
-// LOAD DATA FROM CMS (data/settings.json & data/products/)
-// ============================================
+    // ==================== PRODUCT DATA ====================
+    // All "hookah" references removed, using "Shisha" instead.
+    
+    const productsData = {
+        vape: [
+            { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, img: "images/geekbar.jpg", category: "vape" },
+            { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, img: "images/elfbar.jpg", category: "vape" },
+            { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, img: "images/vozol.jpg", category: "vape" },
+            { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, img: "images/hqd.jpg", category: "vape" },
+        ],
+        velo: [
+            { name: "Velo 3 Dots", desc: "Nicotine pouches, mild strength", price: 1200, img: "images/velo-3.jpg", category: "velo" },
+            { name: "Velo 4 Dots", desc: "Nicotine pouches, medium strength", price: 1300, img: "images/velo-4.jpg", category: "velo" },
+            { name: "Velo 5 Dots", desc: "Nicotine pouches, strong", price: 1400, img: "images/velo-5.jpg", category: "velo" },
+            { name: "Velo 6 Dots", desc: "Nicotine pouches, extra strong", price: 1500, img: "images/velo-6.jpg", category: "velo" },
+        ],
+        shisha: [
+            { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint", price: 3500, img: "images/tangiers-cane-mint.jpg", category: "shisha" },
+            { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, img: "images/adalya-love66.jpg", category: "shisha" },
+            { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint", price: 2200, img: "images/af-grape-mint.jpg", category: "shisha" },
+            { name: "Starbuzz Blue Mist", desc: "Blueberry + subtle mint", price: 3000, img: "images/starbuzz-blue-mist.jpg", category: "shisha" },
+            { name: "Al Fakher Double Apple", desc: "Apple + anise (licorice)", price: 2200, img: "images/af-double-apple.jpg", category: "shisha" },
+            { name: "MustHave Pinkman", desc: "Raspberry/strawberry + grapefruit, cooling", price: 3800, img: "images/musthave-pinkman.jpg", category: "shisha" },
+            { name: "Adalya Lady Killer", desc: "Mango, melon, wild berries, mint", price: 2800, img: "images/adalya-lady-killer.jpg", category: "shisha" },
+            { name: "Trifecta Peppermint Shake", desc: "Peppermint + vanilla shake", price: 3500, img: "images/trifecta-peppermint.jpg", category: "shisha" },
+            { name: "Darkside Mango Lassi", desc: "Mango, yogurt, cream", price: 3600, img: "images/darkside-mango-lassi.jpg", category: "shisha" },
+            { name: "Fumari Lemon Mint", desc: "Zesty lemon + peppermint", price: 2500, img: "images/fumari-lemon-mint.jpg", category: "shisha" },
+        ]
+    };
 
-const WA_MSG = "Hello%20Vapers%20City%2C%20I%20want%20to%20order%3A%20";
+    // ==================== STORAGE KEYS ====================
+    let cart = JSON.parse(localStorage.getItem('vapers_cart') || '[]');
+    let favorites = JSON.parse(localStorage.getItem('vapers_favorites') || '[]');
+    let currentCategory = 'vape';
 
-let products = [];
-let settings = {
-  phone: "254714693283",
-  location: "Ruiru, Kenya",
-  delivery_areas: "Ruiru · Nairobi · Thika"
-};
+    function saveCart() { localStorage.setItem('vapers_cart', JSON.stringify(cart)); }
+    function saveFavorites() { localStorage.setItem('vapers_favorites', JSON.stringify(favorites)); }
 
-const colors = ["#cc00ff","#00aaff","#00ff88","#ff6600","#ff0055","#00ddff","#cc00cc","#ffaa00"];
-const cornerTags = ["PULSE","ULTRA","STAR","CUVIE","TORNADO","BANG","HIGH","GHOST"];
-
-// Helper function to format phone for display
-function formatPhoneForDisplay(phone) {
-  if (phone && phone.startsWith('254')) {
-    return '0' + phone.slice(3, 5) + ' ' + phone.slice(5, 8) + ' ' + phone.slice(8);
-  }
-  return phone || '0714 693 283';
-}
-
-// Load settings from CMS
-async function loadSettings() {
-  try {
-    const response = await fetch('/data/settings.json');
-    if (response.ok) {
-      settings = await response.json();
-      // Update header with settings
-      const headerInfo = document.querySelector('.header-info');
-      if (headerInfo) {
-        headerInfo.innerHTML = `📍 ${settings.delivery_areas || 'RUIRU · NAIROBI · THIKA'}<br>${formatPhoneForDisplay(settings.phone)}`;
-      }
-      // Update age strip
-      const ageStrip = document.querySelector('.age-strip');
-      if (ageStrip) {
-        ageStrip.innerHTML = `⚠ 18+ NICOTINE PRODUCTS FOR ADULTS ONLY · VAPERS CITY · ${settings.location || 'RUIRU KENYA'}`;
-      }
+    function addToCart(product) {
+        const existing = cart.find(item => item.name === product.name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        saveCart();
+        updateCartUI();
+        alert(`${product.name} added to cart!`);
     }
-  } catch (error) {
-    console.log('Using default settings');
-  }
-}
 
-// Default products (fallback if CMS files don't exist)
-function getDefaultProducts() {
-  return [
-    { name: "Geek Bar Pulse X", flavor: "Mexico Mango Ice", price: "KES 2,500", puffs: "15,000", tagline: "PULSE DIFFERENT", imgFallback: "https://placehold.co/400x600/1a003a/cc00ff?text=Geek+Bar%0APulse+X", refillable: false },
-    { name: "Elf Bar Ultra 9000", flavor: "Blue Razz Lemonade", price: "KES 2,200", puffs: "9,000", tagline: "ULTRA SMOOTH HITS", imgFallback: "https://placehold.co/400x600/00050a/00aaff?text=Elf+Bar%0AUltra", refillable: false },
-    { name: "Vozol Star 9000", flavor: "Strawberry Watermelon", price: "KES 2,600", puffs: "9,000", tagline: "STAR POWER", imgFallback: "https://placehold.co/400x600/050a00/00ff88?text=Vozol%0AStar+9000", refillable: false },
-    { name: "HQD Cuvie Plus", flavor: "Mango Ice", price: "KES 1,300", puffs: "1,200", tagline: "CLASSIC DRIP", imgFallback: "https://placehold.co/400x600/0a0500/ff6600?text=HQD+Cuvie%0APlus", refillable: false },
-    { name: "RandM Tornado 7000", flavor: "Grape Soda Pop", price: "KES 2,400", puffs: "7,000", tagline: "SPIN THE BLOCK", imgFallback: "https://placehold.co/400x600/0a0000/ff0055?text=RandM%0ATornado", refillable: false },
-    { name: "Bang King 12000", flavor: "Blueberry Bubblegum", price: "KES 3,200", puffs: "12,000", tagline: "KING SIZE CLOUDS", imgFallback: "https://placehold.co/400x600/000a0a/00ddff?text=Bang+King%0A12000", refillable: false },
-    { name: "Maskking High GT", flavor: "Cool Mint Blast", price: "KES 1,800", puffs: "2,500", tagline: "STAY HIGH, STAY COOL", imgFallback: "https://placehold.co/400x600/050005/cc00cc?text=Maskking%0AHigh+GT", refillable: false },
-    { name: "Vapes Bars Ghost", flavor: "Pink Lemonade Rush", price: "KES 2,100", puffs: "3,500", tagline: "GHOST MODE ON", imgFallback: "https://placehold.co/400x600/0a0800/ffaa00?text=Vapes+Bars%0AGhost", refillable: false }
-  ];
-}
-
-// Load products from CMS
-async function loadProducts() {
-  try {
-    const response = await fetch('/data/products.json');
-    if (response.ok) {
-      products = await response.json();
-    } else {
-      products = getDefaultProducts();
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        saveCart();
+        updateCartUI();
     }
-  } catch (error) {
-    console.log('Using default products');
-    products = getDefaultProducts();
-  }
-}
 
-// Get phone number for WhatsApp
-function getPhone() {
-  return settings.phone || "254714693283";
-}
+    function updateQuantity(index, delta) {
+        const item = cart[index];
+        if (item) {
+            item.quantity += delta;
+            if (item.quantity <= 0) cart.splice(index, 1);
+            saveCart();
+            updateCartUI();
+        }
+    }
 
-function buildSlide(p, i) {
-  const slide = document.createElement('div');
-  slide.className = `slide slide-product slide-p${i % 8}`;
-  const c = colors[i % 8];
-  const tag = cornerTags[i % 8];
-  const realIdx = i % 8;
-  const imageUrl = p.imgFallback || p.image || `https://placehold.co/400x600/1a1a1a/${c.slice(1)}?text=${encodeURIComponent(p.name)}`;
-  
-  slide.innerHTML = `
-    <div class="prod-bg"></div>
-    <div class="corner-tag tr" style="color:${c}">${tag}</div>
-    <div class="corner-tag bl" style="color:${c}">${realIdx + 1}</div>
-    <div class="prod-number" style="color:${c}">0${realIdx + 1}</div>
-    <div class="prod-layout">
-      <div class="prod-text">
-        <div class="prod-brand-label">VAPERS CITY · ${settings.location || 'RUIRU'}</div>
-        <div class="prod-name" style="color:${c};filter:drop-shadow(0 0 20px ${c}88)">${p.name}</div>
-        <div class="prod-flavor" style="color:${c}aa">✦ ${p.flavor}</div>
-        <div class="prod-stats">
-          <div>
-            <div class="puff-count">${p.puffs}</div>
-            <div class="puff-label">TOTAL PUFFS</div>
-          </div>
-          <div class="stat-row">
-            <span class="stat-icon">🔄</span>
-            <span class="${p.refillable ? 'refill-yes' : 'refill-no'} refill-badge">
-              ${p.refillable ? '✓ REFILLABLE' : '✗ DISPOSABLE'}
-            </span>
-          </div>
-          <div style="margin-top:0.3rem;">
-            <div style="font-family:'Orbitron',monospace;font-size:0.55rem;letter-spacing:3px;opacity:0.5;margin-bottom:0.2rem;">PRICE</div>
-            <div class="prod-price">${p.price}</div>
-          </div>
-        </div>
-        <div style="font-family:'Bebas Neue',cursive;font-size:0.9rem;letter-spacing:4px;opacity:0.4;margin-top:0.5rem;">${p.tagline}</div>
-      </div>
-      <div class="prod-image-wrap">
-        <div class="vape-glow bg-glow-${realIdx}" style="background:${c};"></div>
-        <div class="smoke-puffs">
-          <div class="smoke-puff" style="background:radial-gradient(circle,${c}99 0%,transparent 70%)"></div>
-          <div class="smoke-puff" style="background:radial-gradient(circle,${c}66 0%,transparent 70%)"></div>
-          <div class="smoke-puff" style="background:radial-gradient(circle,${c}44 0%,transparent 70%)"></div>
-        </div>
-        <div class="vape-float">
-          <img class="vape-img" src="${imageUrl}" alt="${p.name}" style="box-shadow:0 0 40px ${c}66,0 0 80px ${c}33;border:2px solid ${c}44;" onerror="this.src='https://placehold.co/400x600/1a1a1a/${c.slice(1)}?text=${encodeURIComponent(p.name)}'">
-        </div>
-        <div class="sparkle" style="top:-10px;right:10px;animation-delay:0.3s;color:${c}">💎</div>
-        <div class="sparkle" style="bottom:10px;left:5px;animation-delay:0.9s;color:#FFD700">✦</div>
-        <div class="sparkle" style="top:30%;right:-15px;animation-delay:1.5s;color:${c}">★</div>
-      </div>
-    </div>
-    <button class="order-trigger" onclick="openPanel(${realIdx})">💬 ORDER</button>
-  `;
-  return slide;
-}
+    function toggleFavorite(product) {
+        const exists = favorites.some(f => f.name === product.name);
+        if (exists) {
+            favorites = favorites.filter(f => f.name !== product.name);
+        } else {
+            favorites.push(product);
+        }
+        saveFavorites();
+        updateFavoritesUI();
+        renderProducts();
+    }
 
-let current = 0;
-let isTransitioning = false;
-let pendingJump = null;
-let autoTimer;
-const AUTO_DELAY = 4000;
-let track, dotsNav;
+    function isFavorite(productName) {
+        return favorites.some(f => f.name === productName);
+    }
 
-function setTrackPos(vpos, animated) {
-  track.style.transition = animated ? 'transform 0.7s cubic-bezier(.77,0,.175,1)' : 'none';
-  track.style.transform = `translateX(-${vpos * 100}vw)`;
-}
+    function renderProducts() {
+        const container = document.getElementById('productsContainer');
+        const products = productsData[currentCategory];
+        if (!products) return;
 
-function updateUI(realIdx) {
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === realIdx));
-  document.getElementById('progressBar').style.width = `${(realIdx / (products.length - 1)) * 100}%`;
-  const allSlides = track.querySelectorAll('.slide-product');
-  allSlides.forEach((s, vi) => { s.classList.toggle('active', vi === realIdx + 1); });
-}
+        container.innerHTML = products.map(p => `
+            <div class="product-card">
+                <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/400x400/1a1a2a/gold?text=No+Image'; this.classList.add('placeholder')">
+                <div class="product-info">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-price">KES ${p.price.toLocaleString()}</div>
+                    <div class="action-buttons">
+                        <button class="btn-wishlist ${isFavorite(p.name) ? 'active' : ''}" onclick="toggleFavoriteFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '${p.img.replace(/'/g, "\\'")}')">
+                            ❤️ ${isFavorite(p.name) ? 'Saved' : 'Save'}
+                        </button>
+                        <button class="btn-cart" onclick="addToCartFromRender('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '${p.img.replace(/'/g, "\\'")}')">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
 
-function goTo(realIdx) {
-  if (isTransitioning) return;
-  resetAutoPlay();
-  current = realIdx;
-  setTrackPos(realIdx + 1, true);
-  updateUI(realIdx);
-}
+    window.toggleFavoriteFromRender = (name, price, desc, img) => {
+        toggleFavorite({ name, price, desc, img, category: currentCategory });
+    };
+    window.addToCartFromRender = (name, price, desc, img) => {
+        addToCart({ name, price, desc, img, category: currentCategory });
+    };
 
-function navigate(dir) {
-  if (isTransitioning || !products.length) return;
-  resetAutoPlay();
-  const realCount = products.length;
-  const next = (current + dir + realCount) % realCount;
-  if (dir > 0 && current === realCount - 1) {
-    isTransitioning = true;
-    pendingJump = 1;
-    current = 0;
-    updateUI(0);
-    setTrackPos(realCount + 1, true);
-  } else if (dir < 0 && current === 0) {
-    isTransitioning = true;
-    pendingJump = realCount;
-    current = realCount - 1;
-    updateUI(realCount - 1);
-    setTrackPos(0, true);
-  } else {
-    isTransitioning = true;
-    current = next;
-    updateUI(next);
-    setTrackPos(next + 1, true);
-  }
-}
+    function updateCartUI() {
+        const container = document.getElementById('cartItems');
+        if (!container) return;
+        if (cart.length === 0) {
+            container.innerHTML = '<p>Your cart is empty.</p>';
+            document.getElementById('cartTotal').innerHTML = 'Total: KES 0';
+            return;
+        }
+        let total = 0;
+        container.innerHTML = cart.map((item, idx) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            return `
+                <div class="panel-item">
+                    <img class="panel-item-img" src="${item.img}" onerror="this.src='https://placehold.co/60x60/1a1a2a/gold?text=No+Img'">
+                    <div class="panel-item-info">
+                        <div class="panel-item-name">${item.name}</div>
+                        <div class="panel-item-price">KES ${item.price.toLocaleString()}</div>
+                        <div style="display: flex; gap: 8px; margin-top: 5px;">
+                            <button onclick="updateQuantity(${idx}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${idx}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="panel-item-remove" onclick="removeFromCart(${idx})">🗑️</button>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('cartTotal').innerHTML = `Total: KES ${total.toLocaleString()}`;
+    }
 
-function resetAutoPlay() {
-  if (autoTimer) clearInterval(autoTimer);
-  if (products.length) autoTimer = setInterval(() => navigate(1), AUTO_DELAY);
-}
+    function updateFavoritesUI() {
+        const container = document.getElementById('favoritesItems');
+        if (!container) return;
+        if (favorites.length === 0) {
+            container.innerHTML = '<p>No favorites yet.</p>';
+            return;
+        }
+        container.innerHTML = favorites.map((item, idx) => `
+            <div class="panel-item">
+                <img class="panel-item-img" src="${item.img}" onerror="this.src='https://placehold.co/60x60/1a1a2a/gold?text=No+Img'">
+                <div class="panel-item-info">
+                    <div class="panel-item-name">${item.name}</div>
+                    <div class="panel-item-price">KES ${item.price.toLocaleString()}</div>
+                </div>
+                <button class="panel-item-remove" onclick="removeFavorite(${idx})">🗑️</button>
+            </div>
+        `).join('');
+    }
 
-function openPanel(idx) {
-  const p = products[idx];
-  const phone = getPhone();
-  document.getElementById('panelProdName').innerHTML = `${p.name} · ${p.flavor}`;
-  document.getElementById('panelProdPrice').innerHTML = p.price;
-  document.getElementById('panelWaBtn').onclick = () => {
-    window.open(`https://wa.me/${phone}?text=${WA_MSG}${encodeURIComponent(p.name + ' (' + p.flavor + ') - ' + p.price)}`, '_blank');
-  };
-  document.getElementById('orderPanel').classList.add('open');
-  document.getElementById('overlay').classList.add('show');
-}
+    window.removeFavorite = (idx) => {
+        favorites.splice(idx, 1);
+        saveFavorites();
+        updateFavoritesUI();
+        renderProducts();
+    };
 
-function closePanel() {
-  document.getElementById('orderPanel').classList.remove('open');
-  document.getElementById('overlay').classList.remove('show');
-}
+    function generateWhatsAppMessage() {
+        let message = "Hello Vapers City, I want to order:\n";
+        cart.forEach(item => {
+            message += `- ${item.name} x${item.quantity} = KES ${(item.price * item.quantity).toLocaleString()}\n`;
+        });
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        message += `\nTotal: KES ${total.toLocaleString()}\nDelivery Location: Ruiru\n\nThank you!`;
+        return encodeURIComponent(message);
+    }
 
-// Initialize the entire site
-async function init() {
-  await loadSettings();
-  await loadProducts();
-  
-  track = document.getElementById('slideTrack');
-  dotsNav = document.getElementById('dotsNav');
-  
-  // Clear and rebuild slides
-  track.innerHTML = '';
-  products.forEach((p, i) => track.appendChild(buildSlide(p, i)));
-  
-  const realCount = products.length;
-  // Add clones for infinite scroll
-  if (realCount > 0) {
-    const cloneLast = buildSlide(products[realCount - 1], realCount - 1);
-    track.insertBefore(cloneLast, track.firstChild);
-    const cloneFirst = buildSlide(products[0], 0);
-    track.appendChild(cloneFirst);
-  }
-  
-  // Rebuild dots
-  dotsNav.innerHTML = '';
-  for (let i = 0; i < realCount; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.onclick = () => goTo(i);
-    dotsNav.appendChild(dot);
-  }
-  
-  // Set up navigation buttons
-  document.getElementById('prevBtn').onclick = () => navigate(-1);
-  document.getElementById('nextBtn').onclick = () => navigate(1);
-  
-  // Floating WA
-  document.getElementById('floatWa').href = `https://wa.me/${getPhone()}?text=${WA_MSG}Hi%20I%27d%20like%20to%20browse%20your%20collection`;
-  
-  // Touch events
-  let touchX = 0;
-  document.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive: true});
-  document.addEventListener('touchend', e => {
-    const diff = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
-  }, {passive: true});
-  
-  // Keyboard events
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
-  });
-  
-  // Initialize position
-  if (realCount > 0) {
-    current = 0;
-    setTrackPos(1, false);
-    updateUI(0);
-    resetAutoPlay();
-  }
-}
+    document.getElementById('checkoutWA')?.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty.');
+            return;
+        }
+        const phone = "254714693283";
+        window.open(`https://wa.me/${phone}?text=${generateWhatsAppMessage()}`, '_blank');
+    });
 
-// Start everything
-init();
+    function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
+    function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+    function openFavorites() { document.getElementById('favoritesPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
+    function closeFavorites() { document.getElementById('favoritesPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+
+    document.getElementById('openCartBtn')?.addEventListener('click', openCart);
+    document.getElementById('openFavoritesBtn')?.addEventListener('click', openFavorites);
+    document.getElementById('closeCart')?.addEventListener('click', closeCart);
+    document.getElementById('closeFavorites')?.addEventListener('click', closeFavorites);
+    document.getElementById('overlay')?.addEventListener('click', () => { closeCart(); closeFavorites(); });
+
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            renderProducts();
+        });
+    });
+
+    document.getElementById('confirmAge')?.addEventListener('click', () => {
+        localStorage.setItem('vapersAgeVerified', 'true');
+        document.getElementById('ageGate').style.display = 'none';
+    });
+    document.getElementById('denyAge')?.addEventListener('click', () => {
+        alert('Access denied. You must be 18+ to enter.');
+        window.location.href = 'https://www.google.com';
+    });
+    if (localStorage.getItem('vapersAgeVerified') === 'true') {
+        document.getElementById('ageGate').style.display = 'none';
+    }
+
+    renderProducts();
+    updateCartUI();
+    updateFavoritesUI();
 </script>
 </body>
 </html>
