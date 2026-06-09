@@ -12,28 +12,28 @@
     /* Light Theme (Default) */
     :root {
         --bg: #f5f5f7;
-        --card-bg: rgba(255,255,255,0.85);
+        --card-bg: rgba(255,255,255,0.92);
         --text: #1a1a2e;
-        --text-dim: #666;
-        --border: rgba(0,0,0,0.1);
+        --text-dim: #555;
+        --border: rgba(0,0,0,0.08);
         --primary: #FF3300;
         --primary-dark: #cc2900;
-        --primary-glow: rgba(255,51,0,0.3);
+        --primary-glow: rgba(255,51,0,0.2);
         --success: #25D366;
         --discount: #ff0055;
-        --header-bg: rgba(255,255,255,0.95);
-        --toggle-bg: rgba(0,0,0,0.05);
+        --header-bg: rgba(255,255,255,0.96);
+        --toggle-bg: rgba(0,0,0,0.04);
     }
     
     /* Dark Theme */
     body.dark {
         --bg: #0a0a0f;
-        --card-bg: rgba(20,20,30,0.85);
+        --card-bg: rgba(25,25,35,0.92);
         --text: #f0f0f0;
-        --text-dim: rgba(255,255,255,0.6);
-        --border: rgba(255,255,255,0.1);
-        --header-bg: rgba(10,10,15,0.95);
-        --toggle-bg: rgba(255,255,255,0.1);
+        --text-dim: rgba(255,255,255,0.65);
+        --border: rgba(255,255,255,0.08);
+        --header-bg: rgba(10,10,15,0.96);
+        --toggle-bg: rgba(255,255,255,0.06);
     }
     
     body {
@@ -64,7 +64,7 @@
         height: 100%;
         object-fit: cover;
         opacity: 1;
-        filter: brightness(0.6) contrast(1.1);
+        filter: brightness(0.5) contrast(1.1);
     }
     .video-overlay {
         position: fixed;
@@ -86,44 +86,43 @@
         background: var(--header-bg);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 12px 20px;
+        padding: 12px 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
     }
     .logo-area {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        flex: 1;
     }
     .logo {
         font-family: 'Bebas Neue', cursive;
-        font-size: 2.2rem;
-        letter-spacing: 4px;
+        font-size: 1.8rem;
+        letter-spacing: 3px;
         background: linear-gradient(135deg, #FF3300, #ff6600);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 0 0 30px rgba(255,51,0,0.5);
+        text-shadow: 0 0 20px rgba(255,51,0,0.3);
         animation: glowPulse 2s ease-in-out infinite;
     }
     @keyframes glowPulse {
-        0%, 100% { text-shadow: 0 0 20px rgba(255,51,0,0.3); }
-        50% { text-shadow: 0 0 40px rgba(255,51,0,0.8); }
+        0%, 100% { text-shadow: 0 0 10px rgba(255,51,0,0.3); }
+        50% { text-shadow: 0 0 25px rgba(255,51,0,0.6); }
     }
     .tagline {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         letter-spacing: 2px;
         color: var(--text-dim);
     }
     .header-right {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
     }
     .theme-toggle {
         background: var(--toggle-bg);
@@ -131,17 +130,17 @@
         border-radius: 30px;
         padding: 6px 12px;
         cursor: pointer;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         transition: all 0.2s;
     }
     .vvip-link {
         background: linear-gradient(135deg, #FF3300, #ff6600);
-        padding: 6px 16px;
+        padding: 6px 14px;
         border-radius: 30px;
         color: white;
         text-decoration: none;
         font-weight: bold;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     .cart-fav-icons {
         display: flex;
@@ -150,7 +149,7 @@
     .cart-fav-icons button {
         background: none;
         border: none;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         cursor: pointer;
         color: var(--primary);
         position: relative;
@@ -158,13 +157,13 @@
     .cart-count, .fav-count {
         position: absolute;
         top: -8px;
-        right: -12px;
+        right: -10px;
         background: var(--primary);
         color: white;
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         border-radius: 50%;
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -173,69 +172,69 @@
     /* Search Bar */
     .search-bar {
         position: fixed;
-        top: 85px;
+        top: 80px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 145;
         width: 90%;
-        max-width: 500px;
-        padding: 12px 20px;
+        max-width: 450px;
+        padding: 10px 20px;
         background: var(--card-bg);
         backdrop-filter: blur(10px);
         border: 1px solid var(--border);
         border-radius: 50px;
         color: var(--text);
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .search-bar:focus { outline: none; border-color: var(--primary); }
     
     /* Delivery Message */
     .delivery-msg {
         position: fixed;
-        top: 150px;
+        top: 135px;
         left: 0;
         right: 0;
         z-index: 144;
         background: var(--success);
         color: white;
         text-align: center;
-        padding: 8px;
-        font-size: 0.8rem;
+        padding: 6px;
+        font-size: 0.7rem;
         font-weight: bold;
     }
     .authenticity-badge {
         position: fixed;
-        top: 185px;
+        top: 165px;
         left: 0;
         right: 0;
         z-index: 143;
         background: var(--primary);
         color: white;
         text-align: center;
-        padding: 6px;
-        font-size: 0.7rem;
+        padding: 5px;
+        font-size: 0.65rem;
         font-weight: bold;
     }
     
     /* Category Toggle */
     .category-toggle {
         position: fixed;
-        top: 225px;
+        top: 200px;
         left: 0;
         right: 0;
         z-index: 140;
         display: flex;
         justify-content: center;
-        gap: 15px;
-        padding: 10px;
+        gap: 12px;
+        padding: 8px;
         background: var(--card-bg);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
     }
     .toggle-btn {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1.1rem;
-        padding: 8px 24px;
+        font-size: 1rem;
+        padding: 6px 20px;
         border: 1px solid var(--border);
         background: var(--toggle-bg);
         color: var(--text);
@@ -251,9 +250,9 @@
     
     /* Main Container */
     .main-container {
-        max-width: 1400px;
+        max-width: 1300px;
         margin: 0 auto;
-        padding: 290px 20px 80px;
+        padding: 260px 20px 80px;
         position: relative;
         z-index: 2;
     }
@@ -261,26 +260,25 @@
     /* Section Titles */
     .section-title {
         font-family: 'Bebas Neue', cursive;
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: var(--primary);
-        margin: 2rem 0 1rem;
+        margin: 1.5rem 0 1rem;
         text-align: center;
         letter-spacing: 2px;
     }
     
-    /* Sliders with Animation Effects */
+    /* Sliders - Clean and Readable */
     .slider-container {
         position: relative;
-        margin: 1rem 0 2rem;
+        margin: 0.5rem 0 1.5rem;
         overflow: hidden;
-        perspective: 1000px;
     }
     .slider-track {
         display: flex;
         gap: 20px;
         overflow-x: auto;
         scroll-behavior: smooth;
-        padding: 10px 5px;
+        padding: 10px 5px 20px;
         scrollbar-width: thin;
     }
     .slider-track::-webkit-scrollbar { height: 5px; }
@@ -288,26 +286,81 @@
     .slider-track::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     .slider-nav {
         position: absolute;
-        top: 50%;
+        top: 45%;
         transform: translateY(-50%);
         background: var(--card-bg);
         border: 1px solid var(--primary);
         color: var(--primary);
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         cursor: pointer;
         z-index: 10;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
         backdrop-filter: blur(5px);
     }
-    .slider-prev { left: -10px; }
-    .slider-next { right: -10px; }
+    .slider-prev { left: -5px; }
+    .slider-next { right: -5px; }
     
-    /* Product Card - Original Layout (Image Left, Info Right) */
+    /* Slider Product Card - Compact for Horizontal Scroll */
+    .slider-product {
+        background: var(--card-bg);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: all 0.2s;
+        width: 220px;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+    .slider-product:hover {
+        transform: translateY(-3px);
+        border-color: var(--primary);
+    }
+    .slider-product-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+    .slider-product-info {
+        padding: 12px;
+    }
+    .slider-product-name {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1rem;
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+    .slider-product-desc {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        margin-bottom: 6px;
+    }
+    .slider-price {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: var(--primary);
+    }
+    .slider-old-price {
+        font-size: 0.7rem;
+        color: #ff6666;
+        text-decoration: line-through;
+        margin-right: 6px;
+    }
+    
+    /* Main Product Grid - Clean and Well-Spaced */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 1rem;
+    }
+    
+    /* Main Product Card */
     .product-card {
         background: var(--card-bg);
         backdrop-filter: blur(8px);
@@ -316,18 +369,15 @@
         overflow: hidden;
         transition: all 0.3s ease;
         cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto 20px;
     }
     .product-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        border-color: var(--primary);
     }
     .product-img-container {
-        width: 35%;
+        width: 100%;
+        height: 240px;
         overflow: hidden;
     }
     .product-img {
@@ -338,69 +388,68 @@
     }
     .product-card:hover .product-img { transform: scale(1.05); }
     .product-info {
-        width: 65%;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        padding: 16px;
     }
     .product-name {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         letter-spacing: 1px;
+        margin-bottom: 5px;
     }
-    .product-name[data-glow="red"] { text-shadow: 0 0 10px #ff3300; color: #ff3300; }
-    .product-name[data-glow="blue"] { text-shadow: 0 0 10px #0088ff; color: #0088ff; }
-    .product-name[data-glow="green"] { text-shadow: 0 0 10px #00ff88; color: #00ff88; }
-    .product-name[data-glow="purple"] { text-shadow: 0 0 10px #cc00ff; color: #cc00ff; }
-    .product-name[data-glow="gold"] { text-shadow: 0 0 10px #FFD700; color: #FFD700; }
-    .product-desc { font-size: 0.85rem; color: var(--text-dim); }
+    .product-name[data-glow="red"] { text-shadow: 0 0 8px #ff3300; color: #ff3300; }
+    .product-name[data-glow="blue"] { text-shadow: 0 0 8px #0088ff; color: #0088ff; }
+    .product-name[data-glow="green"] { text-shadow: 0 0 8px #00ff88; color: #00ff88; }
+    .product-name[data-glow="purple"] { text-shadow: 0 0 8px #cc00ff; color: #cc00ff; }
+    .product-name[data-glow="gold"] { text-shadow: 0 0 8px #FFD700; color: #FFD700; }
+    .product-desc {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
     .ranking-badge {
         display: inline-block;
-        padding: 4px 12px;
+        padding: 3px 10px;
         border-radius: 20px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: bold;
         background: var(--primary);
         color: white;
-        width: fit-content;
+        margin-bottom: 8px;
     }
-    .velo-dots { display: flex; gap: 6px; margin: 5px 0; }
-    .velo-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; }
-    .price-section { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-    .old-price { font-size: 0.85rem; color: #ff6666; text-decoration: line-through; }
-    .current-price { font-size: 1.3rem; font-weight: bold; color: var(--primary); }
-    .discount-badge { background: var(--discount); color: white; font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; }
-    .you-save { font-size: 0.7rem; color: var(--success); }
+    .velo-dots { display: flex; gap: 5px; margin: 8px 0; }
+    .velo-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
+    .price-section { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+    .old-price { font-size: 0.8rem; color: #ff6666; text-decoration: line-through; }
+    .current-price { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+    .discount-badge { background: var(--discount); color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; }
+    .you-save { font-size: 0.7rem; color: var(--success); margin: 4px 0; }
     .stock-badge { font-size: 0.7rem; color: #ff4444; }
-    .action-buttons { display: flex; gap: 10px; margin-top: 10px; }
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+    }
     .btn-wishlist, .btn-cart {
-        padding: 8px 16px;
+        flex: 1;
+        padding: 8px 12px;
         border: none;
         border-radius: 40px;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.2s;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 6px;
     }
     .btn-wishlist { background: var(--toggle-bg); color: var(--text); border: 1px solid var(--border); }
     .btn-wishlist.active { background: #ff0055; color: white; }
     .btn-cart { background: var(--primary); color: white; }
-    .btn-cart:hover { background: var(--primary-dark); transform: scale(0.98); }
+    .btn-cart:hover { background: var(--primary-dark); }
     
-    /* Grid Layout */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-        gap: 20px;
-        margin-top: 1rem;
-    }
-    .products-grid .product-card { margin: 0; width: 100%; }
-    
-    /* Modal with Effects */
+    /* Modal */
     .modal {
         display: none;
         position: fixed;
@@ -424,29 +473,24 @@
         overflow-y: auto;
         border: 1px solid var(--border);
         position: relative;
-        animation: modalPopIn 0.3s ease;
-    }
-    @keyframes modalPopIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
     }
     .modal-close {
         position: absolute;
         top: 15px;
         right: 20px;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         cursor: pointer;
         color: var(--primary);
     }
-    .modal-img { width: 100%; border-radius: 20px 20px 0 0; }
+    .modal-img { width: 100%; border-radius: 20px 20px 0 0; max-height: 300px; object-fit: cover; }
     .modal-body { padding: 20px; }
-    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--primary); }
-    .star-rating { font-size: 1.2rem; letter-spacing: 3px; margin: 10px 0; }
+    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; color: var(--primary); }
+    .star-rating { font-size: 1.1rem; letter-spacing: 3px; margin: 10px 0; }
     .star { cursor: pointer; }
     .star.selected { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
     .review-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 8px; }
-    .review-author { font-weight: bold; color: var(--primary); }
-    .review-text { font-size: 0.8rem; }
+    .review-author { font-weight: bold; color: var(--primary); font-size: 0.8rem; }
+    .review-text { font-size: 0.75rem; }
     .add-review { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
     .add-review input, .add-review textarea { background: var(--toggle-bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px; color: var(--text); }
     .add-review button { background: var(--primary); border: none; padding: 8px; border-radius: 40px; color: white; cursor: pointer; }
@@ -472,7 +516,7 @@
     .panel-item { display: flex; gap: 10px; border-bottom: 1px solid var(--border); padding: 10px 0; }
     .panel-item-img { width: 50px; height: 50px; object-fit: cover; border-radius: 10px; }
     .panel-item-info { flex: 1; }
-    .panel-item-name { font-weight: bold; }
+    .panel-item-name { font-weight: bold; font-size: 0.85rem; }
     .panel-item-price { color: var(--primary); font-size: 0.8rem; }
     .panel-total { text-align: right; font-weight: bold; margin-top: 15px; font-size: 1.1rem; }
     .panel-wa-btn { background: var(--primary); border: none; padding: 10px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
@@ -507,18 +551,27 @@
         flex-direction: column;
         gap: 10px;
     }
-    .float-btn { width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; border: none; background: var(--primary); color: white; }
+    .float-btn { width: 48px; height: 48px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; border: none; background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     
+    /* Responsive */
     @media (max-width: 768px) {
-        .product-card { flex-direction: column; max-width: 100%; }
-        .product-img-container { width: 100%; height: 200px; }
-        .product-info { width: 100%; padding: 15px; }
-        .product-name { font-size: 1.3rem; }
-        .section-title { font-size: 1.5rem; }
+        .main-container { padding-top: 290px; }
+        .category-toggle { top: 230px; flex-wrap: wrap; gap: 8px; }
+        .toggle-btn { font-size: 0.85rem; padding: 5px 15px; }
+        .products-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .product-img-container { height: 200px; }
+        .product-name { font-size: 1.1rem; }
+        .section-title { font-size: 1.4rem; }
+        .header-right { gap: 10px; }
+        .logo { font-size: 1.3rem; }
+        .vvip-link { font-size: 0.6rem; padding: 4px 10px; }
+    }
+    
+    @media (max-width: 480px) {
+        .site-header { padding: 10px 15px; }
         .products-grid { grid-template-columns: 1fr; }
-        .main-container { padding-top: 330px; }
-        .category-toggle { top: 260px; }
-        .toggle-btn { font-size: 0.9rem; padding: 5px 15px; }
+        .slider-product { width: 180px; }
+        .slider-product-img { height: 150px; }
     }
 </style>
 </head>
@@ -549,8 +602,8 @@
         <div class="tagline">PREMIUM VAPE · VELO · SHISHA</div>
     </div>
     <div class="header-right">
-        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
-        <a href="https://t.me/vibesonvibes" class="vvip-link" target="_blank">🔮 BECOME VVIP</a>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+        <a href="https://t.me/vibesonvibes" class="vvip-link" target="_blank">🔮 VVIP</a>
         <div class="cart-fav-icons">
             <button id="openCartBtn"><i class="fas fa-shopping-cart"></i><span id="cartCount" class="cart-count">0</span></button>
             <button id="openFavoritesBtn"><i class="fas fa-heart"></i><span id="favCount" class="fav-count">0</span></button>
@@ -618,43 +671,43 @@
 <script>
     // ==================== PRODUCT DATA ====================
     const vapeProducts = [
-        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs. Premium mesh coil.", price: 2500, oldPrice: 3200, discount: 22, ranking: "PLATINUM", img: "", rating: 4.5, stock: 45, glow: "gold", reviews: [],
-          fullDesc: "The Geek Bar Pulse X delivers 15,000 puffs of Mexico Mango Ice. Features a 650mAh rechargeable battery, 15ml e-liquid, and mesh coil technology for consistent flavor.",
+        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, oldPrice: 3200, discount: 22, ranking: "PLATINUM", img: "", rating: 4.5, stock: 45, glow: "gold", reviews: [],
+          fullDesc: "The Geek Bar Pulse X delivers 15,000 puffs of Mexico Mango Ice. Features 650mAh rechargeable battery, 15ml e-liquid, and mesh coil technology.",
           specs: "650mAh | 15ml | 5% Nicotine | USB-C" },
-        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs. Smooth draw.", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.2, stock: 32, glow: "blue", reviews: [],
-          fullDesc: "Blue Razz Lemonade flavor with 9,000 puffs. Rechargeable battery, 13ml e-liquid, draw-activated.",
+        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.2, stock: 32, glow: "blue", reviews: [],
+          fullDesc: "Blue Razz Lemonade flavor with 9,000 puffs. Rechargeable battery, 13ml e-liquid.",
           specs: "550mAh | 13ml | 5% Nicotine | USB-C" },
-        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs. Vibrant neon design.", price: 2600, oldPrice: 3300, discount: 21, ranking: "PLATINUM", img: "", rating: 4.3, stock: 18, glow: "red", reviews: [],
-          fullDesc: "Neon aesthetics with Strawberry Watermelon flavor. 600mAh battery, 14ml e-liquid, dual mesh coil.",
+        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, oldPrice: 3300, discount: 21, ranking: "PLATINUM", img: "", rating: 4.3, stock: 18, glow: "red", reviews: [],
+          fullDesc: "Neon aesthetics with Strawberry Watermelon flavor. 600mAh battery, 14ml e-liquid.",
           specs: "600mAh | 14ml | 5% Nicotine | USB-C" },
-        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs. Compact reliable.", price: 1300, oldPrice: 1800, discount: 28, ranking: "SILVER", img: "", rating: 4.0, stock: 56, glow: "gold", reviews: [],
+        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, oldPrice: 1800, discount: 28, ranking: "SILVER", img: "", rating: 4.0, stock: 56, glow: "gold", reviews: [],
           fullDesc: "Classic mango ice flavor. Perfect for beginners or as a backup device.",
           specs: "400mAh | 3.5ml | 5% Nicotine" }
     ];
 
     const veloProducts = [
-        { name: "Velo 3 Dots Mint", desc: "Mild strength, fresh mint. 20 pouches.", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", img: "", rating: 4.0, stock: 67, glow: "green", reviews: [],
-          fullDesc: "Mild nicotine strength, fresh mint flavor. 20 all-white pouches, tobacco-free, 30-min release.",
+        { name: "Velo 3 Dots Mint", desc: "Mild strength, fresh mint. 20 pouches", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", img: "", rating: 4.0, stock: 67, glow: "green", reviews: [],
+          fullDesc: "Mild nicotine strength, fresh mint flavor. 20 all-white pouches, tobacco-free.",
           specs: "20 Pouches | 3 Dots (Mild) | Mint Flavor" },
-        { name: "Velo 4 Dots Mint", desc: "Medium strength, cool mint.", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", img: "", rating: 4.1, stock: 52, glow: "green", reviews: [],
-          fullDesc: "Medium strength cool mint. 20 pouches, tobacco-free, longer-lasting cool sensation.",
+        { name: "Velo 4 Dots Mint", desc: "Medium strength, cool mint", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", img: "", rating: 4.1, stock: 52, glow: "green", reviews: [],
+          fullDesc: "Medium strength cool mint. 20 pouches, tobacco-free, longer-lasting sensation.",
           specs: "20 Pouches | 4 Dots (Medium) | Cool Mint" },
-        { name: "Velo 5 Dots Mint", desc: "Strong strength, extreme freeze.", price: 1400, oldPrice: 1900, discount: 26, dots: 5, ranking: "GOLD", img: "", rating: 4.3, stock: 34, glow: "purple", reviews: [],
+        { name: "Velo 5 Dots Mint", desc: "Strong strength, extreme freeze", price: 1400, oldPrice: 1900, discount: 26, dots: 5, ranking: "GOLD", img: "", rating: 4.3, stock: 34, glow: "purple", reviews: [],
           fullDesc: "Strong nicotine strength, extreme freeze. For experienced users.",
           specs: "20 Pouches | 5 Dots (Strong) | Extreme Freeze" },
-        { name: "Velo 6 Dots Mint", desc: "Extra strong, max freeze.", price: 1500, oldPrice: 2100, discount: 29, dots: 6, ranking: "GOLD", img: "", rating: 4.4, stock: 28, glow: "purple", reviews: [],
+        { name: "Velo 6 Dots Mint", desc: "Extra strong, max freeze", price: 1500, oldPrice: 2100, discount: 29, dots: 6, ranking: "GOLD", img: "", rating: 4.4, stock: 28, glow: "purple", reviews: [],
           fullDesc: "Maximum nicotine strength, arctic freeze intensity.",
           specs: "20 Pouches | 6 Dots (Extra Strong) | Max Freeze" }
     ];
 
     const shishaProducts = [
-        { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint.", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", img: "", rating: 4.9, stock: 15, glow: "green", reviews: [],
+        { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", img: "", rating: 4.9, stock: 15, glow: "green", reviews: [],
           fullDesc: "Burley tobacco base, pure peppermint. High nicotine, heat-sensitive, cult classic.",
           specs: "250g | Dark Leaf | High Nicotine" },
-        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint. Global sensation.", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", img: "", rating: 4.7, stock: 27, glow: "red", reviews: [],
-          fullDesc: "Tropical blend of passionfruit, watermelon, and mint. Massive clouds, heat-resistant.",
+        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", img: "", rating: 4.7, stock: 27, glow: "red", reviews: [],
+          fullDesc: "Tropical blend of passionfruit, watermelon, and mint. Massive clouds.",
           specs: "250g | Blonde Leaf | Medium Nicotine" },
-        { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint.", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.5, stock: 43, glow: "purple", reviews: [],
+        { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.5, stock: 43, glow: "purple", reviews: [],
           fullDesc: "Classic grape mint blend. Smooth smoke, crowd favorite.",
           specs: "250g | Blonde Leaf | Medium Nicotine" }
     ];
@@ -688,7 +741,21 @@
         return html;
     }
 
-    function renderProductCard(p, isHorizontal = false) {
+    function renderSliderProduct(p) {
+        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 12));
+        return `
+            <div class="slider-product" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
+                <img class="slider-product-img" src="${p.img || placeholderImg}" alt="${p.name}">
+                <div class="slider-product-info">
+                    <div class="slider-product-name">${p.name}</div>
+                    <div class="slider-product-desc">${p.desc.substring(0, 40)}...</div>
+                    <div><span class="slider-old-price">KES ${p.oldPrice}</span><span class="slider-price">KES ${p.price}</span></div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderProductCard(p) {
         const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 15));
         const dotsHtml = p.dots ? renderVeloDots(p.dots) : '';
         const glowColor = getGlowColor(p);
@@ -730,8 +797,8 @@
                 <div class="slider-nav slider-prev" onclick="slideHorizontal('${sliderId}', -1)">‹</div>
                 <div class="slider-nav slider-next" onclick="slideHorizontal('${sliderId}', 1)">›</div>
                 <div class="slider-track" id="${sliderId}">
-                    ${items.map(item => renderProductCard(item, true)).join('')}
-                    ${items.map(item => renderProductCard(item, true)).join('')}
+                    ${items.map(item => renderSliderProduct(item)).join('')}
+                    ${items.map(item => renderSliderProduct(item)).join('')}
                 </div>
             </div>
         `;
@@ -740,7 +807,7 @@
     window.slideHorizontal = (sliderId, direction) => {
         const slider = document.getElementById(sliderId);
         if (slider) {
-            slider.scrollLeft += direction * 400;
+            slider.scrollLeft += direction * 240;
             if (slider.scrollLeft <= 0 && direction === -1) slider.scrollLeft = slider.scrollWidth / 2;
             if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth && direction === 1) slider.scrollLeft = slider.scrollWidth / 2 - slider.clientWidth;
         }
@@ -759,17 +826,16 @@
         const filtered = getFilteredProducts();
         let html = '';
         html += createHorizontalSlider('🔥 DROP OF THE WEEK', weeklyOffers, 'offersSlider');
-        html += createHorizontalSlider('👑 COMMUNITY VIBES', bestSellers, 'bestsellerSlider');
+        html += createHorizontalSlider('👑 COMMUNITY FAVORITES', bestSellers, 'bestsellerSlider');
         html += `<div class="section-title">✨ ALL ${currentCategory.toUpperCase()} VIBES ${searchQuery ? `(Search: "${searchQuery}")` : ''}</div>`;
         if (filtered.length === 0) {
-            html += `<div style="text-align:center; padding:40px;">🔍 No vibes found for "${searchQuery}". Try something else!</div>`;
+            html += `<div style="text-align:center; padding:60px;">🔍 No vibes found for "${searchQuery}". Try something else!</div>`;
         } else {
             html += `<div class="products-grid">${filtered.map(p => renderProductCard(p)).join('')}</div>`;
         }
         container.innerHTML = html;
     }
 
-    // Load saved reviews and ratings
     function loadProductData() {
         const savedRatings = JSON.parse(localStorage.getItem('vibes_ratings') || '{}');
         const savedReviews = JSON.parse(localStorage.getItem('vibes_reviews') || '{}');
@@ -811,9 +877,8 @@
             reviewsContainer.innerHTML = `<div style="margin:10px 0;"><strong>⭐ Customer Reviews:</strong></div>` + 
                 product.reviews.map(r => `<div class="review-item"><div class="review-author">${r.name}</div><div class="review-text">${r.text}</div></div>`).join('');
         } else {
-            reviewsContainer.innerHTML = '<div style="margin:10px 0; opacity:0.6;">✨ No reviews yet. Be the first to rate!</div>';
+            reviewsContainer.innerHTML = '<div style="margin:10px 0; opacity:0.6;">✨ No reviews yet. Be the first!</div>';
         }
-        
         document.getElementById('productModal').style.display = 'flex';
     }
 
@@ -953,13 +1018,13 @@
         const msgDiv = document.getElementById('deliveryMsg');
         if (isWeekend) msgDiv.innerHTML = "🚚 24/7 DELIVERY ON WEEKENDS! Order anytime → arrives today 🚚";
         else if (hour < 22) msgDiv.innerHTML = "🚚 ORDER BY 10PM → ARRIVES TOMORROW! Same-day delivery in Ruiru 🚚";
-        else msgDiv.innerHTML = "🚚 ORDER NOW → ARRIVES DAY AFTER TOMORROW! We'll keep you updated 🚚";
+        else msgDiv.innerHTML = "🚚 ORDER NOW → ARRIVES DAY AFTER TOMORROW! 🚚";
     }
     updateDeliveryMessage();
 
     document.getElementById('themeToggle').onclick = () => {
         document.body.classList.toggle('dark');
-        document.getElementById('themeToggle').innerText = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+        document.getElementById('themeToggle').innerText = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
     };
 
     function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
