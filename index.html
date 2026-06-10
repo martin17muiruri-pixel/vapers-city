@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Vibes on Vibes | Premium Vape, Velo & Shisha</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,9 +16,7 @@
         --text-dim: #555;
         --border: rgba(0,0,0,0.08);
         --primary: #FF3300;
-        --primary-dark: #cc2900;
         --success: #25D366;
-        --discount: #ff0055;
         --header-bg: rgba(255,255,255,0.96);
     }
     
@@ -98,9 +96,35 @@
         0%,100% { text-shadow: 0 0 10px rgba(255,51,0,0.3); }
         50% { text-shadow: 0 0 25px rgba(255,51,0,0.6); }
     }
-    .tagline { font-size: 0.55rem; letter-spacing: 2px; color: var(--text-dim); }
+    .tagline { font-size: 0.55rem; letter-spacing: 2px; color: var(--text-dim); text-align: center; }
+    
+    .vvip-section {
+        text-align: center;
+    }
+    .vvip-text {
+        font-size: 0.7rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #FF3300, #ff6600);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 1px;
+    }
+    .social-icons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 3px;
+    }
+    .social-icons a {
+        color: var(--primary);
+        font-size: 0.8rem;
+        transition: all 0.2s;
+    }
+    .social-icons a:hover { color: var(--text); transform: scale(1.1); }
+    
     .header-right { display: flex; align-items: center; gap: 12px; }
-    .theme-toggle, .vvip-link {
+    .theme-toggle {
         background: var(--primary);
         padding: 5px 12px;
         border-radius: 30px;
@@ -108,7 +132,6 @@
         cursor: pointer;
         border: none;
         color: white;
-        text-decoration: none;
     }
     .cart-fav-icons { display: flex; gap: 10px; }
     .cart-fav-icons button {
@@ -215,7 +238,6 @@
         z-index: 2;
     }
     
-    /* Category Header */
     .category-header {
         display: flex;
         justify-content: space-between;
@@ -240,7 +262,6 @@
         font-weight: bold;
     }
     
-    /* Slideshow: 2 products visible, rest slideshow */
     .slider-container {
         position: relative;
         margin-bottom: 30px;
@@ -321,7 +342,6 @@
         .product-slide { flex: 0 0 calc(25% - 12px); }
     }
     
-    /* Modal */
     .modal {
         display: none;
         position: fixed;
@@ -362,7 +382,6 @@
     .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
     .btn-cart-modal { flex: 1; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 40px; cursor: pointer; font-weight: bold; }
     
-    /* Sidebar */
     .side-panel {
         position: fixed;
         top: 0;
@@ -445,6 +464,8 @@
         .toggle-btn { font-size: 0.8rem; padding: 4px 12px; }
         .product-slide { flex: 0 0 calc(50% - 8px); }
         .logo { font-size: 1.2rem; }
+        .vvip-text { font-size: 0.6rem; }
+        .social-icons a { font-size: 0.7rem; }
     }
 </style>
 </head>
@@ -470,13 +491,21 @@
 
 <header class="site-header">
     <div></div>
-    <div class="logo-area" style="text-align:center;">
+    <div style="text-align:center;">
         <div class="logo">✨ VIBES ON VIBES ✨</div>
         <div class="tagline">PREMIUM VAPE · VELO · SHISHA</div>
+        <div class="vvip-section">
+            <div class="vvip-text">🔮 BECOME VVIP</div>
+            <div class="social-icons">
+                <a href="https://wa.me/254714693283" target="_blank"><i class="fab fa-whatsapp"></i> WA</a>
+                <a href="https://t.me/vibesonvibes" target="_blank"><i class="fab fa-telegram"></i> TG</a>
+                <a href="https://www.instagram.com/vibesonvibes" target="_blank"><i class="fab fa-instagram"></i> IG</a>
+                <a href="https://www.tiktok.com/@vibesonvibes" target="_blank"><i class="fab fa-tiktok"></i> TT</a>
+            </div>
+        </div>
     </div>
     <div class="header-right">
         <button class="theme-toggle" id="themeToggle">🌙</button>
-        <a href="https://t.me/vibesonvibes" class="vvip-link" target="_blank">VVIP</a>
         <div class="cart-fav-icons">
             <button id="openCartBtn"><i class="fas fa-shopping-cart"></i><span id="cartCount" class="cart-count">0</span></button>
             <button id="openFavoritesBtn"><i class="fas fa-heart"></i><span id="favCount" class="fav-count">0</span></button>
@@ -590,7 +619,7 @@
         return html;
     }
 
-    function renderSliderProduct(p, idx) {
+    function renderSliderProduct(p) {
         const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 12));
         const dotsHtml = p.dots ? renderVeloDots(p.dots) : '';
         return `
@@ -831,7 +860,6 @@
     };
     if (localStorage.getItem('vibes_age_verified') === 'true') document.getElementById('ageGate').style.display = 'none';
 
-    // Load saved ratings
     const savedRatings = JSON.parse(localStorage.getItem('vibes_ratings') || '{}');
     [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => { if (savedRatings[p.name]) p.rating = savedRatings[p.name]; });
 
