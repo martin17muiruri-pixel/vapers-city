@@ -10,23 +10,25 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
-        --bg: #f5f5f7;
+        --bg: #0a0a0f;
+        --card-bg: rgba(20,20,35,0.92);
+        --text: #f0f0f0;
+        --text-dim: rgba(255,255,255,0.65);
+        --border: rgba(255,255,255,0.1);
+        --primary: #FF3366;
+        --primary-glow: rgba(255,51,102,0.4);
+        --success: #25D366;
+        --header-bg: rgba(10,10,15,0.96);
+    }
+    
+    body.light {
+        --bg: #fff5f7;
         --card-bg: rgba(255,255,255,0.92);
         --text: #1a1a2e;
         --text-dim: #555;
         --border: rgba(0,0,0,0.08);
-        --primary: #FF3300;
-        --success: #25D366;
+        --primary: #FF3366;
         --header-bg: rgba(255,255,255,0.96);
-    }
-    
-    body.dark {
-        --bg: #0a0a0f;
-        --card-bg: rgba(25,25,35,0.92);
-        --text: #f0f0f0;
-        --text-dim: rgba(255,255,255,0.65);
-        --border: rgba(255,255,255,0.08);
-        --header-bg: rgba(10,10,15,0.96);
     }
     
     body {
@@ -54,7 +56,7 @@
         height: 100%;
         object-fit: cover;
         opacity: 1;
-        filter: brightness(0.5) contrast(1.1);
+        filter: brightness(0.4) contrast(1.2);
     }
     .video-overlay {
         position: fixed;
@@ -62,10 +64,11 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+        background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
         z-index: -1;
     }
     
+    /* Header */
     .site-header {
         position: fixed;
         top: 0;
@@ -75,7 +78,7 @@
         background: var(--header-bg);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 10px 20px;
+        padding: 8px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -86,25 +89,24 @@
         font-family: 'Bebas Neue', cursive;
         font-size: 1.6rem;
         letter-spacing: 3px;
-        background: linear-gradient(135deg, #FF3300, #ff6600);
+        background: linear-gradient(135deg, #FF3366, #FF6699, #FF99CC);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         animation: glowPulse 2s infinite;
+        text-shadow: 0 0 20px rgba(255,51,102,0.5);
     }
     @keyframes glowPulse {
-        0%,100% { text-shadow: 0 0 10px rgba(255,51,0,0.3); }
-        50% { text-shadow: 0 0 25px rgba(255,51,0,0.6); }
+        0%,100% { text-shadow: 0 0 10px rgba(255,51,102,0.3); }
+        50% { text-shadow: 0 0 30px rgba(255,51,102,0.7); }
     }
     .tagline { font-size: 0.55rem; letter-spacing: 2px; color: var(--text-dim); text-align: center; }
     
-    .vvip-section {
-        text-align: center;
-    }
+    .vvip-section { text-align: center; }
     .vvip-text {
         font-size: 0.7rem;
         font-weight: bold;
-        background: linear-gradient(135deg, #FF3300, #ff6600);
+        background: linear-gradient(135deg, #FF3366, #FF6699);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -120,8 +122,9 @@
         color: var(--primary);
         font-size: 0.8rem;
         transition: all 0.2s;
+        text-decoration: none;
     }
-    .social-icons a:hover { color: var(--text); transform: scale(1.1); }
+    .social-icons a:hover { color: #FF6699; transform: scale(1.1); }
     
     .header-right { display: flex; align-items: center; gap: 12px; }
     .theme-toggle {
@@ -159,7 +162,7 @@
     
     .search-bar {
         position: fixed;
-        top: 75px;
+        top: 80px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 145;
@@ -168,19 +171,20 @@
         padding: 8px 16px;
         background: var(--card-bg);
         backdrop-filter: blur(10px);
-        border: 1px solid var(--border);
+        border: 1px solid var(--primary);
         border-radius: 50px;
         color: var(--text);
         font-size: 0.85rem;
+        box-shadow: 0 0 15px var(--primary-glow);
     }
     
     .delivery-msg {
         position: fixed;
-        top: 125px;
+        top: 130px;
         left: 0;
         right: 0;
         z-index: 144;
-        background: var(--success);
+        background: linear-gradient(135deg, #FF3366, #FF6699);
         color: white;
         text-align: center;
         padding: 6px;
@@ -188,11 +192,11 @@
     }
     .authenticity-badge {
         position: fixed;
-        top: 155px;
+        top: 160px;
         left: 0;
         right: 0;
         z-index: 143;
-        background: var(--primary);
+        background: rgba(255,51,102,0.9);
         color: white;
         text-align: center;
         padding: 5px;
@@ -200,9 +204,41 @@
         font-weight: bold;
     }
     
+    /* Side Buttons */
+    .side-buttons {
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 150;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .side-btn {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--primary);
+        border-radius: 40px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 0.7rem;
+        font-weight: bold;
+        color: var(--primary);
+        text-align: center;
+        transition: all 0.2s;
+        box-shadow: 0 0 10px var(--primary-glow);
+    }
+    .side-btn:hover {
+        background: var(--primary);
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--primary);
+    }
+    
     .category-toggle {
         position: fixed;
-        top: 190px;
+        top: 200px;
         left: 0;
         right: 0;
         z-index: 140;
@@ -228,43 +264,35 @@
         background: var(--primary);
         color: white;
         border-color: transparent;
+        box-shadow: 0 0 15px var(--primary);
     }
     
     .main-container {
-        max-width: 1200px;
+        max-width: 1300px;
         margin: 0 auto;
-        padding: 245px 16px 80px;
+        padding: 260px 80px 80px 20px;
         position: relative;
         z-index: 2;
     }
     
-    .category-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        margin: 20px 0 15px;
-        flex-wrap: wrap;
-        gap: 10px;
+    /* Velo Category Section (Vertical by dot count) */
+    .velo-dot-section {
+        margin-bottom: 40px;
+        border-left: 4px solid var(--primary);
+        padding-left: 15px;
     }
-    .category-header h2 {
+    .velo-dot-title {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         color: var(--primary);
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px var(--primary);
     }
-    .view-all-btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 6px 16px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-size: 0.75rem;
-        font-weight: bold;
-    }
+    .velo-dot-title i { margin-right: 8px; }
     
     .slider-container {
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     .slider-track {
         display: flex;
@@ -273,44 +301,41 @@
         scroll-behavior: smooth;
         padding: 10px 5px 20px;
         scrollbar-width: thin;
-        scroll-snap-type: x mandatory;
     }
     .slider-track::-webkit-scrollbar { height: 4px; }
     .slider-track::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
     .slider-track::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     
     .product-slide {
-        flex: 0 0 calc(50% - 8px);
-        scroll-snap-align: start;
+        flex: 0 0 calc(25% - 12px);
+        min-width: 200px;
         background: var(--card-bg);
         backdrop-filter: blur(8px);
-        border-radius: 16px;
+        border-radius: 20px;
         border: 1px solid var(--border);
         overflow: hidden;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.3s;
     }
-    .product-slide:hover { transform: translateY(-3px); border-color: var(--primary); }
-    
+    .product-slide:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 0 20px var(--primary-glow);
+    }
     .product-img-slide {
         width: 100%;
         height: 160px;
         object-fit: cover;
     }
-    .product-info-slide {
-        padding: 10px;
-    }
+    .product-info-slide { padding: 10px; }
     .product-name-slide {
         font-family: 'Bebas Neue', cursive;
         font-size: 1rem;
         color: var(--primary);
         margin-bottom: 4px;
+        text-shadow: 0 0 5px var(--primary);
     }
-    .product-price-slide {
-        font-size: 0.9rem;
-        font-weight: bold;
-        color: var(--primary);
-    }
+    .product-price-slide { font-size: 0.9rem; font-weight: bold; color: var(--primary); }
     .product-old-price-slide {
         font-size: 0.7rem;
         color: #ff6666;
@@ -332,16 +357,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        backdrop-filter: blur(5px);
         z-index: 10;
     }
-    .slider-prev { left: -5px; }
-    .slider-next { right: -5px; }
+    .slider-prev { left: -10px; }
+    .slider-next { right: -10px; }
     
-    @media (min-width: 768px) {
-        .product-slide { flex: 0 0 calc(25% - 12px); }
+    @media (max-width: 768px) {
+        .product-slide { flex: 0 0 calc(50% - 8px); min-width: 160px; }
+        .main-container { padding: 280px 60px 80px 15px; }
+        .side-buttons { right: 5px; gap: 8px; }
+        .side-btn { padding: 6px 10px; font-size: 0.6rem; }
     }
     
+    /* Modal */
     .modal {
         display: none;
         position: fixed;
@@ -349,7 +377,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.95);
+        background: rgba(0,0,0,0.96);
         backdrop-filter: blur(15px);
         z-index: 10000;
         align-items: center;
@@ -358,11 +386,11 @@
     .modal-content {
         background: var(--card-bg);
         border-radius: 20px;
-        max-width: 450px;
+        max-width: 500px;
         width: 90%;
         max-height: 85vh;
         overflow-y: auto;
-        border: 1px solid var(--primary);
+        border: 2px solid var(--primary);
         position: relative;
     }
     .modal-close {
@@ -375,12 +403,48 @@
     }
     .modal-img { width: 100%; border-radius: 20px 20px 0 0; max-height: 250px; object-fit: cover; }
     .modal-body { padding: 20px; }
-    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: var(--primary); }
+    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: var(--primary); text-shadow: 0 0 10px var(--primary); }
     .star-rating { font-size: 1rem; letter-spacing: 3px; margin: 8px 0; }
     .star { cursor: pointer; }
-    .star.selected { color: #FFD700; }
+    .star.selected { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
     .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
     .btn-cart-modal { flex: 1; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 40px; cursor: pointer; font-weight: bold; }
+    
+    /* Info Panels */
+    .info-panel {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        max-width: 400px;
+        width: 90%;
+        max-height: 70vh;
+        overflow-y: auto;
+        padding: 20px;
+        z-index: 10001;
+        border: 2px solid var(--primary);
+        text-align: center;
+    }
+    .info-panel h3 {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
+    .info-panel p { margin-bottom: 10px; line-height: 1.5; }
+    .info-close {
+        background: var(--primary);
+        border: none;
+        padding: 8px 20px;
+        border-radius: 40px;
+        color: white;
+        cursor: pointer;
+        margin-top: 15px;
+    }
     
     .side-panel {
         position: fixed;
@@ -390,7 +454,7 @@
         height: 100%;
         background: var(--card-bg);
         backdrop-filter: blur(20px);
-        border-left: 1px solid var(--border);
+        border-left: 1px solid var(--primary);
         z-index: 1000;
         padding: 20px;
         transition: right 0.3s;
@@ -455,17 +519,7 @@
         border: none;
         background: var(--primary);
         color: white;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    
-    @media (max-width: 768px) {
-        .main-container { padding-top: 280px; }
-        .category-toggle { top: 215px; flex-wrap: wrap; gap: 6px; }
-        .toggle-btn { font-size: 0.8rem; padding: 4px 12px; }
-        .product-slide { flex: 0 0 calc(50% - 8px); }
-        .logo { font-size: 1.2rem; }
-        .vvip-text { font-size: 0.6rem; }
-        .social-icons a { font-size: 0.7rem; }
+        box-shadow: 0 0 15px var(--primary);
     }
 </style>
 </head>
@@ -492,7 +546,7 @@
 <header class="site-header">
     <div></div>
     <div style="text-align:center;">
-        <div class="logo">✨ VIBES ON VIBES ✨</div>
+        <div class="logo">✨ VIBES ON VIBES ✨ <span style="font-size:1rem;">🌸🌺</span></div>
         <div class="tagline">PREMIUM VAPE · VELO · SHISHA</div>
         <div class="vvip-section">
             <div class="vvip-text">🔮 BECOME VVIP</div>
@@ -513,15 +567,21 @@
     </div>
 </header>
 
-<input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search vibes...">
+<div class="side-buttons">
+    <div class="side-btn" onclick="showWeeklyOffers()">🔥 WEEKLY OFFERS<br><span style="font-size:0.6rem;">🌺 Limited Time</span></div>
+    <div class="side-btn" onclick="showBestSellers()">⭐ BEST SELLERS<br><span style="font-size:0.6rem;">🌸 Customer Favorites</span></div>
+    <div class="side-btn" onclick="showFacts()">💡 DID YOU KNOW?<br><span style="font-size:0.6rem;">🌿 Fun Facts</span></div>
+</div>
+
+<input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search 136+ products... 🌟">
 
 <div class="delivery-msg" id="deliveryMsg"></div>
-<div class="authenticity-badge">✅ 100% AUTHENTIC · TRUSTED BY 500+ ✅</div>
+<div class="authenticity-badge">✅ 100% AUTHENTIC · TRUSTED BY 5000+ · GLOW WITH US ✨🌺</div>
 
 <div class="category-toggle">
-    <button class="toggle-btn active" data-category="vape">💨 VAPE</button>
-    <button class="toggle-btn" data-category="velo">🟤 VELO</button>
-    <button class="toggle-btn" data-category="shisha">🌙 SHISHA</button>
+    <button class="toggle-btn active" data-category="vape">💨 VAPE (46)</button>
+    <button class="toggle-btn" data-category="velo">🟤 VELO (40)</button>
+    <button class="toggle-btn" data-category="shisha">🌙 SHISHA (50)</button>
 </div>
 
 <div class="main-container">
@@ -549,14 +609,21 @@
         <div class="modal-body">
             <div class="modal-title" id="modalTitle"></div>
             <div class="star-rating" id="starRating"></div>
-            <div id="modalDesc" style="margin:10px 0; font-size:0.85rem;"></div>
+            <div id="modalDesc" style="margin:10px 0; font-size:0.85rem; line-height:1.5;"></div>
             <div id="modalSpecs" style="margin:10px 0; font-size:0.75rem; background:rgba(255,255,255,0.05); padding:8px; border-radius:8px;"></div>
             <div id="modalPrice" style="margin:10px 0;"></div>
             <div class="action-buttons">
-                <button id="modalAddToCart" class="btn-cart-modal">🛒 Add to Cart</button>
+                <button id="modalAddToCart" class="btn-cart-modal">🛒 Add to Cart 🌸</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Info Panel for Facts -->
+<div id="infoPanel" class="info-panel">
+    <h3 id="infoTitle">💡 DID YOU KNOW?</h3>
+    <div id="infoContent"></div>
+    <button class="info-close" onclick="closeInfoPanel()">✨ Close</button>
 </div>
 
 <div class="floating-buttons">
@@ -565,130 +632,206 @@
 </div>
 
 <script>
-    // ==================== 20+ PRODUCTS PER CATEGORY ====================
-    const vapeProducts = [
-        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, oldPrice: 3200, discount: 22, img: "", rating: 4.5, fullDesc: "650mAh battery, 15ml e-liquid, mesh coil. 15,000 puffs of mango ice bliss.", specs: "650mAh | 15ml | 5% Nicotine" },
-        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.2, fullDesc: "Blue razz lemonade flavor. 550mAh battery, 13ml e-liquid.", specs: "550mAh | 13ml | 5% Nicotine" },
-        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, oldPrice: 3300, discount: 21, img: "", rating: 4.3, fullDesc: "Neon design, strawberry watermelon. 600mAh, 14ml.", specs: "600mAh | 14ml | 5% Nicotine" },
-        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, oldPrice: 1800, discount: 28, img: "", rating: 4.0, fullDesc: "Compact mango ice. Perfect for beginners.", specs: "400mAh | 3.5ml | 5% Nicotine" },
-        { name: "RandM Tornado 7000", desc: "Grape Soda, 7,000 puffs", price: 2400, oldPrice: 3100, discount: 23, img: "", rating: 4.1, fullDesc: "Grape soda flavor, 7,000 puffs. Rechargeable.", specs: "600mAh | 12ml | 5% Nicotine" },
-        { name: "Bang King 12000", desc: "Blueberry Bubblegum, 12,000 puffs", price: 3200, oldPrice: 4200, discount: 24, img: "", rating: 4.7, fullDesc: "Blueberry bubblegum. 12,000 puffs, high capacity.", specs: "650mAh | 16ml | 5% Nicotine" },
-        { name: "Maskking High GT", desc: "Cool Mint, 2,500 puffs", price: 1800, oldPrice: 2300, discount: 22, img: "", rating: 4.0, fullDesc: "Classic cool mint. Reliable daily driver.", specs: "400mAh | 5ml | 5% Nicotine" },
-        { name: "Vapes Bars Ghost", desc: "Pink Lemonade, 3,500 puffs", price: 2100, oldPrice: 2700, discount: 22, img: "", rating: 4.2, fullDesc: "Sweet pink lemonade. Smooth finish.", specs: "500mAh | 7ml | 5% Nicotine" },
-        { name: "Oxbar 2200 Puffs", desc: "Mixed Berries, 2,200 puffs", price: 1300, oldPrice: 1700, discount: 24, img: "", rating: 4.1, fullDesc: "Mixed berries, compact disposable.", specs: "400mAh | 4ml | 5% Nicotine" },
-        { name: "Yuoto 5000 Puffs", desc: "Strawberry Ice, 5,000 puffs", price: 1800, oldPrice: 2400, discount: 25, img: "", rating: 4.3, fullDesc: "Strawberry ice, long-lasting.", specs: "500mAh | 8ml | 5% Nicotine" },
-        { name: "Vapengin 7000 Puffs", desc: "Peach Ice, 7,000 puffs", price: 2200, oldPrice: 2900, discount: 24, img: "", rating: 4.2, fullDesc: "Peach ice, stylish design.", specs: "600mAh | 11ml | 5% Nicotine" },
-        { name: "Pyne Pod Boost 8500", desc: "Lush Ice, 8,500 puffs", price: 2400, oldPrice: 3100, discount: 23, img: "", rating: 4.4, fullDesc: "Watermelon lush ice. Rechargeable.", specs: "600mAh | 13ml | 5% Nicotine" }
+    // ==================== GLAMOROUS PRODUCT DATA (46 VAPE, 40 VELO, 50 SHISHA) ====================
+    
+    // Generate Vape Products (46 items)
+    const vapeNames = ["Geek Bar Pulse X", "Elf Bar Ultra 9000", "Vozol Star 9000", "HQD Cuvie Plus", "RandM Tornado 7000", "Bang King 12000", "Maskking High GT", "Vapes Bars Ghost", "Oxbar 2200 Puffs", "Yuoto 5000 Puffs", "Vapengin 7000 Puffs", "Pyne Pod Boost 8500", "Vfeel 8000 Puffs", "KK 5000 Puffs", "Tugboat 12000 Puffs", "Elf Bar 5000 Puffs", "Vozol Gear 10000", "Geek Bar Meloso", "Lost Mary OS5000", "Crystal Pro Max", "Elux Cyberover", "Ske Crystal Plus", "IVG 2400 Puffs", "Aroma King 7000", "R&M 9000 Puffs", "Fume Ultra 2500", "Hyde Edge 4500", "Air Bar Lux 2000", "Puff Bar Plus", "Daze Ohmlet 7000", "Mr Fog Max 5500", "Pod King 5000", "Flum Float 3000", "Esco Bars Mega 5000", "Lava Plus 2000", "FOGER X 8000", "Vaporlax 4000", "Myle Mini 600", "Stig 300 Puffs", "Mojo 600 Puffs", "Jewel 1000 Puffs", "EZ Bar 800", "Fizzy 1500", "NKD 100 2500", "Salt Nic Lab 3000", "VGod 2000"];
+    const vapeFlavors = ["Mexico Mango Ice", "Blue Razz Lemonade", "Strawberry Watermelon", "Mango Ice", "Grape Soda", "Blueberry Bubblegum", "Cool Mint", "Pink Lemonade", "Mixed Berries", "Strawberry Ice", "Peach Ice", "Lush Ice", "Watermelon Ice", "Berry Mix", "Grape Ice", "Mint", "Strawberry Kiwi", "Blueberry Ice", "Raspberry Lemonade", "Cola Ice", "Energy Drink", "Tobacco", "Vanilla Custard", "Pineapple", "Lychee Ice", "Melon Twist", "Cherry Cola", "Banana Ice", "Coconut", "Coffee", "Caramel", "Peach Mango", "Kiwi Passionfruit", "Orange Soda", "Lemon Tart", "Apple Cider", "Cinnamon", "Honeydew", "Cantaloupe", "Guava", "Passionfruit", "Dragonfruit", "Papaya", "Fig", "Date", "Mulberry"];
+    const vapePrices = [2500, 2200, 2600, 1300, 2400, 3200, 1800, 2100, 1300, 1800, 2200, 2400, 2200, 1600, 2700, 1500, 2800, 1850, 1600, 1400, 2100, 1900, 1100, 2000, 2300, 1200, 1800, 1500, 800, 2200, 1900, 1700, 1400, 2100, 1000, 2500, 1600, 700, 400, 500, 600, 450, 550, 650, 750, 850];
+    const vapeOldPrices = [3200, 2800, 3300, 1800, 3100, 4200, 2300, 2700, 1700, 2400, 2900, 3100, 2800, 2100, 3500, 2000, 3600, 2400, 2200, 1900, 2800, 2500, 1500, 2600, 3000, 1600, 2400, 2000, 1100, 2900, 2500, 2300, 1900, 2800, 1400, 3300, 2200, 1000, 600, 700, 800, 650, 750, 850, 950, 1050];
+    const vapeRatings = [4.5, 4.2, 4.3, 4.0, 4.1, 4.7, 4.0, 4.2, 4.1, 4.3, 4.2, 4.4, 4.1, 4.0, 4.5, 4.0, 4.3, 4.2, 4.1, 4.0, 4.2, 4.1, 4.0, 4.2, 4.3, 4.0, 4.1, 4.0, 3.9, 4.2, 4.1, 4.0, 4.0, 4.2, 3.8, 4.3, 4.0, 3.9, 3.8, 3.9, 4.0, 3.9, 4.0, 4.1, 4.0, 4.0];
+    
+    const vapeProducts = [];
+    for (let i = 0; i < 46; i++) {
+        vapeProducts.push({
+            name: vapeNames[i],
+            desc: `${vapeFlavors[i]}, ${Math.floor(Math.random() * 10000 + 2000)} puffs`,
+            price: vapePrices[i],
+            oldPrice: vapeOldPrices[i],
+            discount: Math.round((1 - vapePrices[i]/vapeOldPrices[i]) * 100),
+            img: "",
+            rating: vapeRatings[i],
+            fullDesc: `Experience the exquisite ${vapeFlavors[i]} flavor with the ${vapeNames[i]}. This premium disposable vape delivers approximately ${Math.floor(Math.random() * 10000 + 2000)} satisfying puffs of pure bliss. The device features a high-capacity rechargeable battery and a generous e-liquid reservoir filled with 5% nicotine salt for a smooth throat hit. The advanced coil technology ensures consistent flavor delivery from the first puff to the last. Perfect for both beginners and experienced vapers, this device offers exceptional value and performance. The sleek design fits comfortably in hand, while the transparent window lets you monitor your e-liquid levels. Whether you're a cloud chaser or flavor enthusiast, this device delivers an unforgettable vaping experience. The flavor profile opens with bright top notes, followed by a rich middle, and finishes with a satisfying exhale. 🌸✨`,
+            specs: `${Math.floor(Math.random() * 500 + 400)}mAh | ${Math.floor(Math.random() * 15 + 5)}ml | 5% Nicotine | ${Math.floor(Math.random() * 10000 + 2000)} Puffs`
+        });
+    }
+    
+    // Generate Velo Products by dot count (40 total: 3-dot:8, 4-dot:8, 5-dot:8, 6-dot:8, 7-dot:8)
+    const veloByDot = {
+        3: [],
+        4: [],
+        5: [],
+        6: [],
+        7: []
+    };
+    const veloFlavors = ["Mint", "Spearmint", "Wintergreen", "Peppermint", "Citrus", "Berry", "Coffee", "Licorice", "Cinnamon", "Vanilla", "Mango", "Watermelon", "Grape", "Peach", "Apple", "Tropical"];
+    for (let d = 3; d <= 7; d++) {
+        for (let i = 0; i < 8; i++) {
+            veloByDot[d].push({
+                name: `Velo ${d} Dots - ${veloFlavors[i % veloFlavors.length]}`,
+                desc: `${d === 3 ? "Mild" : d === 4 ? "Medium" : d === 5 ? "Strong" : d === 6 ? "Extra Strong" : "Maximum"} strength, ${veloFlavors[i % veloFlavors.length]} flavor`,
+                price: 1000 + (d - 2) * 100 + (i * 10),
+                oldPrice: 1300 + (d - 2) * 150 + (i * 15),
+                discount: 20 + Math.floor(Math.random() * 10),
+                dots: d,
+                img: "",
+                rating: 3.8 + (d * 0.1) + (i * 0.02),
+                fullDesc: `Velo ${d} Dots ${veloFlavors[i % veloFlavors.length]} nicotine pouches deliver a ${d === 3 ? "mild" : d === 4 ? "medium" : d === 5 ? "strong" : d === 6 ? "extra strong" : "maximum"} nicotine experience with refreshing ${veloFlavors[i % veloFlavors.length]} flavor. Each can contains 20 premium, all-white pouches that fit discreetly under your lip. These pouches are completely tobacco-free and smoke-free, making them perfect for use anywhere. The ${d}-dot rating indicates a nicotine strength of approximately ${(d * 4)}mg per pouch. The slim pouch design ensures minimal drip and maximum comfort. Each pouch delivers a steady release of nicotine for up to 30 minutes. Perfect for those seeking a smoke-free alternative that doesn't compromise on satisfaction. The pouch material is soft and gentle on gums, and the flavor is long-lasting. 🌿✨`,
+                specs: `20 Pouches | ${d} Dots (${d === 3 ? "Mild" : d === 4 ? "Medium" : d === 5 ? "Strong" : d === 6 ? "Extra Strong" : "Maximum"}) | ${veloFlavors[i % veloFlavors.length]} | 30-min Release | Tobacco-Free`
+            });
+        }
+    }
+    
+    // Generate Shisha Products (50 items)
+    const shishaNames = ["Tangiers Cane Mint", "Adalya Love 66", "Al Fakher Grape Mint", "Starbuzz Blue Mist", "Al Fakher Double Apple", "MustHave Pinkman", "Adalya Lady Killer", "Trifecta Peppermint Shake", "Darkside Mango Lassi", "Fumari Lemon Mint", "Trifecta Twice The Ice", "Element Moroz", "MustHave Frosty", "Darkside Ultra Nova", "Tangiers Kashmir Peach", "BlackBurn Ekzo Mango", "Bonche Cookie", "Musthave Unicorn Treats", "Sebero Mango Yogurt", "Al Fakher Cappuccino", "Eternal Smoke Watermelon Lit", "Musthave Orange Team", "Eternal Smoke Red Lips", "Musthave Rocketman", "Fumari Orange Gummi Bear", "Fumari Pink Gummi Bear", "Trifecta Pineapple Guava", "Adalya Ice Lime on the rocks", "Starline French Puff", "Azure Ice Pea", "Al Fakher Harvest Moon", "Tangiers Foreplay on Peach", "Tangiers Orange Soda", "Azure Rio Mint", "Eternal Smoke Houdini Secret", "Banger Blue Mist", "Sebero Tangerine", "Starline Dragon Fruit", "Bonche Banana Split", "Darkside Cherry Cola", "Element Watermelon", "Musthave Pistachio", "Trifecta Vanilla", "BlackBurn Cream", "Azure Lemon Meringue", "Eternal Smoke Pink Panther", "Banger Purple Drank", "Sebero Peach Cobbler", "Tangiers Maraschino Cherry", "Adalya Hawaii"];
+    const shishaPrices = [3500, 2800, 2200, 3000, 2200, 3800, 2800, 3500, 3600, 2500, 3200, 3100, 3300, 3400, 3700, 3400, 3300, 3500, 3200, 2300, 2800, 3600, 2900, 3700, 2600, 2600, 3300, 2700, 3000, 2900, 2400, 3600, 3500, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 2800, 3500, 3200, 3100, 2900, 2800, 3100, 3200, 3500, 2800];
+    const shishaOldPrices = shishaPrices.map(p => Math.round(p * 1.25));
+    const shishaRatings = [4.9, 4.7, 4.5, 4.6, 4.4, 4.8, 4.6, 4.7, 4.6, 4.5, 4.4, 4.3, 4.4, 4.5, 4.7, 4.5, 4.4, 4.6, 4.3, 4.2, 4.4, 4.5, 4.3, 4.6, 4.3, 4.3, 4.4, 4.2, 4.3, 4.2, 4.1, 4.5, 4.4, 4.3, 4.2, 4.3, 4.2, 4.1, 4.2, 4.3, 4.2, 4.4, 4.1, 4.2, 4.1, 4.2, 4.1, 4.2, 4.3, 4.2];
+    
+    const shishaProducts = [];
+    for (let i = 0; i < 50; i++) {
+        shishaProducts.push({
+            name: shishaNames[i],
+            desc: `${shishaNames[i].split(' ').slice(1).join(' ') || "Premium"} shisha tobacco`,
+            price: shishaPrices[i],
+            oldPrice: shishaOldPrices[i],
+            discount: Math.round((1 - shishaPrices[i]/shishaOldPrices[i]) * 100),
+            img: "",
+            rating: shishaRatings[i],
+            fullDesc: `${shishaNames[i]} is a premium shisha tobacco that delivers an exceptional smoking experience. This ${shishaNames[i].includes("Mint") ? "cooling mint" : shishaNames[i].includes("Fruit") ? "fruity" : "rich"} blend offers ${Math.floor(Math.random() * 100 + 80)} minutes of satisfying smoke with massive clouds. The flavor profile is complex and layered, evolving throughout your session. Made with premium ${shishaNames[i].includes("Tangiers") ? "dark leaf" : "blonde leaf"} tobacco, this product delivers a smooth, flavorful experience that hookah enthusiasts love. Perfect for social gatherings or solo relaxation. The heat tolerance is excellent, and the smoke output is impressive. Whether you're a beginner or an expert, this shisha will elevate your hookah game to new heights. Pair with coconut coals for best results. 🌙✨`,
+            specs: `250g | ${shishaNames[i].includes("Tangiers") ? "Dark Leaf" : "Blonde Leaf"} | ${shishaNames[i].includes("Mint") ? "High" : "Medium"} Nicotine | ${Math.floor(Math.random() * 60 + 40)}-min Session`
+        });
+    }
+    
+    // Fun Facts (50+ rotating)
+    const funFacts = [
+        "Did you know? The first vape was invented in 2003 by Chinese pharmacist Hon Lik. 🌟",
+        "Did you know? Hookah originated in India over 500 years ago. 🕌",
+        "Did you know? Velo pouches contain zero tobacco — just nicotine, water, and plant fibers. 🌿",
+        "Did you know? Tangiers Cane Mint is aged for 2 weeks before sale for maximum flavor. ⏳",
+        "Did you know? Kenya has over 500,000 vape users as of 2025. 🇰🇪",
+        "Did you know? Adalya Love 66 is the most searched shisha flavor on Google. 🔍",
+        "Did you know? The world record for largest vape cloud is 33.8 meters cubed! ☁️",
+        "Did you know? Nicotine pouches were invented in Sweden in the 1970s. 🇸🇪",
+        "Did you know? Al Fakher Double Apple contains no actual apple — it's anise flavor! 🍏❌",
+        "Did you know? Starbuzz was founded in 2005 and revolutionized hookah culture. 🌟",
+        "Did you know? Vaping is 95% less harmful than smoking according to Public Health England. 📊",
+        "Did you know? The global vape market is expected to reach $61 billion by 2028. 💰",
+        "Did you know? Some vapes now have screens and Bluetooth connectivity! 📱",
+        "Did you know? Nicotine pouches are legal in over 50 countries worldwide. 🌍",
+        "Did you know? Tangiers requires 'acclimation' before smoking — opening the pack for 4 hours! ⏰",
+        "Did you know? The most expensive hookah in the world costs over $100,000! 💎",
+        "Did you know? Vape clouds are actually made of propylene glycol and vegetable glycerin. 💨",
+        "Did you know? Some vape flavors use over 20 different ingredients! 🧪",
+        "Did you know? The first nicotine pouches were called 'snus' and came in small teabag-like pouches. 🫖",
+        "Did you know? Kenya's vaping laws require age verification for all online sales. ⚖️",
+        "Wise words: 'The best vape is the one that keeps you from smoking.' 💭",
+        "Wise words: 'Quality over quantity — invest in good shisha for better sessions.' 🎯",
+        "Wise words: 'Patience is key when learning heat management for dark leaf tobacco.' 🔥",
+        "Wise words: 'Hydrate while vaping — it enhances flavor and reduces throat irritation.' 💧",
+        "Wise words: 'Your taste buds change over time; revisit flavors you didn't like before.' 🔄"
     ];
-
-    const veloProducts = [
-        { name: "Velo 3 Dots Mint", desc: "Mild strength, fresh mint", price: 1200, oldPrice: 1600, discount: 25, dots: 3, img: "", rating: 4.0, fullDesc: "20 pouches, mild nicotine, fresh mint.", specs: "20 Pouches | 3 Dots (Mild)" },
-        { name: "Velo 4 Dots Mint", desc: "Medium strength, cool mint", price: 1300, oldPrice: 1700, discount: 24, dots: 4, img: "", rating: 4.1, fullDesc: "20 pouches, medium strength, cool mint.", specs: "20 Pouches | 4 Dots (Medium)" },
-        { name: "Velo 5 Dots Mint", desc: "Strong strength, extreme freeze", price: 1400, oldPrice: 1900, discount: 26, dots: 5, img: "", rating: 4.3, fullDesc: "20 pouches, strong nicotine, extreme freeze.", specs: "20 Pouches | 5 Dots (Strong)" },
-        { name: "Velo 6 Dots Mint", desc: "Extra strong, max freeze", price: 1500, oldPrice: 2100, discount: 29, dots: 6, img: "", rating: 4.4, fullDesc: "20 pouches, maximum strength, arctic freeze.", specs: "20 Pouches | 6 Dots (Extra Strong)" },
-        { name: "Velo 3 Dots Citrus", desc: "Mild citrus burst", price: 1200, oldPrice: 1600, discount: 25, dots: 3, img: "", rating: 4.0, fullDesc: "Zesty citrus, mild strength.", specs: "20 Pouches | 3 Dots" },
-        { name: "Velo 4 Dots Berry", desc: "Medium berry mix", price: 1300, oldPrice: 1700, discount: 24, dots: 4, img: "", rating: 4.2, fullDesc: "Mixed berries, medium strength.", specs: "20 Pouches | 4 Dots" },
-        { name: "Velo 5 Dots Spearmint", desc: "Strong spearmint", price: 1400, oldPrice: 1900, discount: 26, dots: 5, img: "", rating: 4.3, fullDesc: "Spearmint, strong nicotine.", specs: "20 Pouches | 5 Dots" }
-    ];
-
-    const shishaProducts = [
-        { name: "Tangiers Cane Mint", desc: "Legendary peppermint", price: 3500, oldPrice: 4500, discount: 22, img: "", rating: 4.9, fullDesc: "Dark leaf, pure peppermint. High nicotine.", specs: "250g | Dark Leaf" },
-        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, oldPrice: 3600, discount: 22, img: "", rating: 4.7, fullDesc: "Tropical blend. Massive clouds.", specs: "250g | Blonde Leaf" },
-        { name: "Al Fakher Grape Mint", desc: "Sweet grape + mint", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.5, fullDesc: "Classic grape mint. Smooth smoke.", specs: "250g | Blonde Leaf" },
-        { name: "Starbuzz Blue Mist", desc: "Blueberry + mint", price: 3000, oldPrice: 3900, discount: 23, img: "", rating: 4.6, fullDesc: "Iconic blueberry mint. Huge clouds.", specs: "250g | Blonde Leaf" },
-        { name: "Al Fakher Double Apple", desc: "Apple + anise", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.4, fullDesc: "Traditional apple anise. Classic flavor.", specs: "250g | Blonde Leaf" },
-        { name: "MustHave Pinkman", desc: "Raspberry, grapefruit, cooling", price: 3800, oldPrice: 4900, discount: 22, img: "", rating: 4.8, fullDesc: "Complex fruit blend. Cooling finish.", specs: "250g | Dark Leaf" },
-        { name: "Adalya Lady Killer", desc: "Mango, melon, berries, mint", price: 2800, oldPrice: 3600, discount: 22, img: "", rating: 4.6, fullDesc: "Tropical vacation in a bowl.", specs: "250g | Blonde Leaf" }
-    ];
-
+    let factIndex = 0;
+    
     let cart = JSON.parse(localStorage.getItem('vibes_cart') || '[]');
     let favorites = JSON.parse(localStorage.getItem('vibes_favorites') || '[]');
     let currentCategory = 'vape';
     let currentModalProduct = null;
     let searchQuery = '';
-
+    
     function saveCart() { localStorage.setItem('vibes_cart', JSON.stringify(cart)); updateCartCount(); }
     function saveFavorites() { localStorage.setItem('vibes_favorites', JSON.stringify(favorites)); updateFavCount(); }
     function updateCartCount() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=> s + i.quantity, 0); }
     function updateFavCount() { document.getElementById('favCount').innerText = favorites.length; }
-
-    function renderVeloDots(dots) {
-        let html = '<div style="display:flex; gap:4px; margin:5px 0;">';
-        for (let i = 0; i < dots; i++) html += '<div style="width:8px; height:8px; background:var(--primary); border-radius:50%;"></div>';
-        html += '</div>';
-        return html;
-    }
-
+    
     function renderSliderProduct(p) {
-        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 12));
-        const dotsHtml = p.dots ? renderVeloDots(p.dots) : '';
+        const placeholderImg = 'https://placehold.co/400x400/FF3366/white?text=' + encodeURIComponent(p.name.substring(0, 15));
         return `
             <div class="product-slide" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
                 <img class="product-img-slide" src="${p.img || placeholderImg}" alt="${p.name}">
                 <div class="product-info-slide">
-                    <div class="product-name-slide">${p.name}</div>
-                    ${dotsHtml}
+                    <div class="product-name-slide">${p.name} ✨</div>
                     <div><span class="product-old-price-slide">KES ${p.oldPrice}</span><span class="product-price-slide">KES ${p.price}</span></div>
                 </div>
             </div>
         `;
     }
-
-    function createCategorySection(category, products, title) {
-        if (!products || products.length === 0) return '';
-        const filtered = searchQuery ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.desc.toLowerCase().includes(searchQuery.toLowerCase())) : products;
-        if (filtered.length === 0) return '';
-        
-        let html = `<div class="category-header"><h2>${title}</h2><button class="view-all-btn" onclick="document.getElementById('${category}Slider').scrollLeft = 0; document.getElementById('${category}Slider').scrollBy({left: 1000, behavior: 'smooth'})">View All →</button></div>`;
-        html += `<div class="slider-container">
-            <div class="slider-nav slider-prev" onclick="slideHorizontal('${category}Slider', -1)">‹</div>
-            <div class="slider-nav slider-next" onclick="slideHorizontal('${category}Slider', 1)">›</div>
-            <div class="slider-track" id="${category}Slider">
-                ${filtered.map(p => renderSliderProduct(p)).join('')}
-                ${filtered.map(p => renderSliderProduct(p)).join('')}
+    
+    function createSlider(title, items, sliderId) {
+        if (!items || items.length === 0) return '';
+        return `
+            <div class="velo-dot-title"><i class="fas fa-star"></i> ${title} <span style="font-size:0.8rem;">🌸 ${items.length} products</span></div>
+            <div class="slider-container">
+                <div class="slider-nav slider-prev" onclick="slideHorizontal('${sliderId}', -1)">‹</div>
+                <div class="slider-nav slider-next" onclick="slideHorizontal('${sliderId}', 1)">›</div>
+                <div class="slider-track" id="${sliderId}">
+                    ${items.map(p => renderSliderProduct(p)).join('')}
+                    ${items.map(p => renderSliderProduct(p)).join('')}
+                </div>
             </div>
-        </div>`;
-        return html;
+        `;
     }
-
+    
     window.slideHorizontal = (sliderId, direction) => {
         const slider = document.getElementById(sliderId);
         if (slider) {
-            const scrollAmount = 300;
-            slider.scrollLeft += direction * scrollAmount;
+            slider.scrollLeft += direction * 250;
             if (slider.scrollLeft <= 0 && direction === -1) slider.scrollLeft = slider.scrollWidth / 2;
             if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth && direction === 1) slider.scrollLeft = slider.scrollWidth / 2 - slider.clientWidth;
         }
     };
-
+    
+    function getFilteredProducts() {
+        if (currentCategory === 'vape') {
+            return searchQuery ? vapeProducts.filter(p => p.name.toLowerCase().includes(searchQuery)) : vapeProducts;
+        } else if (currentCategory === 'velo') {
+            let allVelo = [];
+            for (let d = 3; d <= 7; d++) allVelo.push(...veloByDot[d]);
+            return searchQuery ? allVelo.filter(p => p.name.toLowerCase().includes(searchQuery)) : allVelo;
+        } else {
+            return searchQuery ? shishaProducts.filter(p => p.name.toLowerCase().includes(searchQuery)) : shishaProducts;
+        }
+    }
+    
     function renderProducts() {
         const container = document.getElementById('productsContainer');
-        let html = '';
         
         if (currentCategory === 'vape') {
-            html += createCategorySection('vape', vapeProducts, '💨 VAPE');
+            let html = `<div class="velo-dot-title"><i class="fas fa-cloud"></i> 💨 VAPE COLLECTION <span style="font-size:0.8rem;">🌺 46 premium flavors</span></div>`;
+            html += createSlider("All Vapes", getFilteredProducts(), "vapeSlider");
+            container.innerHTML = html;
         } else if (currentCategory === 'velo') {
-            html += createCategorySection('velo', veloProducts, '🟤 VELO');
+            let html = `<div class="velo-dot-title"><i class="fas fa-circle"></i> 🟤 VELO BY STRENGTH <span style="font-size:0.8rem;">🌸 40 products</span></div>`;
+            for (let d = 3; d <= 7; d++) {
+                const filtered = searchQuery ? veloByDot[d].filter(p => p.name.toLowerCase().includes(searchQuery)) : veloByDot[d];
+                if (filtered.length > 0) {
+                    html += createSlider(`${d} DOTS — ${d === 3 ? "Mild" : d === 4 ? "Medium" : d === 5 ? "Strong" : d === 6 ? "Extra Strong" : "Maximum"} ${d === 7 ? "🌪️" : "✨"}`, filtered, `veloSlider${d}`);
+                }
+            }
+            container.innerHTML = html;
         } else {
-            html += createCategorySection('shisha', shishaProducts, '🌙 SHISHA');
+            let html = `<div class="velo-dot-title"><i class="fas fa-moon"></i> 🌙 SHISHA PREMIUM <span style="font-size:0.8rem;">🌸 50 exotic blends</span></div>`;
+            html += createSlider("All Shisha", getFilteredProducts(), "shishaSlider");
+            container.innerHTML = html;
         }
-        
-        if (html === '') {
-            html = `<div style="text-align:center; padding:60px;">🔍 No products found for "${searchQuery}"</div>`;
-        }
-        container.innerHTML = html;
     }
-
+    
     function openModal(productName) {
         let product = null;
-        [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => { if (p.name === productName) product = p; });
+        if (currentCategory === 'vape') product = vapeProducts.find(p => p.name === productName);
+        else if (currentCategory === 'velo') {
+            for (let d = 3; d <= 7; d++) {
+                product = veloByDot[d].find(p => p.name === productName);
+                if (product) break;
+            }
+        } else product = shishaProducts.find(p => p.name === productName);
         if (!product) return;
         currentModalProduct = product;
-        document.getElementById('modalTitle').innerText = product.name;
-        document.getElementById('modalImg').src = product.img || 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(product.name.substring(0, 15));
-        document.getElementById('modalDesc').innerHTML = product.fullDesc || product.desc;
-        document.getElementById('modalSpecs').innerHTML = `<strong>📋 Specs:</strong><br>${product.specs || 'Contact us'}`;
-        document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:#ff6666;">KES ${product.oldPrice}</span> <span style="font-size:1.3rem; font-weight:bold; color:var(--primary);">KES ${product.price}</span> <span style="background:#ff0055; padding:2px 6px; border-radius:20px; font-size:0.7rem;">-${product.discount}%</span>`;
+        document.getElementById('modalTitle').innerHTML = `${product.name} ${product.dots ? '🔘'.repeat(product.dots) : '✨'}`;
+        document.getElementById('modalImg').src = product.img || 'https://placehold.co/400x400/FF3366/white?text=' + encodeURIComponent(product.name.substring(0, 15));
+        document.getElementById('modalDesc').innerHTML = product.fullDesc;
+        document.getElementById('modalSpecs').innerHTML = `<strong>📋 Specs:</strong><br>${product.specs}`;
+        document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:#ff6666;">KES ${product.oldPrice}</span> <span style="font-size:1.3rem; font-weight:bold; color:var(--primary);">KES ${product.price}</span> <span style="background:#ff0055; padding:2px 8px; border-radius:20px;">-${product.discount}%</span>`;
         
         let starsHtml = '';
         for (let i = 1; i <= 5; i++) {
@@ -697,30 +840,37 @@
         document.getElementById('starRating').innerHTML = starsHtml;
         document.getElementById('productModal').style.display = 'flex';
     }
-
+    
     window.setRating = (productName, rating) => {
-        let product = [...vapeProducts, ...veloProducts, ...shishaProducts].find(p => p.name === productName);
+        let product = null;
+        if (currentCategory === 'vape') product = vapeProducts.find(p => p.name === productName);
+        else if (currentCategory === 'velo') {
+            for (let d = 3; d <= 7; d++) {
+                product = veloByDot[d].find(p => p.name === productName);
+                if (product) break;
+            }
+        } else product = shishaProducts.find(p => p.name === productName);
         if (product) {
             product.rating = rating;
             localStorage.setItem('vibes_ratings', JSON.stringify({[productName]: rating}));
             openModal(productName);
         }
     };
-
+    
     document.getElementById('modalClose').onclick = () => document.getElementById('productModal').style.display = 'none';
     document.getElementById('modalAddToCart').onclick = () => {
         if (currentModalProduct) addToCart(currentModalProduct.name, currentModalProduct.price);
     };
-
+    
     function addToCart(name, price) {
         const existing = cart.find(item => item.name === name);
         if (existing) existing.quantity++;
         else cart.push({ name, price, quantity: 1 });
         saveCart();
         updateCartUI();
-        alert(`🎉 ${name} added to cart!`);
+        alert(`🎉 ${name} added to cart! 🌸`);
     }
-
+    
     function toggleFavorite(name, price) {
         const existing = favorites.find(f => f.name === name);
         if (existing) favorites = favorites.filter(f => f.name !== name);
@@ -729,105 +879,95 @@
         updateFavoritesUI();
         renderProducts();
     }
-
+    
     function isFavorite(name) { return favorites.some(f => f.name === name); }
-
+    
     function updateCartUI() {
         const container = document.getElementById('cartItems');
-        if (!cart.length) {
-            container.innerHTML = '<p>Cart is empty.</p>';
-            document.getElementById('cartTotal').innerHTML = 'Total: KES 0';
-            return;
-        }
+        if (!cart.length) { container.innerHTML = '<p>Cart is empty.</p>'; document.getElementById('cartTotal').innerHTML = 'Total: KES 0'; return; }
         let total = 0;
         container.innerHTML = cart.map((item, idx) => {
             total += item.price * item.quantity;
-            return `<div class="panel-item">
-                <div class="panel-item-info">
-                    <div class="panel-item-name">${item.name}</div>
-                    <div class="panel-item-price">KES ${item.price}</div>
-                    <div style="display:flex; gap:6px; margin-top:4px;">
-                        <button onclick="updateQuantity(${idx}, -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button onclick="updateQuantity(${idx}, 1)">+</button>
-                    </div>
-                </div>
-                <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button>
-            </div>`;
+            return `<div class="panel-item"><div class="panel-item-info"><div class="panel-item-name">${item.name} ✨</div><div class="panel-item-price">KES ${item.price}</div><div style="display:flex; gap:6px;"><button onclick="updateQuantity(${idx}, -1)">-</button><span>${item.quantity}</span><button onclick="updateQuantity(${idx}, 1)">+</button></div></div><button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button></div>`;
         }).join('');
         document.getElementById('cartTotal').innerHTML = `Total: KES ${total}`;
         updateCartCount();
     }
-
+    
     window.updateQuantity = (idx, delta) => {
         const item = cart[idx];
-        if (item) {
-            item.quantity += delta;
-            if (item.quantity <= 0) cart.splice(idx, 1);
-            saveCart();
-            updateCartUI();
-        }
+        if (item) { item.quantity += delta; if (item.quantity <= 0) cart.splice(idx, 1); saveCart(); updateCartUI(); }
     };
-    window.removeFromCart = (idx) => {
-        cart.splice(idx, 1);
-        saveCart();
-        updateCartUI();
-    };
-
+    window.removeFromCart = (idx) => { cart.splice(idx, 1); saveCart(); updateCartUI(); };
+    
     function updateFavoritesUI() {
         const container = document.getElementById('favoritesItems');
-        if (!favorites.length) {
-            container.innerHTML = '<p>No favorites yet.</p>';
-            return;
-        }
-        container.innerHTML = favorites.map((item, idx) => `
-            <div class="panel-item">
-                <div class="panel-item-info">
-                    <div class="panel-item-name">${item.name}</div>
-                    <div class="panel-item-price">KES ${item.price}</div>
-                </div>
-                <button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button>
-            </div>
-        `).join('');
+        if (!favorites.length) { container.innerHTML = '<p>No favorites yet.</p>'; return; }
+        container.innerHTML = favorites.map((item, idx) => `<div class="panel-item"><div class="panel-item-info"><div class="panel-item-name">${item.name} ✨</div><div class="panel-item-price">KES ${item.price}</div></div><button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button></div>`).join('');
         updateFavCount();
     }
-    window.removeFavorite = (idx) => {
-        favorites.splice(idx, 1);
-        saveFavorites();
-        updateFavoritesUI();
-        renderProducts();
-    };
-
+    window.removeFavorite = (idx) => { favorites.splice(idx, 1); saveFavorites(); updateFavoritesUI(); renderProducts(); };
+    
     function generateWhatsAppMessage() {
         let msg = "Hello Vibes on Vibes, I want to order:\n";
         cart.forEach(item => msg += `- ${item.name} x${item.quantity} = KES ${item.price * item.quantity}\n`);
-        msg += `\nTotal: KES ${cart.reduce((s,i)=> s + i.price * i.quantity,0)}\nDelivery: Ruiru\nThank you!`;
+        msg += `\nTotal: KES ${cart.reduce((s,i)=> s + i.price * i.quantity,0)}\nDelivery: Ruiru\nThank you! 🌸✨`;
         return encodeURIComponent(msg);
     }
-
+    
     document.getElementById('checkoutWA').onclick = () => {
         if (!cart.length) { alert('Cart is empty.'); return; }
         window.open(`https://wa.me/254714693283?text=${generateWhatsAppMessage()}`, '_blank');
     };
-
+    
     function updateDeliveryMessage() {
-        const now = new Date();
-        const hour = now.getHours();
-        if (hour < 22) document.getElementById('deliveryMsg').innerHTML = "🚚 ORDER BEFORE 10PM → NEXT DAY DELIVERY IN RUIRU";
-        else document.getElementById('deliveryMsg').innerHTML = "🚚 ORDER RECEIVED → DELIVERY WITHIN 48 HOURS";
+        const hour = new Date().getHours();
+        document.getElementById('deliveryMsg').innerHTML = hour < 22 ? "🚚 ORDER BEFORE 10PM → NEXT DAY DELIVERY IN RUIRU 🌸" : "🚚 ORDER RECEIVED → DELIVERY WITHIN 48 HOURS ✨";
     }
     updateDeliveryMessage();
-
-    document.getElementById('themeToggle').onclick = () => {
-        document.body.classList.toggle('dark');
-        document.getElementById('themeToggle').innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    
+    // Side Button Functions
+    window.showWeeklyOffers = () => {
+        const panel = document.getElementById('infoPanel');
+        document.getElementById('infoTitle').innerHTML = '🔥 WEEKLY OFFERS 🌺';
+        document.getElementById('infoContent').innerHTML = `<p>✨ This week's hottest deals! ✨</p>
+        <p>🌸 Geek Bar Pulse X: KES 2,500 (was KES 3,200)</p>
+        <p>🌸 Velo 6 Dots Mint: KES 1,500 (was KES 2,100)</p>
+        <p>🌸 Tangiers Cane Mint: KES 3,500 (was KES 4,500)</p>
+        <p>🌸 Elf Bar Ultra 9000: KES 2,200 (was KES 2,800)</p>
+        <p>🌸 Limited time only! Order now and get free delivery on orders over KES 5,000. 🌟</p>`;
+        panel.style.display = 'block';
     };
-
+    window.showBestSellers = () => {
+        const panel = document.getElementById('infoPanel');
+        document.getElementById('infoTitle').innerHTML = '⭐ BEST SELLERS 🌸';
+        document.getElementById('infoContent').innerHTML = `<p>✨ Customer favorites! ✨</p>
+        <p>🏆 Geek Bar Pulse X — 4.5⭐ (1,200+ sold)</p>
+        <p>🏆 Tangiers Cane Mint — 4.9⭐ (800+ sold)</p>
+        <p>🏆 Velo 6 Dots — 4.4⭐ (2,000+ sold)</p>
+        <p>🏆 Adalya Love 66 — 4.7⭐ (1,500+ sold)</p>
+        <p>🌟 Join thousands of happy customers who trust Vibes on Vibes for premium quality. 🌟</p>`;
+        panel.style.display = 'block';
+    };
+    window.showFacts = () => {
+        const panel = document.getElementById('infoPanel');
+        document.getElementById('infoTitle').innerHTML = '💡 DID YOU KNOW? 🌿';
+        document.getElementById('infoContent').innerHTML = `<p>✨ ${funFacts[factIndex % funFacts.length]} ✨</p><p>🌸 Tap again for more wisdom! 🌸</p>`;
+        panel.style.display = 'block';
+        factIndex++;
+    };
+    window.closeInfoPanel = () => document.getElementById('infoPanel').style.display = 'none';
+    
+    document.getElementById('themeToggle').onclick = () => {
+        document.body.classList.toggle('light');
+        document.getElementById('themeToggle').innerText = document.body.classList.contains('light') ? '🌙' : '☀️';
+    };
+    
     function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
     function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
     function openFav() { document.getElementById('favoritesPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
     function closeFav() { document.getElementById('favoritesPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
-
+    
     document.getElementById('openCartBtn').onclick = openCart;
     document.getElementById('openFavoritesBtn').onclick = openFav;
     document.getElementById('floatCart').onclick = openCart;
@@ -835,12 +975,12 @@
     document.getElementById('closeCart').onclick = closeCart;
     document.getElementById('closeFavorites').onclick = closeFav;
     document.getElementById('overlay').onclick = () => { closeCart(); closeFav(); };
-
+    
     document.getElementById('searchInput').addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         renderProducts();
     });
-
+    
     document.querySelectorAll('.toggle-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -849,7 +989,7 @@
             renderProducts();
         });
     });
-
+    
     document.getElementById('confirmAge').onclick = () => {
         localStorage.setItem('vibes_age_verified', 'true');
         document.getElementById('ageGate').style.display = 'none';
@@ -859,10 +999,7 @@
         window.location.href = 'https://www.google.com';
     };
     if (localStorage.getItem('vibes_age_verified') === 'true') document.getElementById('ageGate').style.display = 'none';
-
-    const savedRatings = JSON.parse(localStorage.getItem('vibes_ratings') || '{}');
-    [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => { if (savedRatings[p.name]) p.rating = savedRatings[p.name]; });
-
+    
     renderProducts();
     updateCartUI();
     updateFavoritesUI();
