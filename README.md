@@ -1,2 +1,2 @@
-# vapers-city
-vapers city website
+# vibes-on-vibes
+vibes on vibes website
