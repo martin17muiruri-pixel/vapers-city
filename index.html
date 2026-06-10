@@ -9,7 +9,6 @@
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* Light Theme (Default) */
     :root {
         --bg: #f5f5f7;
         --card-bg: rgba(255,255,255,0.92);
@@ -18,14 +17,11 @@
         --border: rgba(0,0,0,0.08);
         --primary: #FF3300;
         --primary-dark: #cc2900;
-        --primary-glow: rgba(255,51,0,0.2);
         --success: #25D366;
         --discount: #ff0055;
         --header-bg: rgba(255,255,255,0.96);
-        --toggle-bg: rgba(0,0,0,0.04);
     }
     
-    /* Dark Theme */
     body.dark {
         --bg: #0a0a0f;
         --card-bg: rgba(25,25,35,0.92);
@@ -33,20 +29,16 @@
         --text-dim: rgba(255,255,255,0.65);
         --border: rgba(255,255,255,0.08);
         --header-bg: rgba(10,10,15,0.96);
-        --toggle-bg: rgba(255,255,255,0.06);
     }
     
     body {
         font-family: 'Montserrat', sans-serif;
         background: var(--bg);
         color: var(--text);
-        overflow-x: hidden;
-        transition: background 0.3s, color 0.3s;
+        transition: all 0.3s;
         font-size: 16px;
-        line-height: 1.5;
     }
     
-    /* Live Smoke Video Background */
     .video-bg-container {
         position: fixed;
         top: 0;
@@ -76,7 +68,6 @@
         z-index: -1;
     }
     
-    /* Header */
     .site-header {
         position: fixed;
         top: 0;
@@ -86,70 +77,44 @@
         background: var(--header-bg);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 12px 24px;
+        padding: 10px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 15px;
-    }
-    .logo-area {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        gap: 10px;
     }
     .logo {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         letter-spacing: 3px;
         background: linear-gradient(135deg, #FF3300, #ff6600);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 0 0 20px rgba(255,51,0,0.3);
-        animation: glowPulse 2s ease-in-out infinite;
+        animation: glowPulse 2s infinite;
     }
     @keyframes glowPulse {
-        0%, 100% { text-shadow: 0 0 10px rgba(255,51,0,0.3); }
+        0%,100% { text-shadow: 0 0 10px rgba(255,51,0,0.3); }
         50% { text-shadow: 0 0 25px rgba(255,51,0,0.6); }
     }
-    .tagline {
-        font-size: 0.6rem;
-        letter-spacing: 2px;
-        color: var(--text-dim);
-    }
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .theme-toggle {
-        background: var(--toggle-bg);
-        border: 1px solid var(--border);
+    .tagline { font-size: 0.55rem; letter-spacing: 2px; color: var(--text-dim); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .theme-toggle, .vvip-link {
+        background: var(--primary);
+        padding: 5px 12px;
         border-radius: 30px;
-        padding: 6px 12px;
+        font-size: 0.7rem;
         cursor: pointer;
-        font-size: 0.75rem;
-        transition: all 0.2s;
-    }
-    .vvip-link {
-        background: linear-gradient(135deg, #FF3300, #ff6600);
-        padding: 6px 14px;
-        border-radius: 30px;
+        border: none;
         color: white;
         text-decoration: none;
-        font-weight: bold;
-        font-size: 0.7rem;
     }
-    .cart-fav-icons {
-        display: flex;
-        gap: 12px;
-    }
+    .cart-fav-icons { display: flex; gap: 10px; }
     .cart-fav-icons button {
         background: none;
         border: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         cursor: pointer;
         color: var(--primary);
         position: relative;
@@ -160,88 +125,81 @@
         right: -10px;
         background: var(--primary);
         color: white;
-        font-size: 0.55rem;
+        font-size: 0.5rem;
         border-radius: 50%;
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     
-    /* Search Bar */
     .search-bar {
         position: fixed;
-        top: 80px;
+        top: 75px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 145;
         width: 90%;
-        max-width: 450px;
-        padding: 10px 20px;
+        max-width: 400px;
+        padding: 8px 16px;
         background: var(--card-bg);
         backdrop-filter: blur(10px);
         border: 1px solid var(--border);
         border-radius: 50px;
         color: var(--text);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
-    .search-bar:focus { outline: none; border-color: var(--primary); }
     
-    /* Delivery Message - Professional */
     .delivery-msg {
         position: fixed;
-        top: 135px;
+        top: 125px;
         left: 0;
         right: 0;
         z-index: 144;
         background: var(--success);
         color: white;
         text-align: center;
-        padding: 8px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        letter-spacing: 0.5px;
+        padding: 6px;
+        font-size: 0.7rem;
     }
     .authenticity-badge {
         position: fixed;
-        top: 168px;
+        top: 155px;
         left: 0;
         right: 0;
         z-index: 143;
         background: var(--primary);
         color: white;
         text-align: center;
-        padding: 6px;
-        font-size: 0.7rem;
+        padding: 5px;
+        font-size: 0.65rem;
         font-weight: bold;
     }
     
-    /* Category Toggle */
     .category-toggle {
         position: fixed;
-        top: 205px;
+        top: 190px;
         left: 0;
         right: 0;
         z-index: 140;
         display: flex;
         justify-content: center;
-        gap: 15px;
-        padding: 10px;
+        gap: 12px;
+        padding: 8px;
         background: var(--card-bg);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
     }
     .toggle-btn {
         font-family: 'Bebas Neue', cursive;
-        font-size: 1rem;
-        padding: 6px 22px;
+        font-size: 0.9rem;
+        padding: 5px 18px;
         border: 1px solid var(--border);
-        background: var(--toggle-bg);
+        background: transparent;
         color: var(--text);
         border-radius: 40px;
         cursor: pointer;
-        transition: all 0.2s;
     }
     .toggle-btn.active {
         background: var(--primary);
@@ -249,145 +207,96 @@
         border-color: transparent;
     }
     
-    /* Main Container */
     .main-container {
-        max-width: 1300px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 265px 20px 80px;
+        padding: 245px 16px 80px;
         position: relative;
         z-index: 2;
     }
     
-    /* Section Titles */
-    .section-title {
+    /* Category Header */
+    .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin: 20px 0 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .category-header h2 {
         font-family: 'Bebas Neue', cursive;
         font-size: 1.8rem;
         color: var(--primary);
-        margin: 2rem 0 1rem;
-        text-align: center;
-        letter-spacing: 2px;
     }
-    
-    /* Main Product Grid - 8 products, clean layout */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 24px;
-        margin-top: 1rem;
-    }
-    
-    /* Product Card - Neon Glow Working */
-    .product-card {
-        background: var(--card-bg);
-        backdrop-filter: blur(8px);
-        border-radius: 20px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        border-color: var(--primary);
-    }
-    .product-img-container {
-        width: 100%;
-        height: 240px;
-        overflow: hidden;
-    }
-    .product-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s;
-    }
-    .product-card:hover .product-img { transform: scale(1.05); }
-    .product-info {
-        padding: 16px;
-    }
-    .product-name {
-        font-family: 'Bebas Neue', cursive;
-        font-size: 1.3rem;
-        letter-spacing: 1px;
-        margin-bottom: 5px;
-    }
-    /* Neon Glow Effects */
-    .product-name[data-glow="red"] { text-shadow: 0 0 8px #ff3300, 0 0 15px #ff3300; color: #ff3300; }
-    .product-name[data-glow="blue"] { text-shadow: 0 0 8px #0088ff, 0 0 15px #0088ff; color: #0088ff; }
-    .product-name[data-glow="green"] { text-shadow: 0 0 8px #00ff88, 0 0 15px #00ff88; color: #00ff88; }
-    .product-name[data-glow="purple"] { text-shadow: 0 0 8px #cc00ff, 0 0 15px #cc00ff; color: #cc00ff; }
-    .product-name[data-glow="gold"] { text-shadow: 0 0 8px #FFD700, 0 0 15px #FFD700; color: #FFD700; }
-    .product-desc {
-        font-size: 0.8rem;
-        color: var(--text-dim);
-        margin-bottom: 8px;
-        line-height: 1.4;
-    }
-    .ranking-badge {
-        display: inline-block;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 0.65rem;
-        font-weight: bold;
+    .view-all-btn {
         background: var(--primary);
         color: white;
-        margin-bottom: 8px;
-    }
-    .velo-dots { display: flex; gap: 5px; margin: 8px 0; }
-    .velo-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; }
-    .price-section { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
-    .old-price { font-size: 0.8rem; color: #ff6666; text-decoration: line-through; }
-    .current-price { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
-    .discount-badge { background: var(--discount); color: white; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; }
-    .you-save { font-size: 0.7rem; color: var(--success); margin: 4px 0; }
-    .stock-badge { font-size: 0.7rem; color: #ff4444; }
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-        margin-top: 12px;
-    }
-    .btn-wishlist, .btn-cart {
-        flex: 1;
-        padding: 8px 12px;
         border: none;
-        border-radius: 40px;
-        font-weight: bold;
+        padding: 6px 16px;
+        border-radius: 30px;
         cursor: pointer;
-        transition: all 0.2s;
         font-size: 0.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
+        font-weight: bold;
     }
-    .btn-wishlist { background: var(--toggle-bg); color: var(--text); border: 1px solid var(--border); }
-    .btn-wishlist.active { background: #ff0055; color: white; }
-    .btn-cart { background: var(--primary); color: white; }
-    .btn-cart:hover { background: var(--primary-dark); }
     
-    /* Sliders - At Bottom, Responsive: 2 on phone, 3 on tablet, 4 on desktop */
-    .sliders-section {
-        margin-top: 3rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-    }
+    /* Slideshow: 2 products visible, rest slideshow */
     .slider-container {
         position: relative;
-        margin: 1rem 0;
-        overflow: hidden;
+        margin-bottom: 30px;
     }
     .slider-track {
         display: flex;
-        gap: 20px;
+        gap: 16px;
         overflow-x: auto;
         scroll-behavior: smooth;
         padding: 10px 5px 20px;
         scrollbar-width: thin;
+        scroll-snap-type: x mandatory;
     }
-    .slider-track::-webkit-scrollbar { height: 5px; }
+    .slider-track::-webkit-scrollbar { height: 4px; }
     .slider-track::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
     .slider-track::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+    
+    .product-slide {
+        flex: 0 0 calc(50% - 8px);
+        scroll-snap-align: start;
+        background: var(--card-bg);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .product-slide:hover { transform: translateY(-3px); border-color: var(--primary); }
+    
+    .product-img-slide {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+    }
+    .product-info-slide {
+        padding: 10px;
+    }
+    .product-name-slide {
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1rem;
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+    .product-price-slide {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: var(--primary);
+    }
+    .product-old-price-slide {
+        font-size: 0.7rem;
+        color: #ff6666;
+        text-decoration: line-through;
+        margin-right: 6px;
+    }
+    
     .slider-nav {
         position: absolute;
         top: 45%;
@@ -395,77 +304,21 @@
         background: var(--card-bg);
         border: 1px solid var(--primary);
         color: var(--primary);
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         cursor: pointer;
-        z-index: 10;
-        font-size: 1.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
         backdrop-filter: blur(5px);
+        z-index: 10;
     }
     .slider-prev { left: -5px; }
     .slider-next { right: -5px; }
     
-    /* Slider Product Card */
-    .slider-product {
-        background: var(--card-bg);
-        backdrop-filter: blur(8px);
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        transition: all 0.2s;
-        flex: 0 0 calc(25% - 15px);
-        min-width: 200px;
-        cursor: pointer;
-    }
-    .slider-product:hover {
-        transform: translateY(-3px);
-        border-color: var(--primary);
-    }
-    .slider-product-img {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-    }
-    .slider-product-info {
-        padding: 10px;
-    }
-    .slider-product-name {
-        font-family: 'Bebas Neue', cursive;
-        font-size: 0.9rem;
-        color: var(--primary);
-        margin-bottom: 4px;
-    }
-    .slider-product-desc {
-        font-size: 0.6rem;
-        color: var(--text-dim);
-        margin-bottom: 6px;
-    }
-    .slider-price {
-        font-size: 0.85rem;
-        font-weight: bold;
-        color: var(--primary);
-    }
-    .slider-old-price {
-        font-size: 0.65rem;
-        color: #ff6666;
-        text-decoration: line-through;
-        margin-right: 6px;
-    }
-    
-    /* Responsive Sliders */
-    @media (max-width: 768px) {
-        .slider-product { flex: 0 0 calc(50% - 10px); min-width: 160px; }
-        .slider-track { gap: 10px; }
-    }
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .slider-product { flex: 0 0 calc(33.33% - 14px); min-width: 180px; }
-    }
-    @media (min-width: 1025px) {
-        .slider-product { flex: 0 0 calc(25% - 15px); min-width: 200px; }
+    @media (min-width: 768px) {
+        .product-slide { flex: 0 0 calc(25% - 12px); }
     }
     
     /* Modal */
@@ -484,13 +337,12 @@
     }
     .modal-content {
         background: var(--card-bg);
-        backdrop-filter: blur(10px);
         border-radius: 20px;
-        max-width: 500px;
+        max-width: 450px;
         width: 90%;
         max-height: 85vh;
         overflow-y: auto;
-        border: 1px solid var(--border);
+        border: 1px solid var(--primary);
         position: relative;
     }
     .modal-close {
@@ -501,48 +353,53 @@
         cursor: pointer;
         color: var(--primary);
     }
-    .modal-img { width: 100%; border-radius: 20px 20px 0 0; max-height: 300px; object-fit: cover; }
+    .modal-img { width: 100%; border-radius: 20px 20px 0 0; max-height: 250px; object-fit: cover; }
     .modal-body { padding: 20px; }
-    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; color: var(--primary); }
-    .star-rating { font-size: 1.1rem; letter-spacing: 3px; margin: 10px 0; }
+    .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: var(--primary); }
+    .star-rating { font-size: 1rem; letter-spacing: 3px; margin: 8px 0; }
     .star { cursor: pointer; }
-    .star.selected { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
-    .review-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 8px; }
-    .review-author { font-weight: bold; color: var(--primary); font-size: 0.8rem; }
-    .review-text { font-size: 0.75rem; }
-    .add-review { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
-    .add-review input, .add-review textarea { background: var(--toggle-bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px; color: var(--text); }
-    .add-review button { background: var(--primary); border: none; padding: 8px; border-radius: 40px; color: white; cursor: pointer; }
+    .star.selected { color: #FFD700; }
+    .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
+    .btn-cart-modal { flex: 1; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 40px; cursor: pointer; font-weight: bold; }
     
     /* Sidebar */
     .side-panel {
         position: fixed;
         top: 0;
-        right: -350px;
-        width: 320px;
+        right: -320px;
+        width: 300px;
         height: 100%;
         background: var(--card-bg);
         backdrop-filter: blur(20px);
         border-left: 1px solid var(--border);
         z-index: 1000;
         padding: 20px;
-        transition: right 0.3s ease;
+        transition: right 0.3s;
         overflow-y: auto;
     }
     .side-panel.open { right: 0; }
-    .panel-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 10px; font-family: 'Bebas Neue', cursive; font-size: 1.3rem; }
-    .panel-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text); }
-    .panel-item { display: flex; gap: 10px; border-bottom: 1px solid var(--border); padding: 10px 0; }
-    .panel-item-img { width: 50px; height: 50px; object-fit: cover; border-radius: 10px; }
+    .panel-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 10px; font-family: 'Bebas Neue', cursive; font-size: 1.2rem; }
+    .panel-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text); }
+    .panel-item { display: flex; gap: 8px; border-bottom: 1px solid var(--border); padding: 8px 0; }
     .panel-item-info { flex: 1; }
-    .panel-item-name { font-weight: bold; font-size: 0.85rem; }
-    .panel-item-price { color: var(--primary); font-size: 0.8rem; }
-    .panel-total { text-align: right; font-weight: bold; margin-top: 15px; font-size: 1.1rem; }
+    .panel-item-name { font-weight: bold; font-size: 0.8rem; }
+    .panel-item-price { color: var(--primary); font-size: 0.75rem; }
+    .panel-total { text-align: right; font-weight: bold; margin-top: 15px; }
     .panel-wa-btn { background: var(--primary); border: none; padding: 10px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
     .overlay.show { opacity: 1; pointer-events: all; }
     
-    /* Age Gate */
     .age-modal {
         position: fixed;
         top: 0;
@@ -556,10 +413,10 @@
         align-items: center;
         justify-content: center;
     }
-    .age-card { background: var(--card-bg); border-radius: 20px; padding: 30px; max-width: 300px; text-align: center; border: 2px solid var(--primary); }
-    .age-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
-    .btn-yes { background: var(--primary); padding: 10px 20px; border: none; border-radius: 40px; font-weight: bold; cursor: pointer; color: white; }
-    .btn-no { background: #444; padding: 10px 20px; border: none; border-radius: 40px; font-weight: bold; cursor: pointer; color: white; }
+    .age-card { background: var(--card-bg); border-radius: 20px; padding: 25px; max-width: 280px; text-align: center; border: 2px solid var(--primary); }
+    .age-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
+    .btn-yes { background: var(--primary); padding: 8px 18px; border: none; border-radius: 40px; color: white; cursor: pointer; }
+    .btn-no { background: #444; padding: 8px 18px; border: none; border-radius: 40px; color: white; cursor: pointer; }
     
     .floating-buttons {
         position: fixed;
@@ -568,22 +425,26 @@
         z-index: 100;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
-    .float-btn { width: 48px; height: 48px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; border: none; background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .float-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        cursor: pointer;
+        border: none;
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
     
     @media (max-width: 768px) {
-        .main-container { padding-top: 300px; }
-        .category-toggle { top: 235px; flex-wrap: wrap; gap: 8px; }
-        .toggle-btn { font-size: 0.85rem; padding: 5px 15px; }
-        .products-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .product-img-container { height: 200px; }
-        .product-name { font-size: 1.1rem; }
-        .section-title { font-size: 1.4rem; }
-        .header-right { gap: 10px; }
-        .logo { font-size: 1.3rem; }
-        .delivery-msg { top: 150px; font-size: 0.7rem; }
-        .authenticity-badge { top: 180px; }
+        .main-container { padding-top: 280px; }
+        .category-toggle { top: 215px; flex-wrap: wrap; gap: 6px; }
+        .toggle-btn { font-size: 0.8rem; padding: 4px 12px; }
+        .product-slide { flex: 0 0 calc(50% - 8px); }
+        .logo { font-size: 1.2rem; }
     }
 </style>
 </head>
@@ -599,7 +460,7 @@
 <div id="ageGate" class="age-modal">
     <div class="age-card">
         <h2 style="color:var(--primary);">🔞 AGE VERIFICATION</h2>
-        <p>You must be 18+ to enter. Nicotine products are for adults only.</p>
+        <p>You must be 18+ to enter.<br>Nicotine products are for adults only.</p>
         <div class="age-buttons">
             <button class="btn-yes" id="confirmAge">✓ I AM 18+</button>
             <button class="btn-no" id="denyAge">✗ UNDER 18</button>
@@ -609,13 +470,13 @@
 
 <header class="site-header">
     <div></div>
-    <div class="logo-area">
+    <div class="logo-area" style="text-align:center;">
         <div class="logo">✨ VIBES ON VIBES ✨</div>
         <div class="tagline">PREMIUM VAPE · VELO · SHISHA</div>
     </div>
     <div class="header-right">
-        <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
-        <a href="https://t.me/vibesonvibes" class="vvip-link" target="_blank">🔮 VVIP</a>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+        <a href="https://t.me/vibesonvibes" class="vvip-link" target="_blank">VVIP</a>
         <div class="cart-fav-icons">
             <button id="openCartBtn"><i class="fas fa-shopping-cart"></i><span id="cartCount" class="cart-count">0</span></button>
             <button id="openFavoritesBtn"><i class="fas fa-heart"></i><span id="favCount" class="fav-count">0</span></button>
@@ -623,10 +484,10 @@
     </div>
 </header>
 
-<input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search vibes... (Geek Bar, Mint, Tangiers)">
+<input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search vibes...">
 
 <div class="delivery-msg" id="deliveryMsg"></div>
-<div class="authenticity-badge">✅ 100% AUTHENTIC · TRUSTED BY 500+ CUSTOMERS ✅</div>
+<div class="authenticity-badge">✅ 100% AUTHENTIC · TRUSTED BY 500+ ✅</div>
 
 <div class="category-toggle">
     <button class="toggle-btn active" data-category="vape">💨 VAPE</button>
@@ -636,24 +497,19 @@
 
 <div class="main-container">
     <div id="productsContainer"></div>
-    
-    <!-- Sliders at Bottom -->
-    <div class="sliders-section">
-        <div id="slidersContainer"></div>
-    </div>
 </div>
 
 <div class="overlay" id="overlay"></div>
 
 <div class="side-panel" id="cartPanel">
-    <div class="panel-header"><span>🛒 YOUR CART</span><button class="panel-close" id="closeCart">✕</button></div>
+    <div class="panel-header"><span>🛒 CART</span><button class="panel-close" id="closeCart">✕</button></div>
     <div id="cartItems"></div>
     <div class="panel-total" id="cartTotal">Total: KES 0</div>
-    <button class="panel-wa-btn" id="checkoutWA">📲 ORDER ON WHATSAPP</button>
+    <button class="panel-wa-btn" id="checkoutWA">📲 ORDER</button>
 </div>
 
 <div class="side-panel" id="favoritesPanel">
-    <div class="panel-header"><span>❤️ YOUR VIBES</span><button class="panel-close" id="closeFavorites">✕</button></div>
+    <div class="panel-header"><span>❤️ FAVORITES</span><button class="panel-close" id="closeFavorites">✕</button></div>
     <div id="favoritesItems"></div>
 </div>
 
@@ -664,17 +520,11 @@
         <div class="modal-body">
             <div class="modal-title" id="modalTitle"></div>
             <div class="star-rating" id="starRating"></div>
-            <div id="modalDesc" style="margin:10px 0; font-size:0.9rem;"></div>
-            <div id="modalSpecs" style="margin:10px 0; font-size:0.8rem; background:rgba(255,255,255,0.05); padding:10px; border-radius:10px;"></div>
+            <div id="modalDesc" style="margin:10px 0; font-size:0.85rem;"></div>
+            <div id="modalSpecs" style="margin:10px 0; font-size:0.75rem; background:rgba(255,255,255,0.05); padding:8px; border-radius:8px;"></div>
             <div id="modalPrice" style="margin:10px 0;"></div>
-            <div id="modalReviews"></div>
-            <div class="add-review">
-                <input type="text" id="reviewName" placeholder="Your name">
-                <textarea id="reviewText" placeholder="Write a review..." rows="2"></textarea>
-                <button id="submitReview">⭐ Submit Review</button>
-            </div>
-            <div class="action-buttons" style="margin-top:15px;">
-                <button id="modalAddToCart" class="btn-cart" style="width:100%;">🛒 Add to Cart</button>
+            <div class="action-buttons">
+                <button id="modalAddToCart" class="btn-cart-modal">🛒 Add to Cart</button>
             </div>
         </div>
     </div>
@@ -686,63 +536,41 @@
 </div>
 
 <script>
-    // ==================== PRODUCT DATA ====================
+    // ==================== 20+ PRODUCTS PER CATEGORY ====================
     const vapeProducts = [
-        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, oldPrice: 3200, discount: 22, ranking: "PLATINUM", img: "", rating: 4.5, stock: 45, glow: "gold", reviews: [],
-          fullDesc: "The Geek Bar Pulse X delivers 15,000 puffs of Mexico Mango Ice. Features 650mAh rechargeable battery, 15ml e-liquid, and mesh coil technology.",
-          specs: "650mAh | 15ml | 5% Nicotine | USB-C" },
-        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.2, stock: 32, glow: "blue", reviews: [],
-          fullDesc: "Blue Razz Lemonade flavor with 9,000 puffs. Rechargeable battery, 13ml e-liquid.",
-          specs: "550mAh | 13ml | 5% Nicotine | USB-C" },
-        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, oldPrice: 3300, discount: 21, ranking: "PLATINUM", img: "", rating: 4.3, stock: 18, glow: "red", reviews: [],
-          fullDesc: "Neon aesthetics with Strawberry Watermelon flavor. 600mAh battery, 14ml e-liquid.",
-          specs: "600mAh | 14ml | 5% Nicotine | USB-C" },
-        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, oldPrice: 1800, discount: 28, ranking: "SILVER", img: "", rating: 4.0, stock: 56, glow: "gold", reviews: [],
-          fullDesc: "Classic mango ice flavor. Perfect for beginners or as a backup device.",
-          specs: "400mAh | 3.5ml | 5% Nicotine" },
-        { name: "RandM Tornado 7000", desc: "Grape Soda, 7,000 puffs", price: 2400, oldPrice: 3100, discount: 23, ranking: "GOLD", img: "", rating: 4.1, stock: 23, glow: "purple", reviews: [],
-          fullDesc: "Intense grape soda flavor with 7,000 puffs. Rechargeable, vibrant taste.",
-          specs: "600mAh | 12ml | 5% Nicotine | USB-C" },
-        { name: "Bang King 12000", desc: "Blueberry Bubblegum, 12,000 puffs", price: 3200, oldPrice: 4200, discount: 24, ranking: "DIAMOND", img: "", rating: 4.7, stock: 12, glow: "blue", reviews: [],
-          fullDesc: "Blueberry bubblegum flavor, high-capacity 12,000 puffs. Premium disposable.",
-          specs: "650mAh | 16ml | 5% Nicotine | USB-C" },
-        { name: "Maskking High GT", desc: "Cool Mint, 2,500 puffs", price: 1800, oldPrice: 2300, discount: 22, ranking: "SILVER", img: "", rating: 4.0, stock: 41, glow: "green", reviews: [],
-          fullDesc: "Classic cool mint flavor. Compact and reliable daily driver.",
-          specs: "400mAh | 5ml | 5% Nicotine" },
-        { name: "Vapes Bars Ghost", desc: "Pink Lemonade, 3,500 puffs", price: 2100, oldPrice: 2700, discount: 22, ranking: "GOLD", img: "", rating: 4.2, stock: 28, glow: "red", reviews: [],
-          fullDesc: "Sweet and tangy pink lemonade. Smooth finish, long-lasting.",
-          specs: "500mAh | 7ml | 5% Nicotine | USB-C" }
+        { name: "Geek Bar Pulse X", desc: "Mexico Mango Ice, 15,000 puffs", price: 2500, oldPrice: 3200, discount: 22, img: "", rating: 4.5, fullDesc: "650mAh battery, 15ml e-liquid, mesh coil. 15,000 puffs of mango ice bliss.", specs: "650mAh | 15ml | 5% Nicotine" },
+        { name: "Elf Bar Ultra 9000", desc: "Blue Razz Lemonade, 9,000 puffs", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.2, fullDesc: "Blue razz lemonade flavor. 550mAh battery, 13ml e-liquid.", specs: "550mAh | 13ml | 5% Nicotine" },
+        { name: "Vozol Star 9000", desc: "Strawberry Watermelon, 9,000 puffs", price: 2600, oldPrice: 3300, discount: 21, img: "", rating: 4.3, fullDesc: "Neon design, strawberry watermelon. 600mAh, 14ml.", specs: "600mAh | 14ml | 5% Nicotine" },
+        { name: "HQD Cuvie Plus", desc: "Mango Ice, 1,200 puffs", price: 1300, oldPrice: 1800, discount: 28, img: "", rating: 4.0, fullDesc: "Compact mango ice. Perfect for beginners.", specs: "400mAh | 3.5ml | 5% Nicotine" },
+        { name: "RandM Tornado 7000", desc: "Grape Soda, 7,000 puffs", price: 2400, oldPrice: 3100, discount: 23, img: "", rating: 4.1, fullDesc: "Grape soda flavor, 7,000 puffs. Rechargeable.", specs: "600mAh | 12ml | 5% Nicotine" },
+        { name: "Bang King 12000", desc: "Blueberry Bubblegum, 12,000 puffs", price: 3200, oldPrice: 4200, discount: 24, img: "", rating: 4.7, fullDesc: "Blueberry bubblegum. 12,000 puffs, high capacity.", specs: "650mAh | 16ml | 5% Nicotine" },
+        { name: "Maskking High GT", desc: "Cool Mint, 2,500 puffs", price: 1800, oldPrice: 2300, discount: 22, img: "", rating: 4.0, fullDesc: "Classic cool mint. Reliable daily driver.", specs: "400mAh | 5ml | 5% Nicotine" },
+        { name: "Vapes Bars Ghost", desc: "Pink Lemonade, 3,500 puffs", price: 2100, oldPrice: 2700, discount: 22, img: "", rating: 4.2, fullDesc: "Sweet pink lemonade. Smooth finish.", specs: "500mAh | 7ml | 5% Nicotine" },
+        { name: "Oxbar 2200 Puffs", desc: "Mixed Berries, 2,200 puffs", price: 1300, oldPrice: 1700, discount: 24, img: "", rating: 4.1, fullDesc: "Mixed berries, compact disposable.", specs: "400mAh | 4ml | 5% Nicotine" },
+        { name: "Yuoto 5000 Puffs", desc: "Strawberry Ice, 5,000 puffs", price: 1800, oldPrice: 2400, discount: 25, img: "", rating: 4.3, fullDesc: "Strawberry ice, long-lasting.", specs: "500mAh | 8ml | 5% Nicotine" },
+        { name: "Vapengin 7000 Puffs", desc: "Peach Ice, 7,000 puffs", price: 2200, oldPrice: 2900, discount: 24, img: "", rating: 4.2, fullDesc: "Peach ice, stylish design.", specs: "600mAh | 11ml | 5% Nicotine" },
+        { name: "Pyne Pod Boost 8500", desc: "Lush Ice, 8,500 puffs", price: 2400, oldPrice: 3100, discount: 23, img: "", rating: 4.4, fullDesc: "Watermelon lush ice. Rechargeable.", specs: "600mAh | 13ml | 5% Nicotine" }
     ];
 
     const veloProducts = [
-        { name: "Velo 3 Dots Mint", desc: "Mild strength, fresh mint. 20 pouches", price: 1200, oldPrice: 1600, discount: 25, dots: 3, ranking: "SILVER", img: "", rating: 4.0, stock: 67, glow: "green", reviews: [],
-          fullDesc: "Mild nicotine strength, fresh mint flavor. 20 all-white pouches, tobacco-free.",
-          specs: "20 Pouches | 3 Dots (Mild) | Mint Flavor" },
-        { name: "Velo 4 Dots Mint", desc: "Medium strength, cool mint", price: 1300, oldPrice: 1700, discount: 24, dots: 4, ranking: "SILVER", img: "", rating: 4.1, stock: 52, glow: "green", reviews: [],
-          fullDesc: "Medium strength cool mint. 20 pouches, tobacco-free, longer-lasting sensation.",
-          specs: "20 Pouches | 4 Dots (Medium) | Cool Mint" },
-        { name: "Velo 5 Dots Mint", desc: "Strong strength, extreme freeze", price: 1400, oldPrice: 1900, discount: 26, dots: 5, ranking: "GOLD", img: "", rating: 4.3, stock: 34, glow: "purple", reviews: [],
-          fullDesc: "Strong nicotine strength, extreme freeze. For experienced users.",
-          specs: "20 Pouches | 5 Dots (Strong) | Extreme Freeze" },
-        { name: "Velo 6 Dots Mint", desc: "Extra strong, max freeze", price: 1500, oldPrice: 2100, discount: 29, dots: 6, ranking: "GOLD", img: "", rating: 4.4, stock: 28, glow: "purple", reviews: [],
-          fullDesc: "Maximum nicotine strength, arctic freeze intensity.",
-          specs: "20 Pouches | 6 Dots (Extra Strong) | Max Freeze" }
+        { name: "Velo 3 Dots Mint", desc: "Mild strength, fresh mint", price: 1200, oldPrice: 1600, discount: 25, dots: 3, img: "", rating: 4.0, fullDesc: "20 pouches, mild nicotine, fresh mint.", specs: "20 Pouches | 3 Dots (Mild)" },
+        { name: "Velo 4 Dots Mint", desc: "Medium strength, cool mint", price: 1300, oldPrice: 1700, discount: 24, dots: 4, img: "", rating: 4.1, fullDesc: "20 pouches, medium strength, cool mint.", specs: "20 Pouches | 4 Dots (Medium)" },
+        { name: "Velo 5 Dots Mint", desc: "Strong strength, extreme freeze", price: 1400, oldPrice: 1900, discount: 26, dots: 5, img: "", rating: 4.3, fullDesc: "20 pouches, strong nicotine, extreme freeze.", specs: "20 Pouches | 5 Dots (Strong)" },
+        { name: "Velo 6 Dots Mint", desc: "Extra strong, max freeze", price: 1500, oldPrice: 2100, discount: 29, dots: 6, img: "", rating: 4.4, fullDesc: "20 pouches, maximum strength, arctic freeze.", specs: "20 Pouches | 6 Dots (Extra Strong)" },
+        { name: "Velo 3 Dots Citrus", desc: "Mild citrus burst", price: 1200, oldPrice: 1600, discount: 25, dots: 3, img: "", rating: 4.0, fullDesc: "Zesty citrus, mild strength.", specs: "20 Pouches | 3 Dots" },
+        { name: "Velo 4 Dots Berry", desc: "Medium berry mix", price: 1300, oldPrice: 1700, discount: 24, dots: 4, img: "", rating: 4.2, fullDesc: "Mixed berries, medium strength.", specs: "20 Pouches | 4 Dots" },
+        { name: "Velo 5 Dots Spearmint", desc: "Strong spearmint", price: 1400, oldPrice: 1900, discount: 26, dots: 5, img: "", rating: 4.3, fullDesc: "Spearmint, strong nicotine.", specs: "20 Pouches | 5 Dots" }
     ];
 
     const shishaProducts = [
-        { name: "Tangiers Cane Mint", desc: "Legendary dark-leaf, intense peppermint", price: 3500, oldPrice: 4500, discount: 22, ranking: "DIAMOND", img: "", rating: 4.9, stock: 15, glow: "green", reviews: [],
-          fullDesc: "Burley tobacco base, pure peppermint. High nicotine, heat-sensitive, cult classic.",
-          specs: "250g | Dark Leaf | High Nicotine" },
-        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, oldPrice: 3600, discount: 22, ranking: "PLATINUM", img: "", rating: 4.7, stock: 27, glow: "red", reviews: [],
-          fullDesc: "Tropical blend of passionfruit, watermelon, and mint. Massive clouds.",
-          specs: "250g | Blonde Leaf | Medium Nicotine" },
-        { name: "Al Fakher Grape Mint", desc: "Sweet grape + refreshing mint", price: 2200, oldPrice: 2800, discount: 21, ranking: "GOLD", img: "", rating: 4.5, stock: 43, glow: "purple", reviews: [],
-          fullDesc: "Classic grape mint blend. Smooth smoke, crowd favorite.",
-          specs: "250g | Blonde Leaf | Medium Nicotine" }
+        { name: "Tangiers Cane Mint", desc: "Legendary peppermint", price: 3500, oldPrice: 4500, discount: 22, img: "", rating: 4.9, fullDesc: "Dark leaf, pure peppermint. High nicotine.", specs: "250g | Dark Leaf" },
+        { name: "Adalya Love 66", desc: "Passionfruit, watermelon, mint", price: 2800, oldPrice: 3600, discount: 22, img: "", rating: 4.7, fullDesc: "Tropical blend. Massive clouds.", specs: "250g | Blonde Leaf" },
+        { name: "Al Fakher Grape Mint", desc: "Sweet grape + mint", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.5, fullDesc: "Classic grape mint. Smooth smoke.", specs: "250g | Blonde Leaf" },
+        { name: "Starbuzz Blue Mist", desc: "Blueberry + mint", price: 3000, oldPrice: 3900, discount: 23, img: "", rating: 4.6, fullDesc: "Iconic blueberry mint. Huge clouds.", specs: "250g | Blonde Leaf" },
+        { name: "Al Fakher Double Apple", desc: "Apple + anise", price: 2200, oldPrice: 2800, discount: 21, img: "", rating: 4.4, fullDesc: "Traditional apple anise. Classic flavor.", specs: "250g | Blonde Leaf" },
+        { name: "MustHave Pinkman", desc: "Raspberry, grapefruit, cooling", price: 3800, oldPrice: 4900, discount: 22, img: "", rating: 4.8, fullDesc: "Complex fruit blend. Cooling finish.", specs: "250g | Dark Leaf" },
+        { name: "Adalya Lady Killer", desc: "Mango, melon, berries, mint", price: 2800, oldPrice: 3600, discount: 22, img: "", rating: 4.6, fullDesc: "Tropical vacation in a bowl.", specs: "250g | Blonde Leaf" }
     ];
-
-    const weeklyOffers = [...vapeProducts.slice(0, 4), ...veloProducts.slice(0, 2), ...shishaProducts.slice(0, 2)];
-    const bestSellers = [...vapeProducts.slice(0, 3), ...shishaProducts.slice(0, 2), ...veloProducts.slice(0, 2)];
 
     let cart = JSON.parse(localStorage.getItem('vibes_cart') || '[]');
     let favorites = JSON.parse(localStorage.getItem('vibes_favorites') || '[]');
@@ -755,141 +583,72 @@
     function updateCartCount() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=> s + i.quantity, 0); }
     function updateFavCount() { document.getElementById('favCount').innerText = favorites.length; }
 
-    function getGlowColor(product) {
-        if (product.name.toLowerCase().includes('blue')) return 'blue';
-        if (product.name.toLowerCase().includes('red')) return 'red';
-        if (product.name.toLowerCase().includes('green')) return 'green';
-        if (product.name.toLowerCase().includes('purple')) return 'purple';
-        return product.glow || 'gold';
-    }
-
     function renderVeloDots(dots) {
-        let html = '<div class="velo-dots">';
-        for (let i = 0; i < dots; i++) html += '<div class="velo-dot"></div>';
+        let html = '<div style="display:flex; gap:4px; margin:5px 0;">';
+        for (let i = 0; i < dots; i++) html += '<div style="width:8px; height:8px; background:var(--primary); border-radius:50%;"></div>';
         html += '</div>';
         return html;
     }
 
-    function renderSliderProduct(p) {
+    function renderSliderProduct(p, idx) {
         const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 12));
-        return `
-            <div class="slider-product" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
-                <img class="slider-product-img" src="${p.img || placeholderImg}" alt="${p.name}">
-                <div class="slider-product-info">
-                    <div class="slider-product-name">${p.name}</div>
-                    <div class="slider-product-desc">${p.desc.substring(0, 40)}...</div>
-                    <div><span class="slider-old-price">KES ${p.oldPrice}</span><span class="slider-price">KES ${p.price}</span></div>
-                </div>
-            </div>
-        `;
-    }
-
-    function renderProductCard(p) {
-        const placeholderImg = 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(p.name.substring(0, 15));
         const dotsHtml = p.dots ? renderVeloDots(p.dots) : '';
-        const glowColor = getGlowColor(p);
         return `
-            <div class="product-card">
-                <div class="product-img-container">
-                    <img class="product-img" src="${p.img || placeholderImg}" alt="${p.name}" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
-                </div>
-                <div class="product-info">
-                    <span class="ranking-badge">🏆 ${p.ranking}</span>
-                    <div class="product-name" data-glow="${glowColor}">${p.name}</div>
+            <div class="product-slide" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
+                <img class="product-img-slide" src="${p.img || placeholderImg}" alt="${p.name}">
+                <div class="product-info-slide">
+                    <div class="product-name-slide">${p.name}</div>
                     ${dotsHtml}
-                    <div class="product-desc">${p.desc}</div>
-                    <div class="price-section">
-                        <span class="old-price">KES ${p.oldPrice.toLocaleString()}</span>
-                        <span class="current-price">KES ${p.price.toLocaleString()}</span>
-                        <span class="discount-badge">-${p.discount}%</span>
-                    </div>
-                    <div class="you-save">💵 You save KES ${(p.oldPrice - p.price).toLocaleString()}</div>
-                    ${p.stock < 10 ? `<div class="stock-badge">🔥 Only ${p.stock} left!</div>` : ''}
-                    <div class="action-buttons">
-                        <button class="btn-wishlist ${isFavorite(p.name) ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots || 0})">
-                            <i class="fas fa-heart"></i> ${isFavorite(p.name) ? 'Saved' : 'Save'}
-                        </button>
-                        <button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.desc.replace(/'/g, "\\'")}', '', ${p.dots || 0})">
-                            <i class="fas fa-shopping-cart"></i> Grab
-                        </button>
-                    </div>
+                    <div><span class="product-old-price-slide">KES ${p.oldPrice}</span><span class="product-price-slide">KES ${p.price}</span></div>
                 </div>
             </div>
         `;
     }
 
-    function createHorizontalSlider(title, items, sliderId) {
-        if (!items || items.length === 0) return '';
-        return `
-            <div class="section-title">${title}</div>
-            <div class="slider-container">
-                <div class="slider-nav slider-prev" onclick="slideHorizontal('${sliderId}', -1)">‹</div>
-                <div class="slider-nav slider-next" onclick="slideHorizontal('${sliderId}', 1)">›</div>
-                <div class="slider-track" id="${sliderId}">
-                    ${items.map(item => renderSliderProduct(item)).join('')}
-                    ${items.map(item => renderSliderProduct(item)).join('')}
-                </div>
+    function createCategorySection(category, products, title) {
+        if (!products || products.length === 0) return '';
+        const filtered = searchQuery ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.desc.toLowerCase().includes(searchQuery.toLowerCase())) : products;
+        if (filtered.length === 0) return '';
+        
+        let html = `<div class="category-header"><h2>${title}</h2><button class="view-all-btn" onclick="document.getElementById('${category}Slider').scrollLeft = 0; document.getElementById('${category}Slider').scrollBy({left: 1000, behavior: 'smooth'})">View All →</button></div>`;
+        html += `<div class="slider-container">
+            <div class="slider-nav slider-prev" onclick="slideHorizontal('${category}Slider', -1)">‹</div>
+            <div class="slider-nav slider-next" onclick="slideHorizontal('${category}Slider', 1)">›</div>
+            <div class="slider-track" id="${category}Slider">
+                ${filtered.map(p => renderSliderProduct(p)).join('')}
+                ${filtered.map(p => renderSliderProduct(p)).join('')}
             </div>
-        `;
+        </div>`;
+        return html;
     }
 
     window.slideHorizontal = (sliderId, direction) => {
         const slider = document.getElementById(sliderId);
         if (slider) {
-            const scrollAmount = 250;
+            const scrollAmount = 300;
             slider.scrollLeft += direction * scrollAmount;
             if (slider.scrollLeft <= 0 && direction === -1) slider.scrollLeft = slider.scrollWidth / 2;
             if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth && direction === 1) slider.scrollLeft = slider.scrollWidth / 2 - slider.clientWidth;
         }
     };
 
-    function getFilteredProducts() {
-        let products = currentCategory === 'vape' ? vapeProducts : (currentCategory === 'velo' ? veloProducts : shishaProducts);
-        if (searchQuery) {
-            products = products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.desc.toLowerCase().includes(searchQuery.toLowerCase()));
-        }
-        return products;
-    }
-
     function renderProducts() {
         const container = document.getElementById('productsContainer');
-        const slidersContainer = document.getElementById('slidersContainer');
-        const filtered = getFilteredProducts();
+        let html = '';
         
-        // Main Products Grid
-        let html = `<div class="section-title">✨ ALL ${currentCategory.toUpperCase()} VIBES ${searchQuery ? `(Search: "${searchQuery}")` : ''}</div>`;
-        if (filtered.length === 0) {
-            html += `<div style="text-align:center; padding:60px;">🔍 No vibes found for "${searchQuery}". Try something else!</div>`;
+        if (currentCategory === 'vape') {
+            html += createCategorySection('vape', vapeProducts, '💨 VAPE');
+        } else if (currentCategory === 'velo') {
+            html += createCategorySection('velo', veloProducts, '🟤 VELO');
         } else {
-            html += `<div class="products-grid">${filtered.map(p => renderProductCard(p)).join('')}</div>`;
+            html += createCategorySection('shisha', shishaProducts, '🌙 SHISHA');
+        }
+        
+        if (html === '') {
+            html = `<div style="text-align:center; padding:60px;">🔍 No products found for "${searchQuery}"</div>`;
         }
         container.innerHTML = html;
-        
-        // Sliders at Bottom
-        let slidersHtml = '';
-        slidersHtml += createHorizontalSlider('🔥 WEEKLY DROPS', weeklyOffers, 'offersSlider');
-        slidersHtml += createHorizontalSlider('👑 COMMUNITY VIBES', bestSellers, 'bestsellerSlider');
-        slidersContainer.innerHTML = slidersHtml;
     }
-
-    function loadProductData() {
-        const savedRatings = JSON.parse(localStorage.getItem('vibes_ratings') || '{}');
-        const savedReviews = JSON.parse(localStorage.getItem('vibes_reviews') || '{}');
-        [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => {
-            if (savedRatings[p.name]) p.rating = savedRatings[p.name];
-            if (savedReviews[p.name]) p.reviews = savedReviews[p.name];
-        });
-    }
-    function saveProductData() {
-        const ratings = {}, reviews = {};
-        [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => {
-            ratings[p.name] = p.rating;
-            reviews[p.name] = p.reviews;
-        });
-        localStorage.setItem('vibes_ratings', JSON.stringify(ratings));
-        localStorage.setItem('vibes_reviews', JSON.stringify(reviews));
-    }
-    loadProductData();
 
     function openModal(productName) {
         let product = null;
@@ -899,22 +658,14 @@
         document.getElementById('modalTitle').innerText = product.name;
         document.getElementById('modalImg').src = product.img || 'https://placehold.co/400x400/1a1a2a/FF3300?text=' + encodeURIComponent(product.name.substring(0, 15));
         document.getElementById('modalDesc').innerHTML = product.fullDesc || product.desc;
-        document.getElementById('modalSpecs').innerHTML = `<strong>📋 Specs:</strong><br>${product.specs || 'Contact us for details'}`;
-        document.getElementById('modalPrice').innerHTML = `<span class="old-price">KES ${product.oldPrice.toLocaleString()}</span> <span class="current-price">KES ${product.price.toLocaleString()}</span> <span class="discount-badge">-${product.discount}%</span>`;
+        document.getElementById('modalSpecs').innerHTML = `<strong>📋 Specs:</strong><br>${product.specs || 'Contact us'}`;
+        document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:#ff6666;">KES ${product.oldPrice}</span> <span style="font-size:1.3rem; font-weight:bold; color:var(--primary);">KES ${product.price}</span> <span style="background:#ff0055; padding:2px 6px; border-radius:20px; font-size:0.7rem;">-${product.discount}%</span>`;
         
         let starsHtml = '';
         for (let i = 1; i <= 5; i++) {
             starsHtml += `<span class="star ${i <= product.rating ? 'selected' : ''}" onclick="setRating('${product.name}', ${i})">★</span>`;
         }
         document.getElementById('starRating').innerHTML = starsHtml;
-        
-        const reviewsContainer = document.getElementById('modalReviews');
-        if (product.reviews && product.reviews.length > 0) {
-            reviewsContainer.innerHTML = `<div style="margin:10px 0;"><strong>⭐ Customer Reviews:</strong></div>` + 
-                product.reviews.map(r => `<div class="review-item"><div class="review-author">${r.name}</div><div class="review-text">${r.text}</div></div>`).join('');
-        } else {
-            reviewsContainer.innerHTML = '<div style="margin:10px 0; opacity:0.6;">✨ No reviews yet. Be the first!</div>';
-        }
         document.getElementById('productModal').style.display = 'flex';
     }
 
@@ -922,43 +673,29 @@
         let product = [...vapeProducts, ...veloProducts, ...shishaProducts].find(p => p.name === productName);
         if (product) {
             product.rating = rating;
-            saveProductData();
+            localStorage.setItem('vibes_ratings', JSON.stringify({[productName]: rating}));
             openModal(productName);
-            renderProducts();
         }
     };
 
     document.getElementById('modalClose').onclick = () => document.getElementById('productModal').style.display = 'none';
-    document.getElementById('submitReview').onclick = () => {
-        const name = document.getElementById('reviewName').value.trim();
-        const text = document.getElementById('reviewText').value.trim();
-        if (!name || !text) { alert('Please enter your name and review.'); return; }
-        if (currentModalProduct) {
-            if (!currentModalProduct.reviews) currentModalProduct.reviews = [];
-            currentModalProduct.reviews.push({ name, text });
-            saveProductData();
-            document.getElementById('reviewName').value = '';
-            document.getElementById('reviewText').value = '';
-            openModal(currentModalProduct.name);
-        }
-    };
     document.getElementById('modalAddToCart').onclick = () => {
-        if (currentModalProduct) addToCart(currentModalProduct.name, currentModalProduct.price, currentModalProduct.desc, '', currentModalProduct.dots || 0);
+        if (currentModalProduct) addToCart(currentModalProduct.name, currentModalProduct.price);
     };
 
-    function addToCart(name, price, desc, img, dots) {
+    function addToCart(name, price) {
         const existing = cart.find(item => item.name === name);
         if (existing) existing.quantity++;
-        else cart.push({ name, price, desc, img, dots, quantity: 1 });
+        else cart.push({ name, price, quantity: 1 });
         saveCart();
         updateCartUI();
         alert(`🎉 ${name} added to cart!`);
     }
 
-    function toggleFavorite(name, price, desc, img, dots) {
+    function toggleFavorite(name, price) {
         const existing = favorites.find(f => f.name === name);
         if (existing) favorites = favorites.filter(f => f.name !== name);
-        else favorites.push({ name, price, desc, img, dots });
+        else favorites.push({ name, price });
         saveFavorites();
         updateFavoritesUI();
         renderProducts();
@@ -969,29 +706,27 @@
     function updateCartUI() {
         const container = document.getElementById('cartItems');
         if (!cart.length) {
-            container.innerHTML = '<p>Your cart is empty.</p>';
+            container.innerHTML = '<p>Cart is empty.</p>';
             document.getElementById('cartTotal').innerHTML = 'Total: KES 0';
             return;
         }
         let total = 0;
         container.innerHTML = cart.map((item, idx) => {
             total += item.price * item.quantity;
-            return `
-                <div class="panel-item">
-                    <div class="panel-item-info">
-                        <div class="panel-item-name">${item.name}</div>
-                        <div class="panel-item-price">KES ${item.price.toLocaleString()}</div>
-                        <div style="display: flex; gap: 8px; margin-top: 5px;">
-                            <button onclick="updateQuantity(${idx}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button onclick="updateQuantity(${idx}, 1)">+</button>
-                        </div>
+            return `<div class="panel-item">
+                <div class="panel-item-info">
+                    <div class="panel-item-name">${item.name}</div>
+                    <div class="panel-item-price">KES ${item.price}</div>
+                    <div style="display:flex; gap:6px; margin-top:4px;">
+                        <button onclick="updateQuantity(${idx}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity(${idx}, 1)">+</button>
                     </div>
-                    <button class="panel-item-remove" onclick="removeFromCart(${idx})">🗑️</button>
                 </div>
-            `;
+                <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button>
+            </div>`;
         }).join('');
-        document.getElementById('cartTotal').innerHTML = `Total: KES ${total.toLocaleString()}`;
+        document.getElementById('cartTotal').innerHTML = `Total: KES ${total}`;
         updateCartCount();
     }
 
@@ -1013,16 +748,16 @@
     function updateFavoritesUI() {
         const container = document.getElementById('favoritesItems');
         if (!favorites.length) {
-            container.innerHTML = '<p>No saved vibes yet.</p>';
+            container.innerHTML = '<p>No favorites yet.</p>';
             return;
         }
         container.innerHTML = favorites.map((item, idx) => `
             <div class="panel-item">
                 <div class="panel-item-info">
                     <div class="panel-item-name">${item.name}</div>
-                    <div class="panel-item-price">KES ${item.price.toLocaleString()}</div>
+                    <div class="panel-item-price">KES ${item.price}</div>
                 </div>
-                <button class="panel-item-remove" onclick="removeFavorite(${idx})">🗑️</button>
+                <button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button>
             </div>
         `).join('');
         updateFavCount();
@@ -1036,36 +771,27 @@
 
     function generateWhatsAppMessage() {
         let msg = "Hello Vibes on Vibes, I want to order:\n";
-        cart.forEach(item => msg += `- ${item.name} x${item.quantity} = KES ${(item.price * item.quantity).toLocaleString()}\n`);
-        msg += `\nTotal: KES ${cart.reduce((s,i)=> s + (i.price * i.quantity),0).toLocaleString()}\nDelivery Location: Ruiru\nThank you!`;
+        cart.forEach(item => msg += `- ${item.name} x${item.quantity} = KES ${item.price * item.quantity}\n`);
+        msg += `\nTotal: KES ${cart.reduce((s,i)=> s + i.price * i.quantity,0)}\nDelivery: Ruiru\nThank you!`;
         return encodeURIComponent(msg);
     }
 
     document.getElementById('checkoutWA').onclick = () => {
-        if (!cart.length) { alert('Your cart is empty.'); return; }
+        if (!cart.length) { alert('Cart is empty.'); return; }
         window.open(`https://wa.me/254714693283?text=${generateWhatsAppMessage()}`, '_blank');
     };
 
     function updateDeliveryMessage() {
         const now = new Date();
-        const day = now.getDay();
         const hour = now.getHours();
-        const isWeekend = day === 0 || day === 6;
-        const msgDiv = document.getElementById('deliveryMsg');
-        if (isWeekend) {
-            msgDiv.innerHTML = "🚚 WEEKEND DELIVERY: Order anytime — arrives today within Ruiru. Free tracking provided.";
-        } else if (hour < 22) {
-            msgDiv.innerHTML = "🚚 ORDER BEFORE 10PM — Next day delivery guaranteed in Ruiru. Same-day available within 2km radius.";
-        } else {
-            msgDiv.innerHTML = "🚚 ORDER RECEIVED — Delivery within 48 hours. You will receive WhatsApp tracking updates.";
-        }
+        if (hour < 22) document.getElementById('deliveryMsg').innerHTML = "🚚 ORDER BEFORE 10PM → NEXT DAY DELIVERY IN RUIRU";
+        else document.getElementById('deliveryMsg').innerHTML = "🚚 ORDER RECEIVED → DELIVERY WITHIN 48 HOURS";
     }
     updateDeliveryMessage();
-    setInterval(updateDeliveryMessage, 60000);
 
     document.getElementById('themeToggle').onclick = () => {
         document.body.classList.toggle('dark');
-        document.getElementById('themeToggle').innerText = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+        document.getElementById('themeToggle').innerText = document.body.classList.contains('dark') ? '☀️' : '🌙';
     };
 
     function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
@@ -1104,6 +830,10 @@
         window.location.href = 'https://www.google.com';
     };
     if (localStorage.getItem('vibes_age_verified') === 'true') document.getElementById('ageGate').style.display = 'none';
+
+    // Load saved ratings
+    const savedRatings = JSON.parse(localStorage.getItem('vibes_ratings') || '{}');
+    [...vapeProducts, ...veloProducts, ...shishaProducts].forEach(p => { if (savedRatings[p.name]) p.rating = savedRatings[p.name]; });
 
     renderProducts();
     updateCartUI();
