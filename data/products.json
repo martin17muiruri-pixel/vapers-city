@@ -5,7 +5,7 @@
     "price": "2,500 KES",
     "puffs": "15,000",
     "tagline": "PULSE DIFFERENT",
-    "image": "",
+    "image": "images/geekbar-pulsex.jpg",
     "refillable": false,
     "order": 1
   },
@@ -15,7 +15,7 @@
     "price": "2,200 KES",
     "puffs": "9,000",
     "tagline": "ULTRA SMOOTH HITS",
-    "image": "",
+    "image": "images/elfbar-ultra9000.jpg",
     "refillable": false,
     "order": 2
   },
@@ -25,7 +25,7 @@
     "price": "2,600 KES",
     "puffs": "9,000",
     "tagline": "STAR POWER",
-    "image": "",
+    "image": "images/vozol-star9000.jpg",
     "refillable": false,
     "order": 3
   },
@@ -35,7 +35,7 @@
     "price": "1,300 KES",
     "puffs": "1,200",
     "tagline": "CLASSIC DRIP",
-    "image": "",
+    "image": "images/hqd-cuvieplus.jpg",
     "refillable": false,
     "order": 4
   },
@@ -45,7 +45,7 @@
     "price": "2,400 KES",
     "puffs": "7,000",
     "tagline": "SPIN THE BLOCK",
-    "image": "",
+    "image": "images/randm-tornado7000.jpg",
     "refillable": false,
     "order": 5
   },
@@ -55,7 +55,7 @@
     "price": "3,200 KES",
     "puffs": "12,000",
     "tagline": "KING SIZE CLOUDS",
-    "image": "",
+    "image": "images/bangking-12000.jpg",
     "refillable": false,
     "order": 6
   },
@@ -65,7 +65,7 @@
     "price": "1,800 KES",
     "puffs": "2,500",
     "tagline": "STAY HIGH, STAY COOL",
-    "image": "",
+    "image": "images/maskking-highgt.jpg",
     "refillable": false,
     "order": 7
   },
@@ -75,7 +75,7 @@
     "price": "2,100 KES",
     "puffs": "3,500",
     "tagline": "GHOST MODE ON",
-    "image": "",
+    "image": "images/vapesbars-ghost.jpg",
     "refillable": false,
     "order": 8
   }
