@@ -13,7 +13,6 @@
       transition: background 0.5s, color 0.5s;
     }
 
-    /* Gold Glitter Header */
     header {
       background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
       background-size: 200% 200%;
@@ -31,7 +30,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Controls */
     #controls {
       display: flex;
       justify-content: center;
@@ -51,7 +49,6 @@
     #controls button { background: #FFD700; transition: background 0.3s ease; }
     #controls button:hover { background: #FFA500; }
 
-    /* Product Grid */
     #product-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -77,7 +74,6 @@
       border-radius: 6px;
     }
 
-    /* Velo Vertical Categories */
     #velo-categories {
       display: flex;
       flex-direction: column;
@@ -94,7 +90,6 @@
       border-radius: 5px;
     }
 
-    /* Slideshow */
     #slideshow {
       display: flex;
       overflow: hidden;
@@ -109,7 +104,6 @@
       border-radius: 8px;
     }
 
-    /* Fun Facts */
     #fun-facts {
       background: #222;
       color: #FFD700;
@@ -120,7 +114,6 @@
     }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Suggestion Box */
     #suggestion-box {
       background: #333;
       padding: 20px;
@@ -129,19 +122,15 @@
     #suggestion-box input { padding: 10px; width: 60%; border-radius: 5px; }
     #suggestion-box button { padding: 10px; background: #FFD700; border: none; border-radius: 5px; }
 
-    /* Polls */
     #polls { background: #222; padding: 20px; text-align: center; }
     #polls button { margin: 5px; padding: 10px; border-radius: 5px; background: #FFD700; }
 
-    /* Theme Switcher */
     #theme-switcher { text-align: center; padding: 20px; }
     #theme-switcher button { margin: 5px; padding: 10px; border-radius: 5px; background: #FFD700; }
 
-    /* Accessibility */
     #accessibility { text-align: center; padding: 20px; }
     #accessibility button { margin: 5px; padding: 10px; border-radius: 5px; background: #FFD700; }
 
-    /* Floating Flowers */
     @keyframes floatFlowers {
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
@@ -160,7 +149,6 @@
 <body>
   <header>🌸🔥 Gold Catalog — Vape, Velo & Shisha 🔥🌸</header>
 
-  <!-- Controls -->
   <div id="controls">
     <button onclick="filterCategory('Vape')">💨 Vape</button>
     <button onclick="filterCategory('Velo')">🍃 Velo</button>
@@ -176,7 +164,6 @@
     </select>
   </div>
 
-  <!-- Velo Categories -->
   <div id="velo-categories">
     <button onclick="filterVeloDots(3)">🌸 Velo 3 Dots</button>
     <button onclick="filterVeloDots(4)">🌼 Velo 4 Dots</button>
@@ -185,15 +172,10 @@
     <button onclick="filterVeloDots(7)">🌹 Velo 7 Dots</button>
   </div>
 
-  <!-- Slideshow -->
   <div id="slideshow"></div>
-
   <div id="product-container"></div>
-
-  <!-- Fun Facts -->
   <div id="fun-facts">💡 Did you know? Velo was first launched in Sweden! 🇸🇪</div>
 
-  <!-- Suggestion Box -->
   <div id="suggestion-box">
     <h3>🌸 Suggestion Box 🌸</h3>
     <input type="text" id="suggestion-input" placeholder="💡 Share your idea...">
@@ -201,7 +183,6 @@
     <div id="suggestion-list"></div>
   </div>
 
-  <!-- Polls -->
   <div id="polls">
     <h3>📊 Flavor Poll</h3>
     <button onclick="vote('Mango')">🥭 Mango</button>
@@ -210,16 +191,25 @@
     <div id="poll-results"></div>
   </div>
 
-  <!-- Theme Switcher -->
   <div id="theme-switcher">
     <button onclick="switchTheme('gold')">✨ Gold Mode</button>
     <button onclick="switchTheme('neon')">🌌 Neon Mode</button>
   </div>
 
-  <!-- Accessibility -->
   <div id="accessibility">
     <button onclick="toggleLargeText()">🔍 Large Text</button>
     <button onclick="toggleContrast()">🌑 High Contrast</button>
   </div>
 
-  <
+  <script>
+    let allProducts = [];
+    let currentCategory = 'All';
+    let funFacts = [
+      "💡 Did you know? Velo was first launched in Sweden! 🇸🇪",
+      "🌸 Fun Fact: Shisha dates back hundreds of years in Persia! 🏺",
+      "🔥 Vape devices can reach up to 15,000 puffs! 💨",
+      "🍃 Velo dots indicate strength levels from mild to max! 💪"
+    ];
+    let factIndex = 0;
+
+    async function loadProducts
