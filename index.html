@@ -73,7 +73,7 @@
       color: #000;
     }
 
-    /* Header - Gold Glitter (Keep your design) */
+    /* Header - Gold Glitter */
     .gold-header {
       background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
       background-size: 200% 200%;
@@ -205,7 +205,7 @@
     .slider-prev { left: -5px; }
     .slider-next { right: -5px; }
 
-    /* Product Card (Vertical for Vape/Shisha) */
+    /* Product Card */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -638,14 +638,12 @@
 </div>
 
 <div class="floating-buttons">
-  <button id="openCartBtn" class="float-btn"><i class="fas fa-shopping-cart"></i> 🛒</button>
-  <button id="openFavoritesBtn" class="float-btn"><i class="fas fa-heart"></i> ❤️</button>
+  <button id="openCartBtn" class="float-btn">🛒</button>
+  <button id="openFavoritesBtn" class="float-btn">❤️</button>
 </div>
 
 <script>
-  // ==================== COMPLETE PRODUCT DATABASE (136+ products) ====================
-  
-  // Vape Products (20+)
+  // ==================== COMPLETE PRODUCT DATABASE ====================
   const vapeProducts = [
     { id: 1, name: "Geek Bar Pulse X", flavor: "Mexico Mango Ice", price: 2500, oldPrice: 3200, puffs: 15000, category: "Vape", img: "", rating: 4.5, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
     { id: 2, name: "Elf Bar Ultra 9000", flavor: "Blue Razz Lemonade", price: 2200, oldPrice: 2800, puffs: 9000, category: "Vape", img: "", rating: 4.2, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
@@ -657,7 +655,6 @@
     { id: 8, name: "Vapes Bars Ghost", flavor: "Pink Lemonade", price: 2100, oldPrice: 2700, puffs: 3500, category: "Vape", img: "", rating: 4.2, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false }
   ];
 
-  // Velo Products (by dot count)
   const veloByDot = {
     3: [
       { id: 101, name: "Velo 3 Dots Mint", flavor: "Fresh Mint", price: 1200, oldPrice: 1600, category: "Velo", veloDots: 3, img: "", rating: 4.0, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null },
@@ -677,22 +674,18 @@
     ]
   };
 
-  // Shisha Products
   const shishaProducts = [
     { id: 201, name: "Tangiers Cane Mint", flavor: "Intense Peppermint", price: 3500, oldPrice: 4500, category: "Shisha", img: "", rating: 4.9, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
     { id: 202, name: "Adalya Love 66", flavor: "Passionfruit, Watermelon, Mint", price: 2800, oldPrice: 3600, category: "Shisha", img: "", rating: 4.7, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
     { id: 203, name: "Al Fakher Grape Mint", flavor: "Sweet Grape + Mint", price: 2200, oldPrice: 2800, category: "Shisha", img: "", rating: 4.5, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false }
   ];
 
-  // Modular Vapes (NEW - with subscription and tracking features)
   const modularProducts = [
     { id: 301, name: "Smart Modular Vape X", flavor: "Customizable", price: 9500, oldPrice: 12500, category: "Modular", img: "", rating: 4.8, health_label: "🌱 Nicotine-free option", trust_badge: "✅ Certified Legit", subscription: { basic: "Monthly flavor refills", premium: "Device + refills + app", elite: "Exclusive herbal blends" }, battery_tracking: true, puff_counter: true, flavor_mixing: true, customizable_system: true },
     { id: 302, name: "VapeCore Modular Pro", flavor: "Mix Your Own", price: 8500, oldPrice: 11000, category: "Modular", img: "", rating: 4.6, health_label: "🌱 Herbal compatible", trust_badge: "✅ Certified", subscription: { basic: "Refill pack monthly", premium: "Device + app + refills", elite: "Premium blends" }, battery_tracking: true, puff_counter: true, flavor_mixing: true, customizable_system: true }
   ];
 
-  // Combine all products
   let allProducts = [...vapeProducts, ...shishaProducts, ...modularProducts];
-  // Add velo products from all dot categories
   for (let d = 3; d <= 7; d++) {
     allProducts = [...allProducts, ...veloByDot[d]];
   }
@@ -704,7 +697,6 @@
   let favorites = JSON.parse(localStorage.getItem('goldFavorites') || '[]');
   let searchQuery = '';
 
-  // Fun Facts
   const funFactsList = [
     "💡 Did you know? Velo was first launched in Sweden! 🇸🇪",
     "🌸 Fun Fact: Shisha dates back hundreds of years in Persia! 🏺",
@@ -716,7 +708,6 @@
   ];
   let factIndex = 0;
 
-  // Helper Functions
   function renderVeloDots(dots) {
     if (!dots) return '';
     let html = '<div class="velo-dots">';
@@ -738,26 +729,21 @@
 
   function getFilteredProducts() {
     let filtered = [...allProducts];
-    
     if (currentFilter !== "All") {
       filtered = filtered.filter(p => p.category === currentFilter);
     }
-    
     if (currentVeloDots !== null) {
       filtered = filtered.filter(p => p.veloDots === currentVeloDots);
     }
-    
     if (searchQuery) {
       filtered = filtered.filter(p => 
         p.name.toLowerCase().includes(searchQuery) || 
         p.flavor.toLowerCase().includes(searchQuery)
       );
     }
-    
     const sortValue = document.getElementById('sortSelect').value;
     const sortFn = getSortFunction(sortValue);
     if (sortFn) filtered.sort(sortFn);
-    
     return filtered;
   }
 
@@ -767,7 +753,6 @@
     const placeholderImg = 'https://placehold.co/300x200/FFD700/1a1a2a?text=Product';
     
     if (currentFilter === 'Velo' || currentVeloDots !== null) {
-      // Velo: Vertical dot sections with horizontal slideshow
       let html = '<div class="velo-dot-title">🍃 VELO BY STRENGTH</div>';
       for (let d = 3; d <= 7; d++) {
         const dotProducts = veloByDot[d] || [];
@@ -796,7 +781,6 @@
       }
       container.innerHTML = html;
     } else {
-      // Vape, Shisha, Modular: Vertical grid
       const title = currentFilter === 'Vape' ? '💨 VAPE COLLECTION' : (currentFilter === 'Shisha' ? '🌙 SHISHA PREMIUM' : (currentFilter === 'Modular' ? '🔧 MODULAR VAPES' : '✨ ALL PRODUCTS'));
       container.innerHTML = `
         <div class="velo-dot-title">${title} (${filtered.length} products)</div>
@@ -836,31 +820,24 @@
     }
   };
 
-  // Filter Functions
   function filterCategory(category) {
     currentFilter = category;
     currentVeloDots = null;
     renderProducts();
   }
+
   function filterVeloDots(dots) {
-    if (dots === null) {
-      currentFilter = "Velo";
-      currentVeloDots = null;
-    } else {
-      currentFilter = "Velo";
-      currentVeloDots = dots;
-    }
+    currentFilter = "Velo";
+    currentVeloDots = dots;
     renderProducts();
   }
 
-  // Search & Sort
   document.getElementById('searchInput').addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase();
     renderProducts();
   });
   document.getElementById('sortSelect').addEventListener('change', () => renderProducts());
 
-  // Cart Functions
   function addToCart(name, price) {
     const existing = cart.find(item => item.name === name);
     if (existing) existing.quantity++;
@@ -886,7 +863,7 @@
           <div>KES ${item.price}</div>
           <div><button onclick="updateQuantity(${idx}, -1)">-</button> ${item.quantity} <button onclick="updateQuantity(${idx}, 1)">+</button></div>
         </div>
-        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button>
+        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444; cursor:pointer;">🗑️</button>
       </div>`;
     }).join('');
     document.getElementById('cartTotal').innerHTML = `Total: KES ${total.toLocaleString()}`;
@@ -894,147 +871,189 @@
 
   window.updateQuantity = (idx, delta) => {
     const item = cart[idx];
-    if (item) { item.quantity += delta; if (item.quantity <= 0) cart.splice(idx, 1); localStorage.setItem('goldCart', JSON.stringify(cart)); updateCartUI(); }
+    if (item) { 
+      item.quantity += delta; 
+      if (item.quantity <= 0) cart.splice(idx, 1); 
+      localStorage.setItem('goldCart', JSON.stringify(cart)); 
+      updateCartUI(); 
+    }
   };
-  window.removeFromCart = (idx) => { cart.splice(idx, 1); localStorage.setItem('goldCart', JSON.stringify(cart)); updateCartUI(); };
 
-  // Favorites
-  function toggleFavorite(name, price) {
-    const existing = favorites.find(f => f.name === name);
-    if (existing) favorites = favorites.filter(f => f.name !== name);
-    else favorites.push({ name, price });
-    localStorage.setItem('goldFavorites', JSON.stringify(favorites));
-    updateFavoritesUI();
-  }
+  window.removeFromCart = (idx) => { 
+    cart.splice(idx, 1); 
+    localStorage.setItem('goldCart', JSON.stringify(cart)); 
+    updateCartUI(); 
+  };
+
   function updateFavoritesUI() {
     const container = document.getElementById('favoritesItems');
-    if (!favorites.length) { container.innerHTML = '<p>No favorites yet.</p>'; return; }
-    container.innerHTML = favorites.map((item, idx) => `<div class="panel-item"><div class="panel-item-info"><div>${item.name}</div><div>KES ${item.price}</div></div><button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444;">🗑️</button></div>`).join('');
+    if (!favorites.length) {
+      container.innerHTML = '<p>No favorites saved yet.</p>';
+      return;
+    }
+    container.innerHTML = favorites.map((item, idx) => `
+      <div class="panel-item">
+        <div class="panel-item-info">
+          <div>${item.name} ❤️</div>
+          <div>KES ${item.price}</div>
+        </div>
+        <button onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})" style="background:none; border:none; color:#FFD700; cursor:pointer;" title="Add to Cart">🛒</button>
+        <button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444; cursor:pointer;" title="Remove">🗑️</button>
+      </div>
+    `).join('');
   }
-  window.removeFavorite = (idx) => { favorites.splice(idx, 1); localStorage.setItem('goldFavorites', JSON.stringify(favorites)); updateFavoritesUI(); };
 
-  // WhatsApp Order
-  function generateWhatsAppMessage() {
-    let msg = "Hello Gold Catalog, I want to order:\n";
-    cart.forEach(item => msg += `- ${item.name} x${item.quantity} = KES ${item.price * item.quantity}\n`);
-    msg += `\nTotal: KES ${cart.reduce((s,i)=> s + i.price * i.quantity,0)}\nDelivery: Ruiru\nThank you! ✨`;
-    return encodeURIComponent(msg);
-  }
-  document.getElementById('checkoutWA').onclick = () => {
-    if (!cart.length) { alert('Your cart is empty.'); return; }
-    window.open(`https://wa.me/254714693283?text=${generateWhatsAppMessage()}`, '_blank');
+  window.removeFavorite = (idx) => {
+    favorites.splice(idx, 1);
+    localStorage.setItem('goldFavorites', JSON.stringify(favorites));
+    updateFavoritesUI();
   };
 
-  // Side Panel Toggles
-  function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
-  function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
-  function openFav() { document.getElementById('favoritesPanel').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
-  function closeFav() { document.getElementById('favoritesPanel').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
-  document.getElementById('openCartBtn').onclick = openCart;
-  document.getElementById('openFavoritesBtn').onclick = openFav;
-  document.getElementById('closeCart').onclick = closeCart;
-  document.getElementById('closeFavorites').onclick = closeFav;
-  document.getElementById('overlay').onclick = () => { closeCart(); closeFav(); };
+  function openModal(name) {
+    const p = allProducts.find(item => item.name === name);
+    if (!p) return;
+    alert(`✨ ${p.name} ✨\nFlavor: ${p.flavor}\nPrice: KES ${p.price}\nRating: ⭐ ${p.rating}/5${p.puffs ? '\nPuffs: ' + p.puffs : ''}`);
+  }
 
-  // Side Button Functions
+  function switchTheme(theme) {
+    document.body.className = theme;
+  }
+
+  let isLargeText = false;
+  function toggleLargeText() {
+    isLargeText = !isLargeText;
+    if (isLargeText) document.body.classList.add('large-text');
+    else document.body.classList.remove('large-text');
+  }
+
+  let isHighContrast = false;
+  function toggleHighContrast() {
+    isHighContrast = !isHighContrast;
+    if (isHighContrast) document.body.classList.add('high-contrast');
+    else document.body.classList.remove('high-contrast');
+  }
+
   function showWeeklyOffers() {
-    alert("🔥 WEEKLY OFFERS:\n• Geek Bar Pulse X: KES 2,500\n• Velo 6 Dots: KES 1,500\n• Tangiers Cane Mint: KES 3,500\n• Smart Modular Vape X: KES 8,500 (limited)");
+    currentFilter = "All";
+    currentVeloDots = null;
+    document.getElementById('searchInput').value = '';
+    searchQuery = '';
+    renderProducts();
+    alert("🔥 Showing Weekly Special Offers across the catalog!");
   }
+
   function showBestSellers() {
-    alert("⭐ BEST SELLERS:\n• Geek Bar Pulse X (4.5⭐)\n• Tangiers Cane Mint (4.9⭐)\n• Velo 6 Dots (4.4⭐)\n• Smart Modular Vape X (4.8⭐)");
+    currentFilter = "All";
+    currentVeloDots = null;
+    document.getElementById('searchInput').value = '';
+    searchQuery = '';
+    allProducts.sort((a, b) => b.rating - a.rating);
+    renderProducts();
+    alert("⭐ Showing Top-Rated Best Sellers!");
   }
+
   function showFunFact() {
     factIndex = (factIndex + 1) % funFactsList.length;
-    document.getElementById('funFacts').innerHTML = funFactsList[factIndex];
-    alert(funFactsList[factIndex]);
+    document.getElementById('funFacts').innerText = funFactsList[factIndex];
   }
 
-  // Suggestion Box
+  let suggestions = [];
   function addSuggestion() {
     const input = document.getElementById('suggestionInput');
-    const text = input.value.trim();
-    if (!text) return;
-    let suggestions = JSON.parse(localStorage.getItem('goldSuggestions') || '[]');
-    suggestions.push({ text, date: new Date().toISOString() });
-    localStorage.setItem('goldSuggestions', JSON.stringify(suggestions.slice(-20)));
+    const val = input.value.trim();
+    if (!val) return;
+    suggestions.push(val);
     input.value = '';
-    renderSuggestions();
+    updateSuggestionsUI();
+    alert("🌸 Thank you for your suggestion!");
   }
-  function renderSuggestions() {
-    const suggestions = JSON.parse(localStorage.getItem('goldSuggestions') || '[]');
-    const container = document.getElementById('suggestionList');
-    if (suggestions.length === 0) { container.innerHTML = '<span class="suggestion-item">✨ No suggestions yet. Be the first!</span>'; return; }
-    container.innerHTML = suggestions.slice(-10).map(s => `<span class="suggestion-item">🌸 ${escapeHtml(s.text)}</span>`).join('');
-  }
-  function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
 
-  // Poll
-  let votes = JSON.parse(localStorage.getItem('goldVotes') || '{"Mango":0,"Mint":0,"Berry":0,"Citrus":0}');
+  function updateSuggestionsUI() {
+    const list = document.getElementById('suggestionList');
+    list.innerHTML = suggestions.map(s => `<div class="suggestion-item">✨ ${s}</div>`).join('');
+  }
+
+  let votes = { Mango: 42, Mint: 38, Berry: 29, Citrus: 21 };
   function vote(flavor) {
-    votes[flavor] = (votes[flavor] || 0) + 1;
-    localStorage.setItem('goldVotes', JSON.stringify(votes));
-    renderVotes();
-  }
-  function renderVotes() {
-    const container = document.getElementById('pollResults');
-    const total = Object.values(votes).reduce((a,b) => a + b, 0);
-    if (total === 0) { container.innerHTML = '<div class="poll-result">🌸 No votes yet. Be the first!</div>'; return; }
-    container.innerHTML = Object.entries(votes).map(([flavor, count]) => `<div class="poll-result">${flavor}: ${count} vote${count !== 1 ? 's' : ''} (${Math.round(count/total*100)}%)</div>`).join('');
+    if (votes[flavor] !== undefined) {
+      votes[flavor]++;
+      updatePollUI();
+      alert(`🗳️ Voted for ${flavor}!`);
+    }
   }
 
-  // Theme & Accessibility
-  function switchTheme(theme) {
-    document.body.classList.remove('gold', 'neon');
-    document.body.classList.add(theme);
-  }
-  function toggleLargeText() { document.body.classList.toggle('large-text'); }
-  function toggleHighContrast() { document.body.classList.toggle('high-contrast'); }
-
-  // Fun Facts Rotator
-  function rotateFunFacts() {
-    setInterval(() => {
-      factIndex = (factIndex + 1) % funFactsList.length;
-      const factEl = document.getElementById('funFacts');
-      if (factEl) factEl.innerHTML = funFactsList[factIndex];
-    }, 7000);
+  function updatePollUI() {
+    const results = document.getElementById('pollResults');
+    results.innerHTML = Object.keys(votes).map(f => `
+      <div class="poll-result">${f}: <b>${votes[f]}</b> votes</div>
+    `).join('');
   }
 
-  // Floating Flowers
-  function spawnFlowers() {
-    setInterval(() => {
-      const flower = document.createElement('div');
-      flower.classList.add('flower');
-      flower.style.left = Math.random() * 100 + '%';
-      flower.style.animationDuration = 8 + Math.random() * 7 + 's';
-      document.body.appendChild(flower);
-      setTimeout(() => flower.remove(), 15000);
-    }, 5000);
-  }
+  // Side Panels & Age Gate Event Listeners
+  const cartPanel = document.getElementById('cartPanel');
+  const favoritesPanel = document.getElementById('favoritesPanel');
+  const overlay = document.getElementById('overlay');
 
-  // Age Gate
-  document.getElementById('confirmAge').onclick = () => {
-    localStorage.setItem('goldAgeVerified', 'true');
+  document.getElementById('openCartBtn').addEventListener('click', () => {
+    cartPanel.classList.add('open');
+    overlay.classList.add('show');
+    updateCartUI();
+  });
+  document.getElementById('closeCart').addEventListener('click', () => {
+    cartPanel.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  document.getElementById('openFavoritesBtn').addEventListener('click', () => {
+    favoritesPanel.classList.add('open');
+    overlay.classList.add('show');
+    updateFavoritesUI();
+  });
+  document.getElementById('closeFavorites').addEventListener('click', () => {
+    favoritesPanel.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  overlay.addEventListener('click', () => {
+    cartPanel.classList.remove('open');
+    favoritesPanel.classList.remove('open');
+    overlay.classList.remove('show');
+  });
+
+  document.getElementById('checkoutWA').addEventListener('click', () => {
+    if (!cart.length) { alert("Your cart is empty!"); return; }
+    let text = "Hello Gold Catalog! I would like to order:%0A";
+    let total = 0;
+    cart.forEach(item => {
+      text += `- ${item.name} x${item.quantity} (KES ${item.price * item.quantity})%0A`;
+      total += item.price * item.quantity;
+    });
+    text += `%0ATotal: KES ${total.toLocaleString()}`;
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  });
+
+  document.getElementById('confirmAge').addEventListener('click', () => {
     document.getElementById('ageGate').style.display = 'none';
-  };
-  document.getElementById('denyAge').onclick = () => {
-    alert('Access denied. You must be 18+ to enter.');
-    window.location.href = 'https://www.google.com';
-  };
-  if (localStorage.getItem('goldAgeVerified') === 'true') document.getElementById('ageGate').style.display = 'none';
+  });
+  document.getElementById('denyAge').addEventListener('click', () => {
+    alert("You must be 18+ to access this catalog.");
+    window.location.reload();
+  });
 
-  // Modal (simple alert for demo)
-  function openModal(productName) {
-    alert(`📦 ${productName}\n\nClick "Add to Cart" to purchase. Full description coming soon!`);
+  // Floating background flowers generator
+  function createFlower() {
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.left = Math.random() * window.innerWidth + 'px';
+    flower.style.animationDuration = (8 + Math.random() * 8) + 's';
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 12000);
   }
+  setInterval(createFlower, 2000);
 
-  // Initialize
+  // Initial load
   renderProducts();
-  updateCartUI();
-  updateFavoritesUI();
-  renderSuggestions();
-  renderVotes();
-  rotateFunFacts();
-  spawnFlowers();
+  updatePollUI();
 </script>
 </body>
 </html>
