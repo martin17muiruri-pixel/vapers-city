@@ -1,17 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIBES ON VIBES — Ruiru Smoke, Vape & Pouch Lounge</title>
+  <title>VIBES ON VIBES — Ruiru Smoke, Vape & Hookah Lounge</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root, [data-theme="dark"] {
-      --bg-image: url('image_26.png');
-      --overlay-shade: rgba(11, 13, 16, 0.96);
-      --tile-bg: rgba(26, 31, 38, 0.35);
-      --modal-bg: rgba(26, 31, 38, 0.9);
-      --border-hairline: rgba(255, 255, 255, 0.09);
+      --overlay-shade: rgba(11, 13, 16, 0.88);
+      --tile-bg: rgba(26, 31, 38, 0.45);
+      --modal-bg: rgba(26, 31, 38, 0.94);
+      --border-hairline: rgba(255, 255, 255, 0.12);
       --accent-gold: #E5A93C;
       --accent-ember: #FF5E3A;
       --accent-emerald: #1FAF63;
@@ -21,12 +21,11 @@
     }
 
     [data-theme="light"] {
-      --bg-image: url('image_26.png');
-      --overlay-shade: rgba(244, 244, 246, 0.95);
-      --tile-bg: rgba(255, 255, 255, 0.45);
-      --modal-bg: rgba(255, 255, 255, 0.95);
-      --border-hairline: rgba(11, 13, 16, 0.12);
-      --accent-gold: #E5A93C;
+      --overlay-shade: rgba(244, 244, 246, 0.82);
+      --tile-bg: rgba(255, 255, 255, 0.65);
+      --modal-bg: rgba(255, 255, 255, 0.96);
+      --border-hairline: rgba(11, 13, 16, 0.14);
+      --accent-gold: #D99B26;
       --accent-ember: #E14E2D;
       --accent-emerald: #169352;
       --text-primary: #111827;
@@ -38,115 +37,142 @@
     h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
 
     body { color: var(--text-primary); min-height: 100vh; overflow-x: hidden; padding-bottom: 70px; transition: color 0.3s ease; position: relative; }
-    .view-background { position: fixed; inset: 0; z-index: -2; background-image: var(--bg-image); background-size: cover; background-position: center; transition: background 0.3s ease; }
+    
+    /* LIVE LOOPING VIDEO BACKGROUND ACROSS ALL VIEWS & THEMES */
+    .view-background-video {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      object-fit: cover; z-index: -2; pointer-events: none;
+    }
     .theme-overlay { position: fixed; inset: 0; z-index: -1; background: var(--overlay-shade); transition: background 0.3s ease; }
 
-    .age-gate { position: fixed; inset: 0; z-index: 2000; background: var(--modal-bg); backdrop-filter: blur(16px); display: flex; justify-content: center; align-items: center; padding: 1.5rem; transition: background 0.3s, visibility 0.3s; }
-    .modal-card, .age-card { background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(12px); border-radius: 20px; max-width: 420px; width: 100%; padding: 2.25rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.5); transition: background 0.3s, border 0.3s, color 0.3s; }
+    .age-gate { position: fixed; inset: 0; z-index: 2000; background: var(--modal-bg); backdrop-filter: blur(16px); display: flex; justify-content: center; align-items: center; padding: 1.5rem; }
+    .modal-card, .age-card { background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(12px); border-radius: 20px; max-width: 420px; width: 100%; padding: 2.25rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
 
     .nicotine-warning { background: #000; color: #D1D5DB; text-align: center; font-size: 0.72rem; font-weight: 600; padding: 6px 1rem; border-bottom: 1px solid var(--border-hairline); letter-spacing: 0.4px; position: relative; z-index: 50; }
     .promo-strip { background: linear-gradient(90deg, #16130D, #221B0F, #16130D); border-bottom: 1px solid rgba(229, 169, 60, 0.25); padding: 7px 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.78rem; position: relative; z-index: 50; }
     .brand-title { font-weight: 700; color: #E5A93C; letter-spacing: 2.5px; font-size: 0.95rem; }
 
+    /* PREVIEW HERO BANNER */
+    .preview-hero { text-align: center; padding: 4.5rem 1rem 3.5rem; position: relative; z-index: 2; border-bottom: 1px solid var(--border-hairline); background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%); }
+    .preview-hero h1 { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; color: var(--text-primary); letter-spacing: 1px; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+    .preview-hero p { font-size: 0.88rem; letter-spacing: 2.5px; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .enter-site-btn { background: var(--accent-gold); color: #0B0D10; border: none; padding: 12px 32px; border-radius: 99px; font-weight: 800; font-size: 0.88rem; letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 0 25px rgba(229, 169, 60, 0.4); transition: transform 0.2s, opacity 0.2s; }
+    .enter-site-btn:hover { transform: scale(1.04); opacity: 0.92; }
+
     header { position: sticky; top: 0; z-index: 100; background: var(--modal-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-hairline); padding: 0.85rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: space-between; align-items: center; }
     .nav-pills { display: flex; background: var(--tile-bg); padding: 4px; border-radius: 12px; border: 1px solid var(--border-hairline); }
-    .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 8px 18px; border-radius: 9px; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+    .nav-btn { background: transparent; border: none; color: var(--text-secondary); padding: 8px 16px; border-radius: 9px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
     .nav-btn.active { background: #E5A93C; color: #000; font-weight: 700; }
     .header-actions { display: flex; align-items: center; gap: 0.65rem; flex: 1; max-width: 480px; justify-content: flex-end; }
-    .search-box { width: 100%; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 9px 14px; border-radius: 10px; font-size: 0.86rem; outline: none; transition: background 0.3s; }
-    .hub-btn { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 9px 14px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer; white-space: nowrap; transition: background 0.3s, border 0.3s; }
-    .hub-btn:hover { border-color: #E5A93C; color: #E5A93C; }
+    .search-box { width: 100%; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 9px 14px; border-radius: 10px; font-size: 0.86rem; outline: none; }
+    .hub-btn { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 9px 14px; border-radius: 10px; font-weight: 600; font-size: 0.85rem; cursor: pointer; white-space: nowrap; }
 
-    .view-section { display: none; padding: 1.75rem 1.5rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .view-section { display: none; padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
     .view-section.active { display: block; }
     .section-heading { font-size: 1.65rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--text-primary); }
     .section-tag { font-size: 0.75rem; color: #E5A93C; background: rgba(229, 169, 60, 0.12); padding: 4px 10px; border-radius: 6px; font-weight: 600; }
 
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 1.15rem; margin-bottom: 2.25rem; }
-    .product-card { background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.35rem; cursor: pointer; transition: 0.25s ease, background 0.3s, border 0.3s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-card:hover { transform: translateY(-3px); border-color: rgba(229, 169, 60, 0.5); background: rgba(26, 31, 38, 0.5); }
-    [data-theme="light"] .product-card:hover { background: rgba(255, 255, 255, 0.5); }
+    .sub-tabs { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .sub-tab-btn { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-secondary); padding: 7px 15px; border-radius: 9px; font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+    .sub-tab-btn.active { background: var(--accent-gold); color: #0B0D10; border-color: var(--accent-gold); }
 
-    .card-meta { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.8px; color: #E5A93C; font-weight: 600; margin-bottom: 4px; }
-    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
-    .card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 12px; }
-    .card-footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--border-hairline); padding-top: 10px; transition: border 0.3s; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 1.25rem; margin-bottom: 2.25rem; }
+    .product-card {
+      background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(14px);
+      border-radius: 18px; padding: 1.35rem; cursor: pointer; transition: 0.25s ease;
+      position: relative; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .product-card:hover { transform: translateY(-3px); border-color: rgba(229, 169, 60, 0.5); }
+
+    .card-icon-preview {
+      width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 10px;
+      background: radial-gradient(circle, rgba(229, 169, 60, 0.25) 0%, rgba(0,0,0,0.5) 80%);
+      border: 1px solid rgba(229, 169, 60, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 800; color: #E5A93C;
+    }
+
+    .card-meta { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.8px; color: #E5A93C; font-weight: 600; margin-bottom: 4px; text-align: center; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); text-align: center; }
+    .card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 12px; text-align: center; }
+    
+    .card-footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--border-hairline); padding-top: 10px; }
     .price-block { display: flex; flex-direction: column; }
-    .was-price { font-size: 0.76rem; color: var(--text-secondary); text-decoration: line-through; }
+    .was-price { font-size: 0.76rem; color: var(--was-price-color); text-decoration: line-through; }
     .now-price { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); }
     .card-inspect { font-size: 0.78rem; color: #E5A93C; font-weight: 600; }
 
-    .dots-row { display: flex; gap: 4px; margin: 4px 0 10px; }
+    .dots-row { display: flex; justify-content: center; gap: 4px; margin: 4px 0 10px; }
     .v-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
-    [data-theme="light"] .v-dot { background: rgba(0,0,0,0.15); }
     .v-dot.filled { background: #E5A93C; }
     .v-dot.max { background: var(--accent-ember); }
 
     .side-cart-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 150; background: #E5A93C; color: #000; border: none; padding: 16px 11px; border-radius: 12px 0 0 12px; font-weight: 700; font-size: 0.82rem; writing-mode: vertical-rl; cursor: pointer; }
 
-    .analytics-panel { background: var(--surface-elevated); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 1rem; margin: 1.25rem 0; transition: background 0.3s; }
+    .analytics-panel { background: var(--tile-bg); border: 1px solid var(--border-hairline); border-radius: 12px; padding: 1rem; margin: 1.25rem 0; }
     .bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 5px; color: var(--text-primary); }
     .bar-track { height: 7px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
-    [data-theme="light"] .bar-track { background: rgba(0,0,0,0.08); }
     .bar-fill { height: 100%; background: #E5A93C; border-radius: 99px; }
 
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(8, 9, 12, 0.86); backdrop-filter: blur(14px); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 1.25rem; }
+    .modal-backdrop.open { display: flex; }
+    .modal-card { background: var(--modal-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(16px); border-radius: 20px; width: 100%; max-width: 520px; padding: 2rem; color: var(--text-primary); }
     .modal-btns { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
     .btn-pick { flex: 2; background: #E5A93C; color: #000; border: none; padding: 13px; border-radius: 10px; font-weight: 700; cursor: pointer; }
-    .btn-back { flex: 1; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 13px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+    .btn-back { flex: 1; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 13px; border-radius: 10px; font-weight: 600; cursor: pointer; }
 
     .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 900; display: none; justify-content: flex-end; }
     .drawer-backdrop.open { display: flex; }
-    .drawer-panel { width: 100%; max-width: 440px; height: 100vh; background: var(--modal-bg); backdrop-filter: blur(16px); border-left: 1px solid var(--border-hairline); padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.15rem; transition: background 0.3s, border 0.3s; }
-    .drawer-header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-hairline); padding-bottom:12px; transition:border 0.3s; }
-    .hub-title { font-size:1.15rem; color: var(--text-primary); }
-
+    .drawer-panel { width: 100%; max-width: 440px; height: 100vh; background: var(--modal-bg); backdrop-filter: blur(16px); border-left: 1px solid var(--border-hairline); padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.15rem; color: var(--text-primary); }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-hairline); padding-bottom: 12px; }
     .d-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-    .d-tab { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-secondary); padding: 6px 11px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: background 0.3s, border 0.3s; }
+    .d-tab { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-secondary); padding: 6px 11px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
     .d-tab.active { background: #E5A93C; color: #000; font-weight: 700; }
     .d-sec { display: none; }
     .d-sec.active { display: block; }
 
-    .hub-item { background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(12px); padding:10px 12px; border-radius:10px; margin-bottom:8px; cursor:pointer; transition: background 0.3s, border 0.3s; }
-    .hub-item:hover { border-color: #E5A93C; background: rgba(26, 31, 38, 0.5); }
-    [data-theme="light"] .hub-item:hover { background: rgba(255, 255, 255, 0.5); }
-    .hub-item-name { font-weight:600; font-size:0.86rem; color: var(--text-primary); }
+    .hub-item { background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(10px); padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; cursor: pointer; }
+    .hub-item:hover { border-color: #E5A93C; }
+    .hub-item-name { font-weight: 600; font-size: 0.86rem; color: var(--text-primary); }
     .hub-item-tag { color: var(--accent-emerald); }
-    .hub-item-price { font-size:0.78rem; color: #E5A93C; margin-top:4px; }
+    .hub-item-price { font-size: 0.78rem; color: #E5A93C; margin-top: 4px; }
 
     .zone-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
-    .zone-pill { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-secondary); padding: 5px 10px; border-radius: 8px; font-size: 0.76rem; cursor: pointer; transition: background 0.3s, border 0.3s; }
+    .zone-pill { background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-secondary); padding: 5px 10px; border-radius: 8px; font-size: 0.76rem; cursor: pointer; }
     .zone-pill.active { border-color: var(--accent-emerald); color: var(--accent-emerald); background: rgba(31, 175, 99, 0.1); }
-    .whatsapp-btn { width: 100%; background: var(--accent-emerald); color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: background 0.3s; }
-    [data-theme="light"] .whatsapp-btn { background: #169352; }
+    .whatsapp-btn { width: 100%; background: var(--accent-emerald); color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
 
-    .theme-controls { margin-top: 1rem; border-top: 1px solid var(--border-hairline); padding-top: 1rem; transition: border 0.3s; }
+    .theme-controls { margin-top: 1rem; border-top: 1px solid var(--border-hairline); padding-top: 1rem; }
     .theme-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
     .theme-btns { display: flex; gap: 8px; }
-    .theme-btn { flex: 1; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 8px; border-radius: 8px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: background 0.3s, border 0.3s; text-align: center; }
+    .theme-btn { flex: 1; background: var(--tile-bg); border: 1px solid var(--border-hairline); color: var(--text-primary); padding: 8px; border-radius: 8px; font-weight: 600; font-size: 0.8rem; cursor: pointer; text-align: center; }
     .theme-btn.active { border-color: #E5A93C; color: #E5A93C; background: rgba(229, 169, 60, 0.1); }
 
-    .trust-section { max-width: 1200px; margin: 2rem auto 0; padding: 2rem 1.5rem; border-top: 1px solid var(--border-hairline); position: relative; z-index: 1; transition: border 0.3s; }
+    .trust-section { max-width: 1200px; margin: 2rem auto 0; padding: 2rem 1.5rem; border-top: 1px solid var(--border-hairline); position: relative; z-index: 1; }
     .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
-    .trust-card { background: var(--tile-bg); border: 1px solid var(--border-hairline); border-radius: 14px; padding: 1.25rem; transition: background 0.3s, border 0.3s; }
+    .trust-card { background: var(--tile-bg); border: 1px solid var(--border-hairline); border-radius: 14px; padding: 1.25rem; }
     .trust-card h4 { font-size: 0.92rem; color: #E5A93C; margin-bottom: 6px; }
     .trust-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; }
-    .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline); font-size: 0.82rem; color: var(--text-secondary); transition: border 0.3s; }
+    .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline); font-size: 0.82rem; color: var(--text-secondary); }
 
-    .dyk-bar { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 200; background: var(--modal-bg); backdrop-filter: blur(14px); border-top: 1px solid var(--border-hairline); padding: 9px 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transition: background 0.3s, border 0.3s; }
+    .dyk-bar { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 200; background: var(--modal-bg); backdrop-filter: blur(14px); border-top: 1px solid var(--border-hairline); padding: 9px 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .dyk-tag { background: rgba(229, 169, 60, 0.15); color: #E5A93C; font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
-    .dyk-msg { font-size: 0.8rem; color: var(--text-secondary); flex: 1; transition: color 0.3s; }
+    .dyk-msg { font-size: 0.8rem; color: var(--text-secondary); flex: 1; }
   </style>
 </head>
 <body data-theme="dark">
 
-  <div class="view-background"></div>
+  <!-- LIVE BACKGROUND VIDEO -->
+  <video class="view-background-video" autoplay muted loop playsinline>
+    <source src="14537842_2160_3840_60fps.mp4" type="video/mp4">
+  </video>
   <div class="theme-overlay"></div>
 
   <div class="age-gate" id="ageGate">
     <div class="age-card">
       <div style="color: #E5A93C; font-weight: 700; letter-spacing: 2px; font-size: 0.78rem; margin-bottom: 8px;">VIBES ON VIBES • RUIRU</div>
       <h2 style="font-size: 1.6rem; margin-bottom: 10px;">Age Verification (18+)</h2>
-      <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.5rem;">Tobacco-free pouches, vapes, and shisha products intended for adults (18+) only. Confirm your age to enter.</p>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.5rem;">Nicotine pouches, vapes, and hookah products intended for adults (18+) only. Confirm your age to enter.</p>
       <button class="btn-pick" style="width: 100%;" onclick="verifyAge()">I am 18+ — Enter Store</button>
     </div>
   </div>
@@ -157,14 +183,21 @@
     <span>📍 Ruiru Hub • Free Delivery in Ruiru on orders KES 2,500+ <span class="promo-code">RUIRUVIBES</span></span>
   </div>
 
-  <header>
+  <!-- PREVIEW HERO BANNER MATCHING THE REFERENCE PICTURE -->
+  <div class="preview-hero" id="previewHero">
+    <h1>VIBES ON VIBES • RUIRU DISPATCH HUB</h1>
+    <p>CURATED CATALOGUE • ENTER THE LOUNGE</p>
+    <button class="enter-site-btn" onclick="scrollToCatalog()">ENTER SITE</button>
+  </div>
+
+  <header id="mainHeader">
     <div class="nav-pills">
       <button class="nav-btn active" onclick="switchPage('velo', this)">Velo</button>
       <button class="nav-btn" onclick="switchPage('vape', this)">Vape</button>
-      <button class="nav-btn" onclick="switchPage('shisha', this)">Shisha</button>
+      <button class="nav-btn" onclick="switchPage('shisha', this)">Shisha & Hookah</button>
     </div>
     <div class="header-actions">
-      <input type="text" id="searchInput" class="search-box" placeholder="Search Velo, Vapes, Shisha..." oninput="handleSearch(this.value)">
+      <input type="text" id="searchInput" class="search-box" placeholder="Search Velo, Vapes, Hookahs..." oninput="handleSearch(this.value)">
       <button class="hub-btn" onclick="openDrawer('offers')">☰ Hub & Theme</button>
     </div>
   </header>
@@ -176,24 +209,36 @@
     <div class="product-grid" id="search-grid"></div>
   </section>
 
+  <!-- VELO PAGE -->
   <section id="velo-page" class="view-section active">
     <div class="section-heading">Velo Pouches <span class="section-tag">2 Dots → 7 Dots Strongest</span></div>
     <div id="velo-catalog"></div>
   </section>
 
+  <!-- VAPE PAGE -->
   <section id="vape-page" class="view-section">
     <div class="section-heading">Vapes & Disposables <span class="section-tag">Discounted Deals</span></div>
     <div class="product-grid" id="vape-grid"></div>
   </section>
 
+  <!-- SHISHA & HOOKAH PAGE WITH SUB-TABS -->
   <section id="shisha-page" class="view-section">
-    <div class="section-heading">Shisha & Charcoal <span class="section-tag">Premium Collection</span></div>
+    <div class="section-heading">Hookah & Shisha Catalogue <span class="section-tag">Pipes, Tobacco, Coals & Accessories</span></div>
+    
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="filterHookahSub('all', this)">All Hookah Items</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('pipe', this)">Hookah Pipes</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('tobacco', this)">Shisha Tobacco (Sizes)</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('coal', this)">Hookah Charcoal</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('accessory', this)">Accessories & Bowls</button>
+    </div>
+
     <div class="product-grid" id="shisha-grid"></div>
   </section>
 
   <div class="trust-section">
     <div class="trust-grid">
-      <div class="trust-card"><h4>✓ Verified Authentic</h4><p>100% genuine sealed pouches, vapes, and shisha sourced directly.</p></div>
+      <div class="trust-card"><h4>✓ Verified Authentic</h4><p>100% genuine sealed pouches, vapes, and hookah gear sourced directly.</p></div>
       <div class="trust-card"><h4>⚡ Ruiru & Thika Road Dispatch</h4><p>Same-day rider delivery across Ruiru, Kahawa, and Nairobi CBD.</p></div>
       <div class="trust-card"><h4>★ VIP Rewards</h4><p>Every order builds your Vibes streak toward exclusive discounts.</p></div>
       <div class="trust-card"><h4>💬 WhatsApp Concierge</h4><p>Direct support and flavor recommendations at 0714693283.</p></div>
@@ -226,7 +271,7 @@
   <div class="drawer-backdrop" id="hubDrawer">
     <div class="drawer-panel">
       <div class="drawer-header">
-        <div><div style="font-size:0.72rem; color:#E5A93C; font-weight:700; letter-spacing:2px;">VIBES ON VIBES • RUIRU</div><h3 class="hub-title">Lounge Hub & Cart</h3></div>
+        <div><div style="font-size:0.72rem; color:#E5A93C; font-weight:700; letter-spacing:2px;">VIBES ON VIBES • RUIRU</div><h3 style="font-size:1.15rem;">Lounge Hub & Cart</h3></div>
         <button onclick="closeDrawer()" style="background:none; border:none; color:var(--text-primary); font-size:1.3rem; cursor:pointer;">✕</button>
       </div>
       <div class="d-tabs"><button class="d-tab active" id="tab-offers" onclick="switchDrawerTab('offers')">Weekly Offers</button><button class="d-tab" id="tab-cart" onclick="switchDrawerTab('cart')">Cart (<span id="drawerCartCount">0</span>)</button></div>
@@ -260,25 +305,39 @@
   </div>
 
   <script>
+    // Complete catalogue with prices calculated at 130 KES per dollar from USD base
     const products = [
-      { id: 'v2', cat: 'velo', dots: 2, name: 'Velo Easy Mint', wasPrice: 650, price: 450, desc: 'Gentle spearmint & cooling menthol.', strength: 35, goodness: 94 },
-      { id: 'v3', cat: 'velo', dots: 3, name: 'Velo Polar Mint', wasPrice: 700, price: 450, desc: 'Crisp Scandinavian peppermint.', strength: 50, goodness: 92 },
-      { id: 'v4', cat: 'velo', dots: 4, name: 'Velo Tropic Breeze', wasPrice: 700, price: 450, desc: 'Mango & passionfruit fusion.', strength: 65, goodness: 96 },
-      { id: 'v5', cat: 'velo', dots: 5, name: 'Velo Ruby Berry', wasPrice: 750, price: 500, desc: 'Red forest berries mix.', strength: 78, goodness: 95 },
-      { id: 'v6', cat: 'velo', dots: 6, name: 'Velo Ice Cool Max', wasPrice: 800, price: 550, desc: 'Sub-zero peppermint blast.', strength: 90, goodness: 97 },
-      { id: 'v7', cat: 'velo', dots: 7, name: 'Velo Mighty Peppermint 7-Dot', wasPrice: 850, price: 600, desc: 'Maximum intensity cooling.', strength: 99, goodness: 98 },
-      { id: 'vp1', cat: 'vape', name: 'Elf Bar BC5000 Watermelon Ice', wasPrice: 2300, price: 2000, desc: '5000 puffs, rechargeable.', strength: 82, goodness: 96 },
-      { id: 'vp2', cat: 'vape', name: 'Lost Mary BM6000 Blueberry Sour', wasPrice: 2600, price: 2300, desc: '6000 puffs, flavor display.', strength: 86, goodness: 95 },
-      { id: 's1', cat: 'shisha', name: 'Adalya Love 66 (250g)', wasPrice: 2300, price: 2000, desc: 'Watermelon, passionfruit mix.', strength: 76, goodness: 99 },
-      { id: 's2', cat: 'shisha', name: 'Al Fakher Double Apple (250g)', wasPrice: 2100, price: 1800, desc: 'Traditional anise & apple blend.', strength: 84, goodness: 95 },
-      { id: 's3', cat: 'shisha', sub: 'coal', name: 'CocoNara Coals (1kg / 72 pcs)', wasPrice: 1300, price: 1100, desc: 'Natural coconut shell coals.', strength: 95, goodness: 97 }
+      // Velo Pouches
+      { id: 'v2', cat: 'velo', dots: 2, icon: '2D', name: 'Velo Easy Mint', wasPrice: 650, price: 450, desc: 'Gentle spearmint & cooling menthol.', strength: 35, goodness: 94 },
+      { id: 'v3', cat: 'velo', dots: 3, icon: '3D', name: 'Velo Polar Mint', wasPrice: 700, price: 450, desc: 'Crisp Scandinavian peppermint.', strength: 50, goodness: 92 },
+      { id: 'v4', cat: 'velo', dots: 4, icon: '4D', name: 'Velo Tropic Breeze', wasPrice: 700, price: 450, desc: 'Mango & passionfruit fusion.', strength: 65, goodness: 96 },
+      { id: 'v5', cat: 'velo', dots: 5, icon: '5D', name: 'Velo Ruby Berry', wasPrice: 750, price: 500, desc: 'Red forest berries mix.', strength: 78, goodness: 95 },
+      { id: 'v6', cat: 'velo', dots: 6, icon: '6D', name: 'Velo Ice Cool Max', wasPrice: 800, price: 550, desc: 'Sub-zero peppermint blast.', strength: 90, goodness: 97 },
+      { id: 'v7', cat: 'velo', dots: 7, icon: '7D', name: 'Velo Mighty Peppermint 7-Dot', wasPrice: 850, price: 600, desc: 'Maximum intensity cooling.', strength: 99, goodness: 98 },
+      
+      // Vapes
+      { id: 'vp1', cat: 'vape', icon: 'VP', name: 'Elf Bar BC5000 Watermelon Ice', wasPrice: 2300, price: 2000, desc: '5000 puffs, rechargeable.', strength: 82, goodness: 96 },
+      { id: 'vp2', cat: 'vape', icon: 'VP', name: 'Lost Mary BM6000 Blueberry Sour', wasPrice: 2600, price: 2300, desc: '6000 puffs, flavor display.', strength: 86, goodness: 95 },
+      
+      // Hookah & Shisha Catalogue (Calculated at 130 KES / USD)
+      { id: 'h1', cat: 'shisha', sub: 'pipe', icon: '💨', name: 'Traditional Brass Hookah Pipe', wasPrice: 7000, price: 5850, desc: 'Authentic single-hose handcrafted hookah ($45.00).', strength: 80, goodness: 95 },
+      { id: 'h2', cat: 'shisha', sub: 'pipe', icon: '💎', name: 'Premium Modern Glass Shisha', wasPrice: 13000, price: 11050, desc: 'Full glass chamber with LED base slot ($85.00).', strength: 90, goodness: 99 },
+      { id: 'h3', cat: 'shisha', sub: 'tobacco', icon: '🍃', name: 'Al Fakher Shisha Tobacco (50g)', wasPrice: 850, price: 650, desc: 'Personal session pack ($5.00).', strength: 70, goodness: 92 },
+      { id: 'h4', cat: 'shisha', sub: 'tobacco', icon: '🍇', name: 'Adalya Love 66 Shisha (250g)', wasPrice: 2400, price: 2080, desc: 'Watermelon, melon & mint blend ($16.00).', strength: 76, goodness: 99 },
+      { id: 'h5', cat: 'shisha', sub: 'tobacco', icon: '🍎', name: 'Al Fakher Double Apple Shisha (1kg)', wasPrice: 8000, price: 7150, desc: 'Master bulk size for lounges ($55.00).', strength: 85, goodness: 97 },
+      { id: 'h6', cat: 'shisha', sub: 'coal', icon: '🔥', name: 'CocoNara Coconut Charcoal (1kg / 72 pcs)', wasPrice: 1450, price: 1170, desc: '100% natural coconut shell cubes ($9.00).', strength: 95, goodness: 97 },
+      { id: 'h7', cat: 'shisha', sub: 'coal', icon: '🔥', name: 'Tom Cococha Gold Cubes (1kg)', wasPrice: 1650, price: 1365, desc: 'Ultra-high density long burning coals ($10.50).', strength: 97, goodness: 96 },
+      { id: 'h8', cat: 'shisha', sub: 'accessory', icon: '🔧', name: 'Premium Silicone Hookah Hose', wasPrice: 1900, price: 1560, desc: 'Washable soft touch hose with aluminum handle ($12.00).', strength: 75, goodness: 94 },
+      { id: 'h9', cat: 'shisha', sub: 'accessory', icon: '🏺', name: 'Clay Phunnel Shisha Bowl', wasPrice: 1400, price: 1105, desc: 'Glazed clay bowl for juice retention ($8.50).', strength: 80, goodness: 95 },
+      { id: 'h10', cat: 'shisha', sub: 'accessory', icon: '⚡', name: 'Heat Management Device (HMD)', wasPrice: 2350, price: 1950, desc: 'Foil-free aluminum heat regulator ($15.00).', strength: 92, goodness: 98 }
     ];
 
-    const facts100 = Array.from({ length: 100 }, (_, i) => `Smoke Culture Archive Insight #${i + 1}: Velo pouches were first pioneered in Sweden in the early 2010s.`);
+    const facts100 = Array.from({ length: 100 }, (_, i) => `Smoke Culture Archive Insight #${i + 1}: Early waterpipes in 16th-century Persia were crafted from hollowed-out coconuts.`);
 
     let cart = [];
     let activeProduct = null;
     let selectedZone = 'Ruiru Town';
+    let currentHookahSub = 'all';
     let factIdx = 0;
     let currentTheme = 'dark';
 
@@ -292,21 +351,56 @@
     if (sessionStorage.getItem('vov_verified')) document.getElementById('ageGate').style.display = 'none';
     function verifyAge() { sessionStorage.setItem('vov_verified', 'true'); document.getElementById('ageGate').style.display = 'none'; }
 
+    function scrollToCatalog() {
+      document.getElementById('mainHeader').scrollIntoView({ behavior: 'smooth' });
+    }
+
     function buildCard(item) {
       let dotsHTML = '';
       if (item.dots) {
         dotsHTML = '<div class="dots-row">' + Array.from({ length: 7 }, (_, i) => `<div class="v-dot ${i < item.dots ? (item.dots >= 6 ? 'max' : 'filled') : ''}"></div>`).join('') + '</div>';
       }
-      return `<div class="product-card" onclick="openModal('${item.id}')"><div><div class="card-meta">${item.cat} ${item.dots ? '• ' + item.dots + ' Dots' : ''}</div><div class="card-title">${item.name}</div>${dotsHTML}<div class="card-desc">${item.desc}</div></div><div class="card-footer"><span class="now-price">KES ${item.price.toLocaleString()}</span><span class="card-inspect">Inspect →</span></div></div>`;
+      return `
+        <div class="product-card" onclick="openModal('${item.id}')">
+          <div>
+            <div class="card-icon-preview">${item.icon || '✨'}</div>
+            <div class="card-meta">${item.cat} ${item.dots ? '• ' + item.dots + ' Dots' : ''} ${item.sub ? '• ' + item.sub : ''}</div>
+            <div class="card-title">${item.name}</div>
+            ${dotsHTML}
+            <div class="card-desc">${item.desc}</div>
+          </div>
+          <div class="card-footer">
+            <div class="price-block">
+              <span class="was-price">Was KES ${item.wasPrice.toLocaleString()}</span>
+              <span class="now-price">Now KES ${item.price.toLocaleString()}</span>
+            </div>
+            <span class="card-inspect">Inspect →</span>
+          </div>
+        </div>
+      `;
     }
 
     function renderCatalog() {
       const velos = products.filter(p => p.cat === 'velo');
       document.getElementById('velo-catalog').innerHTML = `<div class="product-grid">${velos.map(buildCard).join('')}</div>`;
       document.getElementById('vape-grid').innerHTML = products.filter(p => p.cat === 'vape').map(buildCard).join('');
-      document.getElementById('shisha-grid').innerHTML = products.filter(p => p.cat === 'shisha').map(buildCard).join('');
+      renderHookahSubCatalog();
       renderHub();
       updateFact();
+    }
+
+    function filterHookahSub(sub, btn) {
+      currentHookahSub = sub;
+      document.querySelectorAll('#shisha-page .sub-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderHookahSubCatalog();
+    }
+
+    function renderHookahSubCatalog() {
+      const items = currentHookahSub === 'all' 
+        ? products.filter(p => p.cat === 'shisha')
+        : products.filter(p => p.cat === 'shisha' && p.sub === currentHookahSub);
+      document.getElementById('shisha-grid').innerHTML = items.length ? items.map(buildCard).join('') : '<p style="color:var(--text-secondary);">No items found in this category.</p>';
     }
 
     function switchPage(page, btn) {
@@ -359,9 +453,13 @@
     }
 
     function renderHub() {
-      // Offers based on discount amount
       const offers = [...products].sort((a,b) => (b.wasPrice-b.price) - (a.wasPrice-a.price)).slice(0, 3);
-      document.getElementById('offersList').innerHTML = offers.map(o => `<div class="hub-item" onclick="closeDrawer(); openModal('${o.id}')"><div class="hub-item-name">${o.name} <span class="hub-item-tag">KES ${(o.wasPrice-o.price)} Off</span></div><div class="hub-item-price">Now KES ${o.price.toLocaleString()}</div></div>`).join('');
+      document.getElementById('offersList').innerHTML = offers.map(o => `
+        <div class="hub-item" onclick="closeDrawer(); openModal('${o.id}')">
+          <div class="hub-item-name">${o.name} <span class="hub-item-tag">KES ${(o.wasPrice-o.price).toLocaleString()} Off</span></div>
+          <div class="hub-item-price">Now KES ${o.price.toLocaleString()}</div>
+        </div>
+      `).join('');
     }
 
     function updateCartUI() {
@@ -370,7 +468,12 @@
       const list = document.getElementById('cartItemsList');
       if (!cart.length) { list.innerHTML = 'Your cart is empty.'; document.getElementById('cartTotal').innerText = 'Total: KES 0'; return; }
       let total = cart.reduce((s,c) => s+c.price, 0);
-      list.innerHTML = cart.map((item, i) => `<div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-hairline); font-size: 0.88rem; transition: border 0.3s;"><div><div style="font-weight:600; color:var(--text-primary);">${item.name}</div><div style="font-size:0.78rem; color:#E5A93C;">KES ${item.price.toLocaleString()}</div></div><button onclick="removeCart(${i})" style="background:none; border:none; color:var(--accent-ember); cursor:pointer; font-size:0.8rem;">Remove</button></div>`).join('');
+      list.innerHTML = cart.map((item, i) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-hairline); font-size: 0.88rem;">
+          <div><div style="font-weight:600; color:var(--text-primary);">${item.name}</div><div style="font-size:0.78rem; color:#E5A93C;">KES ${item.price.toLocaleString()}</div></div>
+          <button onclick="removeCart(${i})" style="background:none; border:none; color:var(--accent-ember); cursor:pointer; font-size:0.8rem;">Remove</button>
+        </div>
+      `).join('');
       document.getElementById('cartTotal').innerText = `Total: KES ${total.toLocaleString()}`;
     }
     function removeCart(i) { cart.splice(i, 1); updateCartUI(); }
