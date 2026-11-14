@@ -2,1058 +2,804 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Gold Catalog — Vape, Velo & Shisha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIBES ON VIBES — Curated Smoke, Vape & Pouch Lounge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg-obsidian: #0B0D10;
+      --surface-slate: #14181F;
+      --surface-elevated: #1C222B;
+      --border-hairline: rgba(255, 255, 255, 0.09);
+      --accent-gold: #E5A93C;
+      --accent-ember: #FF5E3A;
+      --accent-emerald: #1FAF63;
+      --text-primary: #F4F4F6;
+      --text-secondary: #9CA3AF;
+      --ambient-glow: rgba(229, 169, 60, 0.14);
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      transition: background 0.3s, color 0.3s;
+      background-color: var(--bg-obsidian);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 85px;
     }
 
-    /* Gold Theme (Default) */
-    body.gold {
-      background: #0a0a0a;
-      color: #f0f0f0;
+    /* Live Ambient Video & Architectural Gradient */
+    .bg-ambient {
+      position: fixed; inset: 0; z-index: -2;
+      background: radial-gradient(circle at 50% 0%, var(--ambient-glow) 0%, var(--bg-obsidian) 70%);
+      transition: background 0.7s ease;
     }
-    body.gold .product-card {
-      background: linear-gradient(135deg, #1a1a2a, #16213e);
-      border: 1px solid #FFD700;
-    }
-    body.gold button {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #000;
+    .bg-video {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      z-index: -1; object-fit: cover; opacity: 0.22; filter: grayscale(30%) contrast(110%);
     }
 
-    /* Neon Theme */
-    body.neon {
-      background: #000;
-      color: #0f0;
-    }
-    body.neon .product-card {
-      background: #111;
-      border: 1px solid #0f0;
-      box-shadow: 0 0 10px #0f0;
-    }
-    body.neon .product-name {
-      color: #0f0;
-      text-shadow: 0 0 5px #0f0;
-    }
-    body.neon button {
-      background: #0f0;
-      color: #000;
-    }
-
-    /* Large Text Mode */
-    body.large-text {
-      font-size: 1.2rem;
-    }
-    body.large-text .product-name {
-      font-size: 1.4rem;
-    }
-
-    /* High Contrast Mode */
-    body.high-contrast {
-      background: #000;
-      color: #fff;
-    }
-    body.high-contrast .product-card {
-      background: #222;
-      border: 2px solid #fff;
-    }
-    body.high-contrast button {
-      background: #fff;
-      color: #000;
-    }
-
-    /* Header - Gold Glitter */
-    .gold-header {
-      background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
-      background-size: 200% 200%;
-      animation: glitter 3s linear infinite;
-      text-align: center;
-      padding: 25px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #000;
-      text-shadow: 0 0 10px #fff, 0 0 20px #FFD700;
-    }
-    @keyframes glitter {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Control Bars */
-    .control-bar, .category-bar, .velo-bar {
-      background: rgba(0,0,0,0.8);
-      padding: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      border-bottom: 1px solid #FFD700;
-    }
-    .control-bar input, .control-bar select, .control-bar button,
-    .category-bar button, .velo-bar button {
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 0.85rem;
-      border: none;
-    }
-    .control-bar input {
-      width: 240px;
-      background: #333;
-      color: #fff;
-      border: 1px solid #FFD700;
-    }
-    .control-bar input::placeholder {
-      color: #aaa;
-    }
-
-    /* Side Buttons */
-    .side-buttons {
-      position: fixed;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 150;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .side-btn {
-      background: rgba(0,0,0,0.8);
-      border: 1px solid #FFD700;
-      border-radius: 40px;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: bold;
-      color: #FFD700;
-      text-align: center;
-      transition: all 0.2s;
-    }
-    .side-btn:hover {
-      background: #FFD700;
-      color: #000;
-    }
-
-    /* Velo Vertical Sections */
-    .velo-dot-section {
-      margin-bottom: 30px;
-      border-left: 4px solid #FFD700;
-      padding-left: 20px;
-    }
-    .velo-dot-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #FFD700;
-      margin-bottom: 15px;
-    }
-
-    /* Horizontal Slider for Velo Products */
-    .slider-container {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .slider-track {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px 5px;
-      scrollbar-width: thin;
-    }
-    .slider-track::-webkit-scrollbar {
-      height: 5px;
-    }
-    .slider-track::-webkit-scrollbar-track {
-      background: #333;
-      border-radius: 10px;
-    }
-    .slider-track::-webkit-scrollbar-thumb {
-      background: #FFD700;
-      border-radius: 10px;
-    }
-    .slider-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.7);
-      border: 1px solid #FFD700;
-      color: #FFD700;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      z-index: 10;
-    }
-    .slider-prev { left: -5px; }
-    .slider-next { right: -5px; }
-
-    /* Product Card */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .product-card {
-      background: linear-gradient(135deg, #1a1a2a, #16213e);
-      border-radius: 16px;
-      padding: 16px;
-      text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid #FFD700;
-      cursor: pointer;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(255,215,0,0.4);
-    }
-    .product-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      background: #333;
-    }
-    .product-name {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 10px 0 5px;
-      color: #FFD700;
-    }
-    .product-flavor {
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    .product-price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #FFA500;
-      margin: 8px 0;
-    }
-    .product-old-price {
-      font-size: 0.8rem;
-      color: #ff6666;
-      text-decoration: line-through;
-      margin-right: 8px;
-    }
-    .product-puffs {
-      font-size: 0.75rem;
-      background: rgba(255,215,0,0.2);
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin: 5px 0;
-    }
-    .velo-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin: 8px 0;
-    }
-    .velo-dot {
-      width: 10px;
-      height: 10px;
-      background: #FFD700;
-      border-radius: 50%;
-    }
-    .health-badge {
-      display: inline-block;
-      background: #00cc66;
-      color: #000;
-      font-size: 0.7rem;
-      padding: 3px 8px;
-      border-radius: 20px;
-      margin: 5px;
-    }
-    .trust-badge {
-      display: inline-block;
-      background: #FFD700;
-      color: #000;
-      font-size: 0.7rem;
-      padding: 3px 8px;
-      border-radius: 20px;
-      margin: 5px;
-    }
-    .subscription-options {
-      font-size: 0.7rem;
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px solid #FFD700;
-    }
-    .add-to-cart {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      border: none;
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 12px;
-      transition: transform 0.2s;
-    }
-    .add-to-cart:hover {
-      transform: scale(1.05);
-    }
-
-    /* Fun Facts */
-    .fun-facts {
-      background: #1a1a2a;
-      color: #FFD700;
-      text-align: center;
-      padding: 15px;
-      font-size: 1rem;
-      border-top: 1px solid #FFD700;
-      border-bottom: 1px solid #FFD700;
-    }
-
-    /* Suggestion Box & Polls */
-    .suggestion-box, .poll-box {
-      background: #0f0f1a;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #FFD700;
-    }
-    .suggestion-box input, .poll-box select {
-      padding: 8px 15px;
-      width: 260px;
-      border-radius: 40px;
-      border: 1px solid #FFD700;
-      background: #333;
-      color: #fff;
-      margin-right: 10px;
-    }
-    .suggestion-box button, .poll-box button {
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .suggestion-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-    .suggestion-item {
-      background: #333;
-      padding: 5px 15px;
-      border-radius: 40px;
-      font-size: 0.8rem;
-    }
-    .poll-results {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-    .poll-result {
-      background: #333;
-      padding: 5px 15px;
-      border-radius: 40px;
-    }
-
-    /* Settings Bar */
-    .settings-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px;
-      background: rgba(0,0,0,0.7);
-      border-top: 1px solid #FFD700;
-    }
-    .settings-bar button {
-      padding: 8px 18px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* Cart & Favorites Sidebar */
-    .side-panel {
-      position: fixed;
-      top: 0;
-      right: -350px;
-      width: 320px;
-      height: 100%;
-      background: #1a1a2a;
-      border-left: 3px solid #FFD700;
-      z-index: 1000;
-      padding: 20px;
-      transition: right 0.3s;
-      overflow-y: auto;
-      backdrop-filter: blur(10px);
-    }
-    .side-panel.open { right: 0; }
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 2px solid #FFD700;
-      padding-bottom: 10px;
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
-    .panel-close {
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      cursor: pointer;
-      color: #FFD700;
-    }
-    .panel-item {
-      display: flex;
-      gap: 10px;
-      border-bottom: 1px solid #FFD700;
-      padding: 10px 0;
-    }
-    .panel-item-info { flex: 1; }
-    .panel-total {
-      text-align: right;
-      font-weight: bold;
-      margin-top: 15px;
-      font-size: 1.1rem;
-    }
-    .panel-wa-btn {
-      background: #25D366;
-      border: none;
-      padding: 10px;
-      border-radius: 40px;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 15px;
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .overlay.show { opacity: 1; pointer-events: all; }
-
-    /* Age Gate */
-    .age-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.98);
-      backdrop-filter: blur(20px);
-      z-index: 10001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* 18+ VIP Entrance Gate */
+    .age-gate {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(11, 13, 16, 0.96); backdrop-filter: blur(20px);
+      display: flex; justify-content: center; align-items: center; padding: 1.5rem;
     }
     .age-card {
-      background: #1a1a2a;
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 300px;
-      text-align: center;
-      border: 3px solid #FFD700;
-    }
-    .age-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .btn-yes { background: #FFD700; padding: 10px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; color: #000; }
-    .btn-no { background: #444; padding: 10px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; color: white; }
-
-    .floating-buttons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .float-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border: none;
-      background: #FFD700;
-      color: #000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      border-radius: 20px; max-width: 420px; width: 100%; padding: 2.25rem; text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.65);
     }
 
-    /* Floating Flowers */
-    .flower {
-      position: fixed;
-      bottom: -50px;
-      width: 30px;
-      height: 30px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12,2C8,4 4,8 4,12c0,4 8,12 8,12s8-8 8-12c0-4-4-8-8-10z"/></svg>');
-      background-size: cover;
-      animation: floatUp 12s linear infinite;
-      pointer-events: none;
-      z-index: 999;
+    /* Top Brand Bar & Live Dispatch Ticker */
+    .top-brand-strip {
+      background: #08090C; border-bottom: 1px solid var(--border-hairline);
+      padding: 8px 1.5rem; display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    .brand-title { font-weight: 700; color: var(--accent-gold); letter-spacing: 2.5px; }
+    .live-pulse { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 0.72rem; letter-spacing: 0.5px; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-emerald); box-shadow: 0 0 8px var(--accent-emerald); }
+
+    /* Main Sticky Navigation */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11, 13, 16, 0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 0.85rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.85rem;
+      justify-content: space-between; align-items: center;
     }
 
-    @media (max-width: 768px) {
-      .product-grid { padding: 15px; gap: 15px; }
-      .gold-header { font-size: 1.3rem; padding: 15px; }
-      .control-bar input { width: 160px; }
-      .side-panel { width: 280px; }
+    .nav-pills {
+      display: flex; background: var(--surface-slate); padding: 4px;
+      border-radius: 12px; border: 1px solid var(--border-hairline);
     }
+    .nav-btn {
+      background: transparent; border: none; color: var(--text-secondary);
+      padding: 8px 18px; border-radius: 9px; font-weight: 600; font-size: 0.88rem;
+      cursor: pointer; transition: 0.25s ease;
+    }
+    .nav-btn.active { background: var(--accent-gold); color: #0B0D10; font-weight: 700; }
+
+    .header-actions { display: flex; align-items: center; gap: 0.65rem; flex: 1; max-width: 480px; justify-content: flex-end; }
+    .search-box {
+      width: 100%; background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      color: var(--text-primary); padding: 9px 14px; border-radius: 10px; font-size: 0.86rem; outline: none;
+    }
+    .search-box:focus { border-color: var(--accent-gold); }
+
+    .hub-btn {
+      background: var(--surface-elevated); border: 1px solid var(--border-hairline);
+      color: var(--text-primary); padding: 9px 14px; border-radius: 10px;
+      font-weight: 600; font-size: 0.85rem; cursor: pointer; white-space: nowrap; transition: 0.2s;
+    }
+    .hub-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+    /* Vibe Mood Strip */
+    .vibe-strip {
+      max-width: 1200px; margin: 1.25rem auto 0; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .mood-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mood-btn {
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      color: var(--text-secondary); padding: 6px 14px; border-radius: 99px;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    .mood-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(229, 169, 60, 0.1); }
+
+    /* Side Cart Trigger */
+    .side-cart-tab {
+      position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 150;
+      background: var(--accent-gold); color: #0B0D10; border: none;
+      padding: 16px 11px; border-radius: 12px 0 0 12px;
+      font-weight: 700; font-size: 0.82rem; writing-mode: vertical-rl;
+      cursor: pointer; box-shadow: -6px 0 24px rgba(0,0,0,0.45); letter-spacing: 1px;
+    }
+
+    /* Sections & Product Grid */
+    .view-section { display: none; padding: 1.75rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .view-section.active { display: block; animation: fadeSlide 0.35s ease; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-heading { font-size: 1.65rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
+    .section-tag { font-size: 0.75rem; color: var(--accent-gold); background: rgba(229, 169, 60, 0.12); padding: 4px 10px; border-radius: 6px; font-weight: 600; }
+
+    .sub-tabs { display: flex; gap: 0.65rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .sub-tab-btn {
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      color: var(--text-secondary); padding: 8px 18px; border-radius: 10px;
+      font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    }
+    .sub-tab-btn.active { background: var(--surface-elevated); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .product-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+      gap: 1.15rem; margin-bottom: 2.25rem;
+    }
+
+    .product-card {
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      border-radius: 16px; padding: 1.35rem; cursor: pointer; transition: 0.25s ease;
+      position: relative; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .product-card:hover { transform: translateY(-3px); border-color: rgba(229, 169, 60, 0.5); background: var(--surface-elevated); }
+
+    .offer-ribbon {
+      position: absolute; top: 12px; right: 12px; font-size: 0.68rem; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px; background: rgba(255, 94, 58, 0.16);
+      color: var(--accent-ember); border: 1px solid rgba(255, 94, 58, 0.35);
+    }
+
+    .card-meta { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--accent-gold); font-weight: 600; margin-bottom: 4px; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
+    .card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 12px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-hairline); padding-top: 10px; }
+    .card-price { font-weight: 700; font-size: 1rem; color: var(--text-primary); }
+    .card-inspect { font-size: 0.78rem; color: var(--accent-gold); font-weight: 600; }
+
+    /* Velo Strength Dots */
+    .dots-row { display: flex; gap: 4px; margin: 4px 0 10px; }
+    .v-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+    .v-dot.filled { background: var(--accent-gold); }
+    .v-dot.max { background: var(--accent-ember); }
+
+    /* Shisha Custom Mixologist Box */
+    .mixologist-box {
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem;
+    }
+    .mix-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    select.mix-select {
+      width: 100%; background: var(--bg-obsidian); border: 1px solid var(--border-hairline);
+      color: var(--text-primary); padding: 10px; border-radius: 10px; font-size: 0.85rem;
+    }
+
+    /* Product Analytics Modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(8, 9, 12, 0.86); backdrop-filter: blur(14px);
+      z-index: 1000; display: none; justify-content: center; align-items: center; padding: 1.25rem;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      background: var(--surface-slate); border: 1px solid var(--border-hairline);
+      border-radius: 20px; width: 100%; max-width: 520px; padding: 2rem;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65);
+    }
+    .analytics-panel {
+      background: var(--bg-obsidian); border: 1px solid var(--border-hairline);
+      border-radius: 12px; padding: 1rem; margin: 1.25rem 0;
+    }
+    .bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 5px; }
+    .bar-track { height: 7px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+    .bar-fill { height: 100%; background: var(--accent-gold); border-radius: 99px; }
+
+    .modal-btns { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .btn-pick {
+      flex: 2; background: var(--accent-gold); color: #0B0D10; border: none;
+      padding: 13px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+    }
+    .btn-back {
+      flex: 1; background: var(--surface-elevated); border: 1px solid var(--border-hairline);
+      color: var(--text-primary); padding: 13px; border-radius: 10px; font-weight: 600; cursor: pointer;
+    }
+
+    /* Slide-Over Hub & Cart Drawer */
+    .drawer-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 900;
+      display: none; justify-content: flex-end;
+    }
+    .drawer-backdrop.open { display: flex; }
+    .drawer-panel {
+      width: 100%; max-width: 440px; height: 100vh; background: var(--surface-slate);
+      border-left: 1px solid var(--border-hairline); padding: 1.5rem; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 1.15rem;
+    }
+    .d-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .d-tab {
+      background: var(--bg-obsidian); border: 1px solid var(--border-hairline);
+      color: var(--text-secondary); padding: 6px 11px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+    }
+    .d-tab.active { background: var(--accent-gold); color: #0B0D10; font-weight: 700; }
+    .d-sec { display: none; }
+    .d-sec.active { display: block; }
+
+    .zone-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+    .zone-pill {
+      background: var(--bg-obsidian); border: 1px solid var(--border-hairline);
+      color: var(--text-secondary); padding: 5px 10px; border-radius: 8px; font-size: 0.76rem; cursor: pointer;
+    }
+    .zone-pill.active { border-color: var(--accent-emerald); color: var(--accent-emerald); }
+
+    .whatsapp-btn {
+      width: 100%; background: var(--accent-emerald); color: #fff; border: none;
+      padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+
+    /* Bottom Did You Know Footer */
+    .dyk-bar {
+      position: fixed; bottom: 0; left: 0; width: 100%; z-index: 200;
+      background: rgba(11, 13, 16, 0.95); backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border-hairline); padding: 10px 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .dyk-tag { background: rgba(229, 169, 60, 0.15); color: var(--accent-gold); font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+    .dyk-msg { font-size: 0.82rem; color: var(--text-secondary); flex: 1; }
   </style>
 </head>
-<body class="gold">
+<body>
 
-<div class="age-modal" id="ageGate">
-  <div class="age-card">
-    <h2 style="color:#FFD700;">🔞 AGE VERIFICATION</h2>
-    <p>You must be 18+ to enter.<br>Nicotine products are for adults only.</p>
-    <div class="age-buttons">
-      <button class="btn-yes" id="confirmAge">✓ I AM 18+</button>
-      <button class="btn-no" id="denyAge">✗ UNDER 18</button>
+  <!-- 18+ VIP Age Gate -->
+  <div class="age-gate" id="ageGate">
+    <div class="age-card">
+      <div style="color: var(--accent-gold); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 8px;">VIBES ON VIBES</div>
+      <h2 style="font-size: 1.65rem; margin-bottom: 10px;">Age Verification (18+)</h2>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">
+        Nicotine pouches, vapes, and shisha products are strictly for adults aged 18 and older. Confirm your age to enter the lounge.
+      </p>
+      <button class="btn-pick" style="width: 100%;" onclick="verifyAge()">I am 18+ — Enter Lounge</button>
     </div>
   </div>
-</div>
 
-<div class="gold-header">🌸🔥 GOLD CATALOG — VAPE, VELO & SHISHA 🔥🌸</div>
+  <!-- Live Looping Background -->
+  <div class="bg-ambient" id="bgAmbient"></div>
+  <video class="bg-video" id="bgVideo" autoplay muted loop playsinline>
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-smoke-rising-on-a-black-background-41443-large.mp4" type="video/mp4">
+  </video>
 
-<!-- Side Buttons -->
-<div class="side-buttons">
-  <div class="side-btn" onclick="showWeeklyOffers()">🔥 WEEKLY OFFERS</div>
-  <div class="side-btn" onclick="showBestSellers()">⭐ BEST SELLERS</div>
-  <div class="side-btn" onclick="showFunFact()">💡 DID YOU KNOW?</div>
-</div>
+  <!-- Topmost Seller Label & Live Dispatch Pulse -->
+  <div class="top-brand-strip">
+    <span class="brand-title">VIBES ON VIBES</span>
+    <span class="live-pulse"><span class="pulse-dot"></span> Express Rider Dispatch Active</span>
+  </div>
 
-<!-- Search & Sort -->
-<div class="control-bar">
-  <input type="text" id="searchInput" placeholder="🔍 Search 136+ products...">
-  <select id="sortSelect">
-    <option value="">✨ Sort by</option>
-    <option value="price-asc">💰 Price ↑</option>
-    <option value="price-desc">💰 Price ↓</option>
-    <option value="puffs-asc">💨 Puffs ↑</option>
-    <option value="puffs-desc">💨 Puffs ↓</option>
-    <option value="name-asc">🔤 Name A-Z</option>
-  </select>
-</div>
+  <!-- Sticky Header -->
+  <header>
+    <div class="nav-pills">
+      <button class="nav-btn active" onclick="switchPage('velo', this)">Velo</button>
+      <button class="nav-btn" onclick="switchPage('vape', this)">Vape</button>
+      <button class="nav-btn" onclick="switchPage('shisha', this)">Shisha</button>
+    </div>
 
-<!-- Category Buttons -->
-<div class="category-bar">
-  <button onclick="filterCategory('All')">🌍 All Products</button>
-  <button onclick="filterCategory('Vape')">💨 Vape</button>
-  <button onclick="filterCategory('Velo')">🍃 Velo</button>
-  <button onclick="filterCategory('Shisha')">🌙 Shisha</button>
-  <button onclick="filterCategory('Modular')">🔧 Modular Vapes</button>
-</div>
+    <div class="header-actions">
+      <input type="text" id="searchInput" class="search-box" placeholder="Search pouches, vapes, shisha..." oninput="handleSearch(this.value)">
+      <button class="hub-btn" onclick="openDrawer('offers')">☰ Menu & Hub</button>
+    </div>
+  </header>
 
-<!-- Velo Dot Filters -->
-<div class="velo-bar">
-  <button onclick="filterVeloDots(3)">🌸 3 Dots (Mild)</button>
-  <button onclick="filterVeloDots(4)">🌼 4 Dots (Medium)</button>
-  <button onclick="filterVeloDots(5)">🌺 5 Dots (Strong)</button>
-  <button onclick="filterVeloDots(6)">🌻 6 Dots (X-Strong)</button>
-  <button onclick="filterVeloDots(7)">🌹 7 Dots (Max)</button>
-  <button onclick="filterVeloDots(null)">✨ All Velo</button>
-</div>
+  <!-- Vibe Mood Filter Bar -->
+  <div class="vibe-strip">
+    <div class="mood-pills">
+      <button class="mood-btn active" onclick="setMood('all', this)">All Vibes</button>
+      <button class="mood-btn" onclick="setMood('chill', this)">🌙 Chill Session</button>
+      <button class="mood-btn" onclick="setMood('party', this)">🔥 Party & High Energy</button>
+      <button class="mood-btn" onclick="setMood('ice', this)">❄️ Ultra Ice Rush</button>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--text-secondary);">VIP Streak: <strong style="color: var(--accent-gold);" id="streakLabel">0/5 Orders</strong></div>
+  </div>
 
-<!-- Main Content -->
-<div class="main-container" style="max-width:1400px; margin:0 auto; padding:20px;">
-  <div id="productsContainer"></div>
-</div>
+  <!-- Side Cart Tab -->
+  <button class="side-cart-tab" onclick="openDrawer('cart')">CART (<span id="sideCartCount">0</span>)</button>
 
-<!-- Fun Facts -->
-<div class="fun-facts" id="funFacts">💡 Did you know? Velo was first launched in Sweden! 🇸🇪</div>
+  <!-- SEARCH VIEW -->
+  <section id="search-page" class="view-section">
+    <div class="section-heading">Search Results <span class="section-tag" id="searchCount">0</span></div>
+    <div class="product-grid" id="search-grid"></div>
+  </section>
 
-<!-- Suggestion Box -->
-<div class="suggestion-box">
-  <h3>🌸 Suggestion Box 🌸</h3>
-  <input type="text" id="suggestionInput" placeholder="💡 Share your idea...">
-  <button onclick="addSuggestion()">🌼 Submit</button>
-  <div class="suggestion-list" id="suggestionList"></div>
-</div>
-
-<!-- Flavor Poll -->
-<div class="poll-box">
-  <h3>📊 FLAVOR POLL</h3>
-  <button onclick="vote('Mango')">🥭 Mango</button>
-  <button onclick="vote('Mint')">🌿 Mint</button>
-  <button onclick="vote('Berry')">🍓 Berry</button>
-  <button onclick="vote('Citrus')">🍊 Citrus</button>
-  <div class="poll-results" id="pollResults"></div>
-</div>
-
-<!-- Settings -->
-<div class="settings-bar">
-  <button onclick="switchTheme('gold')">✨ Gold Mode</button>
-  <button onclick="switchTheme('neon')">🌌 Neon Mode</button>
-  <button onclick="toggleLargeText()">🔍 Large Text</button>
-  <button onclick="toggleHighContrast()">🌑 High Contrast</button>
-</div>
-
-<!-- Cart & Favorites Sidebars -->
-<div class="overlay" id="overlay"></div>
-<div class="side-panel" id="cartPanel">
-  <div class="panel-header"><span>🛒 CART</span><button class="panel-close" id="closeCart">✕</button></div>
-  <div id="cartItems"></div>
-  <div class="panel-total" id="cartTotal">Total: KES 0</div>
-  <button class="panel-wa-btn" id="checkoutWA">📲 ORDER</button>
-</div>
-<div class="side-panel" id="favoritesPanel">
-  <div class="panel-header"><span>❤️ FAVORITES</span><button class="panel-close" id="closeFavorites">✕</button></div>
-  <div id="favoritesItems"></div>
-</div>
-
-<div class="floating-buttons">
-  <button id="openCartBtn" class="float-btn">🛒</button>
-  <button id="openFavoritesBtn" class="float-btn">❤️</button>
-</div>
-
-<script>
-  // ==================== COMPLETE PRODUCT DATABASE ====================
-  const vapeProducts = [
-    { id: 1, name: "Geek Bar Pulse X", flavor: "Mexico Mango Ice", price: 2500, oldPrice: 3200, puffs: 15000, category: "Vape", img: "", rating: 4.5, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 2, name: "Elf Bar Ultra 9000", flavor: "Blue Razz Lemonade", price: 2200, oldPrice: 2800, puffs: 9000, category: "Vape", img: "", rating: 4.2, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 3, name: "Vozol Star 9000", flavor: "Strawberry Watermelon", price: 2600, oldPrice: 3300, puffs: 9000, category: "Vape", img: "", rating: 4.3, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 4, name: "HQD Cuvie Plus", flavor: "Mango Ice", price: 1300, oldPrice: 1800, puffs: 1200, category: "Vape", img: "", rating: 4.0, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 5, name: "RandM Tornado 7000", flavor: "Grape Soda", price: 2400, oldPrice: 3100, puffs: 7000, category: "Vape", img: "", rating: 4.1, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 6, name: "Bang King 12000", flavor: "Blueberry Bubblegum", price: 3200, oldPrice: 4200, puffs: 12000, category: "Vape", img: "", rating: 4.7, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 7, name: "Maskking High GT", flavor: "Cool Mint", price: 1800, oldPrice: 2300, puffs: 2500, category: "Vape", img: "", rating: 4.0, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 8, name: "Vapes Bars Ghost", flavor: "Pink Lemonade", price: 2100, oldPrice: 2700, puffs: 3500, category: "Vape", img: "", rating: 4.2, health_label: "", trust_badge: "✅ Certified", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false }
-  ];
-
-  const veloByDot = {
-    3: [
-      { id: 101, name: "Velo 3 Dots Mint", flavor: "Fresh Mint", price: 1200, oldPrice: 1600, category: "Velo", veloDots: 3, img: "", rating: 4.0, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null },
-      { id: 102, name: "Velo 3 Dots Citrus", flavor: "Citrus Burst", price: 1200, oldPrice: 1600, category: "Velo", veloDots: 3, img: "", rating: 4.1, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null }
-    ],
-    4: [
-      { id: 103, name: "Velo 4 Dots Mint", flavor: "Cool Mint", price: 1300, oldPrice: 1700, category: "Velo", veloDots: 4, img: "", rating: 4.2, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null }
-    ],
-    5: [
-      { id: 104, name: "Velo 5 Dots Mint", flavor: "Extreme Freeze", price: 1400, oldPrice: 1900, category: "Velo", veloDots: 5, img: "", rating: 4.3, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null }
-    ],
-    6: [
-      { id: 105, name: "Velo 6 Dots Mint", flavor: "Max Freeze", price: 1500, oldPrice: 2100, category: "Velo", veloDots: 6, img: "", rating: 4.4, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null }
-    ],
-    7: [
-      { id: 106, name: "Velo 7 Dots Mint", flavor: "Ultra Freeze", price: 1600, oldPrice: 2200, category: "Velo", veloDots: 7, img: "", rating: 4.5, health_label: "🌱 Tobacco-free", trust_badge: "✅ Certified", subscription: null }
-    ]
-  };
-
-  const shishaProducts = [
-    { id: 201, name: "Tangiers Cane Mint", flavor: "Intense Peppermint", price: 3500, oldPrice: 4500, category: "Shisha", img: "", rating: 4.9, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 202, name: "Adalya Love 66", flavor: "Passionfruit, Watermelon, Mint", price: 2800, oldPrice: 3600, category: "Shisha", img: "", rating: 4.7, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false },
-    { id: 203, name: "Al Fakher Grape Mint", flavor: "Sweet Grape + Mint", price: 2200, oldPrice: 2800, category: "Shisha", img: "", rating: 4.5, health_label: "", trust_badge: "✅ Premium", subscription: null, battery_tracking: false, puff_counter: false, flavor_mixing: false }
-  ];
-
-  const modularProducts = [
-    { id: 301, name: "Smart Modular Vape X", flavor: "Customizable", price: 9500, oldPrice: 12500, category: "Modular", img: "", rating: 4.8, health_label: "🌱 Nicotine-free option", trust_badge: "✅ Certified Legit", subscription: { basic: "Monthly flavor refills", premium: "Device + refills + app", elite: "Exclusive herbal blends" }, battery_tracking: true, puff_counter: true, flavor_mixing: true, customizable_system: true },
-    { id: 302, name: "VapeCore Modular Pro", flavor: "Mix Your Own", price: 8500, oldPrice: 11000, category: "Modular", img: "", rating: 4.6, health_label: "🌱 Herbal compatible", trust_badge: "✅ Certified", subscription: { basic: "Refill pack monthly", premium: "Device + app + refills", elite: "Premium blends" }, battery_tracking: true, puff_counter: true, flavor_mixing: true, customizable_system: true }
-  ];
-
-  let allProducts = [...vapeProducts, ...shishaProducts, ...modularProducts];
-  for (let d = 3; d <= 7; d++) {
-    allProducts = [...allProducts, ...veloByDot[d]];
-  }
-
-  // State
-  let currentFilter = "All";
-  let currentVeloDots = null;
-  let cart = JSON.parse(localStorage.getItem('goldCart') || '[]');
-  let favorites = JSON.parse(localStorage.getItem('goldFavorites') || '[]');
-  let searchQuery = '';
-
-  const funFactsList = [
-    "💡 Did you know? Velo was first launched in Sweden! 🇸🇪",
-    "🌸 Fun Fact: Shisha dates back hundreds of years in Persia! 🏺",
-    "🔥 Vape devices can reach up to 15,000 puffs! 💨",
-    "🍃 Velo dots indicate strength levels from mild to max! 💪",
-    "✨ Modular vapes let you mix your own flavors! 🍓🍍",
-    "🌙 Tangiers Cane Mint is aged for 2 weeks before sale!",
-    "💨 The world record for largest vape cloud is 33.8 meters cubed!"
-  ];
-  let factIndex = 0;
-
-  function renderVeloDots(dots) {
-    if (!dots) return '';
-    let html = '<div class="velo-dots">';
-    for (let i = 0; i < dots; i++) html += '<div class="velo-dot"></div>';
-    html += '</div>';
-    return html;
-  }
-
-  function getSortFunction(sortValue) {
-    switch(sortValue) {
-      case 'price-asc': return (a,b) => a.price - b.price;
-      case 'price-desc': return (a,b) => b.price - a.price;
-      case 'puffs-asc': return (a,b) => (a.puffs || 0) - (b.puffs || 0);
-      case 'puffs-desc': return (a,b) => (b.puffs || 0) - (a.puffs || 0);
-      case 'name-asc': return (a,b) => a.name.localeCompare(b.name);
-      default: return null;
-    }
-  }
-
-  function getFilteredProducts() {
-    let filtered = [...allProducts];
-    if (currentFilter !== "All") {
-      filtered = filtered.filter(p => p.category === currentFilter);
-    }
-    if (currentVeloDots !== null) {
-      filtered = filtered.filter(p => p.veloDots === currentVeloDots);
-    }
-    if (searchQuery) {
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(searchQuery) || 
-        p.flavor.toLowerCase().includes(searchQuery)
-      );
-    }
-    const sortValue = document.getElementById('sortSelect').value;
-    const sortFn = getSortFunction(sortValue);
-    if (sortFn) filtered.sort(sortFn);
-    return filtered;
-  }
-
-  function renderProducts() {
-    const container = document.getElementById('productsContainer');
-    const filtered = getFilteredProducts();
-    const placeholderImg = 'https://placehold.co/300x200/FFD700/1a1a2a?text=Product';
+  <!-- PAGE 1: VELO (2 to 7 Dots) -->
+  <section id="velo-page" class="view-section active">
+    <div class="section-heading">Velo Nicotine Pouches <span class="section-tag">2 Dots → 7 Dots Strongest</span></div>
     
-    if (currentFilter === 'Velo' || currentVeloDots !== null) {
-      let html = '<div class="velo-dot-title">🍃 VELO BY STRENGTH</div>';
-      for (let d = 3; d <= 7; d++) {
-        const dotProducts = veloByDot[d] || [];
-        if (dotProducts.length > 0 && (currentVeloDots === null || currentVeloDots === d)) {
-          html += `<div class="velo-dot-section">
-            <div class="velo-dot-title">✨ ${d} DOTS — ${d === 3 ? "MILD" : d === 4 ? "MEDIUM" : d === 5 ? "STRONG" : d === 6 ? "EXTRA STRONG" : "MAXIMUM"} ✨</div>
-            <div class="slider-container">
-              <div class="slider-nav slider-prev" onclick="slideHorizontal('veloSlider${d}', -1)">‹</div>
-              <div class="slider-nav slider-next" onclick="slideHorizontal('veloSlider${d}', 1)">›</div>
-              <div class="slider-track" id="veloSlider${d}">
-                ${[...dotProducts, ...dotProducts].map(p => `
-                  <div class="product-card" style="min-width:220px; width:220px; flex-shrink:0;" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
-                    <img src="${p.img || placeholderImg}" alt="${p.name}">
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-flavor">${p.flavor}</div>
-                    ${renderVeloDots(p.veloDots)}
-                    <div class="product-price">KES ${p.price.toLocaleString()}</div>
-                    <div class="rating">⭐ ${p.rating} / 5</div>
-                    <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒 Add to Cart</button>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>`;
-        }
+    <h3 style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.75rem;">2 & 3 Dots — Smooth & Balanced</h3>
+    <div class="product-grid" id="velo-2-3"></div>
+
+    <h3 style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.75rem;">4 Dots — Medium Strength</h3>
+    <div class="product-grid" id="velo-4"></div>
+
+    <h3 style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 0.75rem;">5 Dots — Strong Kick</h3>
+    <div class="product-grid" id="velo-5"></div>
+
+    <h3 style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 0.75rem;">6 Dots — Extra Strong</h3>
+    <div class="product-grid" id="velo-6"></div>
+
+    <h3 style="font-size: 0.95rem; color: var(--accent-ember); margin-bottom: 0.75rem;">7 Dots — Maximum Intensity (Strongest)</h3>
+    <div class="product-grid" id="velo-7"></div>
+  </section>
+
+  <!-- PAGE 2: VAPE -->
+  <section id="vape-page" class="view-section">
+    <div class="section-heading">Vape Hardware & Disposables <span class="section-tag">Select Category</span></div>
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="filterVapes('all', this)">All Vapes</button>
+      <button class="sub-tab-btn" onclick="filterVapes('disposable', this)">Disposables</button>
+      <button class="sub-tab-btn" onclick="filterVapes('pod', this)">Pod Kits</button>
+      <button class="sub-tab-btn" onclick="filterVapes('mod', this)">Cloud Mods</button>
+    </div>
+    <div class="product-grid" id="vape-grid"></div>
+  </section>
+
+  <!-- PAGE 3: SHISHA -->
+  <section id="shisha-page" class="view-section">
+    <div class="section-heading">Shisha Lounge <span class="section-tag">Coal & Flavours</span></div>
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="filterShisha('flavour', this)">Flavours</button>
+      <button class="sub-tab-btn" onclick="filterShisha('coal', this)">Coals</button>
+    </div>
+
+    <!-- Custom Shisha Mixologist -->
+    <div class="mixologist-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <div>
+          <span class="section-tag">Custom Bowl Builder</span>
+          <h3 style="margin-top:6px; font-size:1.15rem;">Shisha Mixologist Lab</h3>
+        </div>
+        <button class="btn-pick" style="padding: 9px 18px; font-size: 0.85rem;" onclick="addCustomMix()">Add Mix to Cart — KES 2,100</button>
+      </div>
+      <div class="mix-controls">
+        <div>
+          <label style="font-size:0.78rem; color:var(--text-secondary);">Base Flavour (60%)</label>
+          <select id="mixBase" class="mix-select">
+            <option value="Adalya Love 66">Adalya Love 66</option>
+            <option value="Al Fakher Double Apple">Al Fakher Double Apple</option>
+            <option value="Al Fakher Grape Mint">Al Fakher Grape Mint</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.78rem; color:var(--text-secondary);">Topper Note (40%)</label>
+          <select id="mixTop" class="mix-select">
+            <option value="Super Mint Frost">Super Mint Frost</option>
+            <option value="Watermelon Chill">Watermelon Chill</option>
+            <option value="Blueberry Mist">Blueberry Mist</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid" id="shisha-grid"></div>
+  </section>
+
+  <!-- PRODUCT ANALYTICS MODAL -->
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal-card">
+      <div class="card-meta" id="modalMeta">CATEGORY</div>
+      <h2 id="modalTitle" style="font-size: 1.65rem; margin-bottom: 8px;">Product Name</h2>
+      <p id="modalDesc" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55;"></p>
+
+      <div class="analytics-panel">
+        <div class="bar-label"><span>Strength & Potency Rating</span><span id="mStrengthVal">90%</span></div>
+        <div class="bar-track"><div class="bar-fill" id="mStrengthBar" style="width: 90%;"></div></div>
+
+        <div class="bar-label"><span>Goodness & Customer Satisfaction</span><span id="mGoodnessVal">95%</span></div>
+        <div class="bar-track" style="margin-bottom: 0;"><div class="bar-fill" id="mGoodnessBar" style="width: 95%; background: var(--accent-emerald);"></div></div>
+      </div>
+
+      <div id="modalPrice" style="font-size: 1.35rem; font-weight: 700; color: var(--accent-gold);">KES 0</div>
+
+      <div class="modal-btns">
+        <button class="btn-pick" onclick="pickProduct()">Pick</button>
+        <button class="btn-back" onclick="closeModal()">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUB & SETTINGS DRAWER -->
+  <div class="drawer-backdrop" id="hubDrawer">
+    <div class="drawer-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-hairline); padding-bottom:12px;">
+        <div>
+          <div style="font-size:0.72rem; color:var(--accent-gold); font-weight:700; letter-spacing:2px;">VIBES ON VIBES</div>
+          <h3 style="font-size:1.15rem;">Lounge Hub & Cart</h3>
+        </div>
+        <button onclick="closeDrawer()" style="background:none; border:none; color:var(--text-primary); font-size:1.3rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div class="d-tabs">
+        <button class="d-tab active" id="tab-offers" onclick="switchDrawerTab('offers')">Weekly Offers</button>
+        <button class="d-tab" id="tab-bestsellers" onclick="switchDrawerTab('bestsellers')">Best Sellers</button>
+        <button class="d-tab" id="tab-poll" onclick="switchDrawerTab('poll')">Flavor Poll</button>
+        <button class="d-tab" id="tab-cart" onclick="switchDrawerTab('cart')">Cart (<span id="drawerCartCount">0</span>)</button>
+      </div>
+
+      <!-- Weekly Offers -->
+      <div class="d-sec active" id="sec-offers">
+        <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;">Curated weekly bundles and active discounts.</p>
+        <div id="offersList"></div>
+      </div>
+
+      <!-- Best Sellers -->
+      <div class="d-sec" id="sec-bestsellers">
+        <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;">Highest-rated picks across Vibes on Vibes.</p>
+        <div id="bestSellersList"></div>
+      </div>
+
+      <!-- Live Flavor Poll -->
+      <div class="d-sec" id="sec-poll">
+        <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;">Tap a flavor profile to cast your vote.</p>
+        <div id="pollList"></div>
+      </div>
+
+      <!-- Cart & WhatsApp Order -->
+      <div class="d-sec" id="sec-cart">
+        <div id="cartItemsList" style="font-size:0.88rem; color:var(--text-secondary);">Your cart is currently empty.</div>
+        <div id="cartTotal" style="font-size:1.15rem; font-weight:700; color:var(--accent-gold); margin:14px 0 8px;">Total: KES 0</div>
+
+        <label style="font-size:0.78rem; color:var(--text-secondary);">Select Express Delivery Zone:</label>
+        <div class="zone-pills">
+          <button class="zone-pill active" onclick="selectZone('Ruiru / Kahawa (25-35 mins)', this)">Ruiru / Kahawa</button>
+          <button class="zone-pill" onclick="selectZone('Thika Rd / Roysambu (30-45 mins)', this)">Thika Rd</button>
+          <button class="zone-pill" onclick="selectZone('Nairobi CBD (40-55 mins)', this)">CBD</button>
+          <button class="zone-pill" onclick="selectZone('Westlands / Kilimani (45-60 mins)', this)">Westlands</button>
+        </div>
+
+        <input type="text" id="customLandmark" class="search-box" placeholder="Exact building / landmark..." style="margin-bottom:12px;">
+
+        <button class="whatsapp-btn" onclick="checkoutWhatsApp()">
+          <span>Order on WhatsApp (0714693283)</span>
+        </button>
+
+        <button class="btn-back" style="width:100%; margin-top:8px; font-size:0.82rem;" onclick="shareGroupCart()">
+          Share Cart with Friends
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom 100 Facts Bar -->
+  <div class="dyk-bar">
+    <span class="dyk-tag" id="dykTag">DID YOU KNOW? #1/100</span>
+    <div class="dyk-msg" id="dykMsg">Loading...</div>
+    <button class="hub-btn" style="padding:5px 10px; font-size:0.75rem;" onclick="nextFact()">Next</button>
+  </div>
+
+  <script>
+    const products = [
+      { id: 'v2', cat: 'velo', dots: 2, mood: 'chill', name: 'Velo Easy Mint', price: 400, desc: 'Gentle spearmint and cooling menthol crafted for smooth everyday comfort.', strength: 35, goodness: 94, best: false, offer: null },
+      { id: 'v3', cat: 'velo', dots: 3, mood: 'chill', name: 'Velo Polar Mint', price: 400, desc: 'Crisp Scandinavian peppermint with balanced medium nicotine delivery.', strength: 50, goodness: 92, best: false, offer: '3 Cans @ KES 1,100' },
+      { id: 'v4', cat: 'velo', dots: 4, mood: 'chill', name: 'Velo Tropic Breeze', price: 400, desc: 'Mandarin, passionfruit, and mango fusion with a clean, sweet finish.', strength: 65, goodness: 96, best: true, offer: null },
+      { id: 'v5', cat: 'velo', dots: 5, mood: 'party', name: 'Velo Ruby Berry', price: 420, desc: 'Bold red forest berries with a steady, strong nicotine release.', strength: 78, goodness: 95, best: true, offer: null },
+      { id: 'v6', cat: 'velo', dots: 6, mood: 'ice', name: 'Velo Ice Cool Max', price: 450, desc: 'Sub-zero peppermint blast engineered for experienced pouch enthusiasts.', strength: 90, goodness: 97, best: true, offer: '10% Off This Week' },
+      { id: 'v7', cat: 'velo', dots: 7, mood: 'ice', name: 'Velo Mighty Peppermint 7-Dot', price: 480, desc: 'Maximum intensity 7-dot powerhouse delivering peak cooling frost and potency.', strength: 99, goodness: 98, best: true, offer: 'VIP Drop' },
+
+      { id: 'vp1', cat: 'vape', sub: 'disposable', mood: 'party', name: 'Elf Bar BC5000 Watermelon Ice', price: 2200, desc: '5000 puffs rechargeable dual-coil disposable with chilled watermelon notes.', strength: 82, goodness: 96, best: true, offer: 'Save KES 200' },
+      { id: 'vp2', cat: 'vape', sub: 'disposable', mood: 'ice', name: 'Lost Mary BM6000 Blueberry Sour', price: 2500, desc: '6000 puffs of wild blueberry with real-time e-liquid level display.', strength: 86, goodness: 95, best: true, offer: null },
+      { id: 'vp3', cat: 'vape', sub: 'pod', mood: 'chill', name: 'Vaporesso XROS 3 Nano', price: 4200, desc: 'Precision airflow pod system with COREX flavor-boosting mesh technology.', strength: 88, goodness: 97, best: false, offer: 'Free 30ml Salt Nic' },
+      { id: 'vp4', cat: 'vape', sub: 'mod', mood: 'party', name: 'GeekVape Aegis Legend 2', price: 6800, desc: 'Rugged dual-battery cloud mod with adjustable wattage control.', strength: 98, goodness: 94, best: false, offer: null },
+
+      { id: 's1', cat: 'shisha', sub: 'flavour', mood: 'party', name: 'Adalya Love 66 (250g)', price: 2000, desc: 'Iconic blend of watermelon, honeydew, passionfruit, and cooling mint.', strength: 76, goodness: 99, best: true, offer: 'Top Seller' },
+      { id: 's2', cat: 'shisha', sub: 'flavour', mood: 'chill', name: 'Al Fakher Double Apple (250g)', price: 1800, desc: 'Traditional sweet red and green apple with rich aromatic anise.', strength: 84, goodness: 95, best: true, offer: null },
+      { id: 's3', cat: 'shisha', sub: 'coal', mood: 'chill', name: 'CocoNara Coconut Coals (72 pcs)', price: 1100, desc: '100% natural coconut shell cubes. Odorless burn lasting 3x longer.', strength: 95, goodness: 97, best: true, offer: 'Bundle Save 15%' },
+      { id: 's4', cat: 'shisha', sub: 'coal', mood: 'party', name: 'Tom Cococha Gold Cubes (1kg)', price: 1300, desc: 'High-density Indonesian coconut charcoal for dense lounge clouds.', strength: 97, goodness: 96, best: false, offer: null }
+    ];
+
+    const facts100 = Array.from({ length: 100 }, (_, i) => {
+      const base = [
+        "Velo nicotine pouches originated in Sweden, where smoke-free oral alternatives have evolved for over two centuries.",
+        "The word 'Hookah' comes from the Arabic 'Huqqa', referring to the water vessel used to cool smoke.",
+        "Modern e-cigarettes were invented in 2003 by pharmacist Hon Lik as a cleaner alternative to combustible tobacco.",
+        "Natural coconut shell charcoal produces up to 80% less ash than wood charcoal and adds zero smoky aftertaste.",
+        "In 16th-century Persia, the earliest waterpipes were crafted from hollowed-out coconuts and bamboo.",
+        "White nicotine pouches contain zero tobacco leaf—using pharmaceutical-grade nicotine infused into plant fibers.",
+        "Menthol activates TRPM8 cold receptors in the mouth, creating a crisp cooling sensation without lowering temperature.",
+        "Sub-ohm vape coils (under 1.0 ohm) heat faster at higher wattages to produce denser vapor and richer flavor.",
+        "Vegetable Glycerin (VG) creates dense clouds, while Propylene Glycol (PG) carries sharp flavor notes.",
+        "Velo's 2-to-7 dot scale allows instant visual selection from gentle smoothness to maximum intensity."
+      ];
+      return `${base[i % base.length]} (Fact #${i + 1})`;
+    });
+
+    let cart = [];
+    let activeProduct = null;
+    let selectedZone = 'Ruiru / Kahawa (25-35 mins)';
+    let factIdx = 0;
+    let currentMood = 'all';
+    let pollData = [
+      { name: 'Peppermint & Ice Cool', votes: 148 },
+      { name: 'Watermelon & Love 66', votes: 124 },
+      { name: 'Ruby Berry & Blueberry', votes: 91 },
+      { name: 'Double Apple & Citrus', votes: 67 }
+    ];
+
+    // Age Gate
+    if (sessionStorage.getItem('vov_verified')) document.getElementById('ageGate').style.display = 'none';
+    function verifyAge() {
+      sessionStorage.setItem('vov_verified', 'true');
+      document.getElementById('ageGate').style.display = 'none';
+    }
+
+    // Streak Counter
+    function updateStreakUI() {
+      const count = parseInt(localStorage.getItem('vov_orders') || '0', 10);
+      document.getElementById('streakLabel').innerText = `${count % 5}/5 Orders`;
+    }
+
+    // Card Builder
+    function buildCard(item) {
+      let dotsHTML = '';
+      if (item.dots) {
+        dotsHTML = '<div class="dots-row">' + Array.from({ length: 7 }, (_, i) =>
+          `<div class="v-dot ${i < item.dots ? (item.dots >= 6 ? 'max' : 'filled') : ''}"></div>`
+        ).join('') + '</div>';
       }
-      container.innerHTML = html;
-    } else {
-      const title = currentFilter === 'Vape' ? '💨 VAPE COLLECTION' : (currentFilter === 'Shisha' ? '🌙 SHISHA PREMIUM' : (currentFilter === 'Modular' ? '🔧 MODULAR VAPES' : '✨ ALL PRODUCTS'));
-      container.innerHTML = `
-        <div class="velo-dot-title">${title} (${filtered.length} products)</div>
-        <div class="product-grid">
-          ${filtered.map(p => `
-            <div class="product-card" onclick="openModal('${p.name.replace(/'/g, "\\'")}')">
-              <img src="${p.img || placeholderImg}" alt="${p.name}">
-              <div class="product-name">${p.name}</div>
-              <div class="product-flavor">${p.flavor}</div>
-              ${p.veloDots ? renderVeloDots(p.veloDots) : ''}
-              <div class="product-price">
-                ${p.oldPrice ? `<span class="product-old-price">KES ${p.oldPrice.toLocaleString()}</span>` : ''}
-                KES ${p.price.toLocaleString()}
-              </div>
-              ${p.puffs ? `<div class="product-puffs">💨 ${p.puffs.toLocaleString()} puffs</div>` : ''}
-              <div class="rating">⭐ ${p.rating} / 5</div>
-              ${p.health_label ? `<div class="health-badge">${p.health_label}</div>` : ''}
-              ${p.trust_badge ? `<div class="trust-badge">${p.trust_badge}</div>` : ''}
-              ${p.battery_tracking ? `<div class="health-badge">🔋 Battery Tracking</div>` : ''}
-              ${p.puff_counter ? `<div class="health-badge">💨 Puff Counter</div>` : ''}
-              ${p.flavor_mixing ? `<div class="health-badge">🍓 Flavor Mixing</div>` : ''}
-              ${p.subscription ? `<div class="subscription-options">📦 Subscribe: ${p.subscription.basic} | ${p.subscription.premium}</div>` : ''}
-              <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒 Add to Cart</button>
-            </div>
-          `).join('')}
+      const offer = item.offer ? `<span class="offer-ribbon">${item.offer}</span>` : '';
+      return `
+        <div class="product-card" onclick="openModal('${item.id}')">
+          ${offer}
+          <div>
+            <div class="card-meta">${item.cat} ${item.dots ? '• ' + item.dots + ' Dots' : ''}</div>
+            <div class="card-title">${item.name}</div>
+            ${dotsHTML}
+            <div class="card-desc">${item.desc}</div>
+          </div>
+          <div class="card-footer">
+            <span class="card-price">KES ${item.price.toLocaleString()}</span>
+            <span class="card-inspect">Inspect →</span>
+          </div>
         </div>
       `;
     }
-  }
 
-  window.slideHorizontal = (sliderId, direction) => {
-    const slider = document.getElementById(sliderId);
-    if (slider) {
-      slider.scrollLeft += direction * 240;
-      if (slider.scrollLeft <= 0 && direction === -1) slider.scrollLeft = slider.scrollWidth / 2;
-      if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth && direction === 1) slider.scrollLeft = slider.scrollWidth / 2 - slider.clientWidth;
+    function filterByMood(list) {
+      return currentMood === 'all' ? list : list.filter(i => i.mood === currentMood);
     }
-  };
 
-  function filterCategory(category) {
-    currentFilter = category;
-    currentVeloDots = null;
-    renderProducts();
-  }
+    function renderCatalog() {
+      const velos = filterByMood(products.filter(p => p.cat === 'velo'));
+      document.getElementById('velo-2-3').innerHTML = velos.filter(p => p.dots <= 3).map(buildCard).join('');
+      document.getElementById('velo-4').innerHTML = velos.filter(p => p.dots === 4).map(buildCard).join('');
+      document.getElementById('velo-5').innerHTML = velos.filter(p => p.dots === 5).map(buildCard).join('');
+      document.getElementById('velo-6').innerHTML = velos.filter(p => p.dots === 6).map(buildCard).join('');
+      document.getElementById('velo-7').innerHTML = velos.filter(p => p.dots === 7).map(buildCard).join('');
 
-  function filterVeloDots(dots) {
-    currentFilter = "Velo";
-    currentVeloDots = dots;
-    renderProducts();
-  }
-
-  document.getElementById('searchInput').addEventListener('input', (e) => {
-    searchQuery = e.target.value.toLowerCase();
-    renderProducts();
-  });
-  document.getElementById('sortSelect').addEventListener('change', () => renderProducts());
-
-  function addToCart(name, price) {
-    const existing = cart.find(item => item.name === name);
-    if (existing) existing.quantity++;
-    else cart.push({ name, price, quantity: 1 });
-    localStorage.setItem('goldCart', JSON.stringify(cart));
-    updateCartUI();
-    alert(`✨ ${name} added to cart! ✨`);
-  }
-
-  function updateCartUI() {
-    const container = document.getElementById('cartItems');
-    if (!cart.length) {
-      container.innerHTML = '<p>Your cart is empty.</p>';
-      document.getElementById('cartTotal').innerHTML = 'Total: KES 0';
-      return;
+      filterVapes('all');
+      filterShisha('flavour');
+      renderHub();
+      renderPoll();
+      updateStreakUI();
+      updateFact();
     }
-    let total = 0;
-    container.innerHTML = cart.map((item, idx) => {
-      total += item.price * item.quantity;
-      return `<div class="panel-item">
-        <div class="panel-item-info">
-          <div>${item.name} ✨</div>
-          <div>KES ${item.price}</div>
-          <div><button onclick="updateQuantity(${idx}, -1)">-</button> ${item.quantity} <button onclick="updateQuantity(${idx}, 1)">+</button></div>
+
+    function setMood(mood, btn) {
+      currentMood = mood;
+      document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const amb = document.getElementById('bgAmbient');
+      if (mood === 'chill') amb.style.background = 'radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.14) 0%, #0B0D10 70%)';
+      else if (mood === 'party') amb.style.background = 'radial-gradient(circle at 50% 0%, rgba(255, 94, 58, 0.18) 0%, #0B0D10 70%)';
+      else if (mood === 'ice') amb.style.background = 'radial-gradient(circle at 50% 0%, rgba(167, 243, 208, 0.14) 0%, #0B0D10 70%)';
+      else amb.style.background = 'radial-gradient(circle at 50% 0%, rgba(229, 169, 60, 0.14) 0%, #0B0D10 70%)';
+      renderCatalog();
+    }
+
+    function switchPage(page, btn) {
+      document.getElementById('searchInput').value = '';
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`${page}-page`).classList.add('active');
+      if (btn) btn.classList.add('active');
+
+      const vid = document.getElementById('bgVideo');
+      if (page === 'velo') vid.src = 'https://assets.mixkit.co/videos/preview/mixkit-smoke-rising-on-a-black-background-41443-large.mp4';
+      else if (page === 'vape') vid.src = 'https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-lights-41887-large.mp4';
+      else vid.src = 'https://assets.mixkit.co/videos/preview/mixkit-red-smoke-on-a-black-background-41444-large.mp4';
+    }
+
+    function filterVapes(type, btn) {
+      if (btn) {
+        document.querySelectorAll('#vape-page .sub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      const list = filterByMood(products.filter(p => p.cat === 'vape' && (type === 'all' || p.sub === type)));
+      document.getElementById('vape-grid').innerHTML = list.map(buildCard).join('');
+    }
+
+    function filterShisha(type, btn) {
+      if (btn) {
+        document.querySelectorAll('#shisha-page .sub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      const list = filterByMood(products.filter(p => p.cat === 'shisha' && p.sub === type));
+      document.getElementById('shisha-grid').innerHTML = list.map(buildCard).join('');
+    }
+
+    function addCustomMix() {
+      const base = document.getElementById('mixBase').value;
+      const top = document.getElementById('mixTop').value;
+      cart.push({ id: `mix-${base}-${top}`, name: `Custom Shisha Mix (60% ${base} + 40% ${top})`, price: 2100 });
+      updateCartUI();
+      openDrawer('cart');
+    }
+
+    function handleSearch(val) {
+      const q = val.trim().toLowerCase();
+      if (!q) {
+        const active = document.querySelector('.nav-btn.active');
+        switchPage(active ? active.innerText.toLowerCase() : 'velo', active);
+        return;
+      }
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('search-page').classList.add('active');
+      const matches = products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+      document.getElementById('searchCount').innerText = `${matches.length} found`;
+      document.getElementById('search-grid').innerHTML = matches.map(buildCard).join('');
+    }
+
+    // Modal
+    function openModal(id) {
+      activeProduct = products.find(p => p.id === id);
+      if (!activeProduct) return;
+      document.getElementById('modalMeta').innerText = `${activeProduct.cat.toUpperCase()} ${activeProduct.dots ? '• ' + activeProduct.dots + ' DOTS' : ''}`;
+      document.getElementById('modalTitle').innerText = activeProduct.name;
+      document.getElementById('modalDesc').innerText = activeProduct.desc;
+      document.getElementById('modalPrice').innerText = `KES ${activeProduct.price.toLocaleString()}`;
+      document.getElementById('mStrengthVal').innerText = `${activeProduct.strength}%`;
+      document.getElementById('mStrengthBar').style.width = `${activeProduct.strength}%`;
+      document.getElementById('mGoodnessVal').innerText = `${activeProduct.goodness}%`;
+      document.getElementById('mGoodnessBar').style.width = `${activeProduct.goodness}%`;
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    function closeModal() { document.getElementById('productModal').classList.remove('open'); }
+
+    function pickProduct() {
+      if (!activeProduct) return;
+      cart.push(activeProduct);
+      updateCartUI();
+      closeModal();
+      openDrawer('cart');
+    }
+
+    // Drawer & Cart
+    function openDrawer(tab) {
+      document.getElementById('hubDrawer').classList.add('open');
+      switchDrawerTab(tab);
+    }
+    function closeDrawer() { document.getElementById('hubDrawer').classList.remove('open'); }
+
+    function switchDrawerTab(tab) {
+      document.querySelectorAll('.d-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.d-sec').forEach(s => s.classList.remove('active'));
+      document.getElementById(`tab-${tab}`).classList.add('active');
+      document.getElementById(`sec-${tab}`).classList.add('active');
+    }
+
+    function selectZone(zone, btn) {
+      selectedZone = zone;
+      document.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function renderHub() {
+      document.getElementById('offersList').innerHTML = products.filter(p => p.offer).map(o => `
+        <div style="background:var(--bg-obsidian); border:1px solid var(--border-hairline); padding:12px; border-radius:10px; margin-bottom:8px; cursor:pointer;" onclick="closeDrawer(); openModal('${o.id}')">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.9rem;">
+            <span>${o.name}</span><span style="color:var(--accent-ember);">${o.offer}</span>
+          </div>
+          <div style="font-size:0.8rem; color:var(--accent-gold); margin-top:4px;">KES ${o.price.toLocaleString()}</div>
         </div>
-        <button onclick="removeFromCart(${idx})" style="background:none; border:none; color:#ff4444; cursor:pointer;">🗑️</button>
-      </div>`;
-    }).join('');
-    document.getElementById('cartTotal').innerHTML = `Total: KES ${total.toLocaleString()}`;
-  }
+      `).join('');
 
-  window.updateQuantity = (idx, delta) => {
-    const item = cart[idx];
-    if (item) { 
-      item.quantity += delta; 
-      if (item.quantity <= 0) cart.splice(idx, 1); 
-      localStorage.setItem('goldCart', JSON.stringify(cart)); 
-      updateCartUI(); 
-    }
-  };
-
-  window.removeFromCart = (idx) => { 
-    cart.splice(idx, 1); 
-    localStorage.setItem('goldCart', JSON.stringify(cart)); 
-    updateCartUI(); 
-  };
-
-  function updateFavoritesUI() {
-    const container = document.getElementById('favoritesItems');
-    if (!favorites.length) {
-      container.innerHTML = '<p>No favorites saved yet.</p>';
-      return;
-    }
-    container.innerHTML = favorites.map((item, idx) => `
-      <div class="panel-item">
-        <div class="panel-item-info">
-          <div>${item.name} ❤️</div>
-          <div>KES ${item.price}</div>
+      document.getElementById('bestSellersList').innerHTML = products.filter(p => p.best).map(b => `
+        <div style="background:var(--bg-obsidian); border:1px solid var(--border-hairline); padding:12px; border-radius:10px; margin-bottom:8px; cursor:pointer;" onclick="closeDrawer(); openModal('${b.id}')">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.9rem;">
+            <span>${b.name}</span><span style="color:var(--accent-emerald);">${b.goodness}% Rated</span>
+          </div>
+          <div style="font-size:0.8rem; color:var(--accent-gold); margin-top:4px;">KES ${b.price.toLocaleString()}</div>
         </div>
-        <button onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})" style="background:none; border:none; color:#FFD700; cursor:pointer;" title="Add to Cart">🛒</button>
-        <button onclick="removeFavorite(${idx})" style="background:none; border:none; color:#ff4444; cursor:pointer;" title="Remove">🗑️</button>
-      </div>
-    `).join('');
-  }
-
-  window.removeFavorite = (idx) => {
-    favorites.splice(idx, 1);
-    localStorage.setItem('goldFavorites', JSON.stringify(favorites));
-    updateFavoritesUI();
-  };
-
-  function openModal(name) {
-    const p = allProducts.find(item => item.name === name);
-    if (!p) return;
-    alert(`✨ ${p.name} ✨\nFlavor: ${p.flavor}\nPrice: KES ${p.price}\nRating: ⭐ ${p.rating}/5${p.puffs ? '\nPuffs: ' + p.puffs : ''}`);
-  }
-
-  function switchTheme(theme) {
-    document.body.className = theme;
-  }
-
-  let isLargeText = false;
-  function toggleLargeText() {
-    isLargeText = !isLargeText;
-    if (isLargeText) document.body.classList.add('large-text');
-    else document.body.classList.remove('large-text');
-  }
-
-  let isHighContrast = false;
-  function toggleHighContrast() {
-    isHighContrast = !isHighContrast;
-    if (isHighContrast) document.body.classList.add('high-contrast');
-    else document.body.classList.remove('high-contrast');
-  }
-
-  function showWeeklyOffers() {
-    currentFilter = "All";
-    currentVeloDots = null;
-    document.getElementById('searchInput').value = '';
-    searchQuery = '';
-    renderProducts();
-    alert("🔥 Showing Weekly Special Offers across the catalog!");
-  }
-
-  function showBestSellers() {
-    currentFilter = "All";
-    currentVeloDots = null;
-    document.getElementById('searchInput').value = '';
-    searchQuery = '';
-    allProducts.sort((a, b) => b.rating - a.rating);
-    renderProducts();
-    alert("⭐ Showing Top-Rated Best Sellers!");
-  }
-
-  function showFunFact() {
-    factIndex = (factIndex + 1) % funFactsList.length;
-    document.getElementById('funFacts').innerText = funFactsList[factIndex];
-  }
-
-  let suggestions = [];
-  function addSuggestion() {
-    const input = document.getElementById('suggestionInput');
-    const val = input.value.trim();
-    if (!val) return;
-    suggestions.push(val);
-    input.value = '';
-    updateSuggestionsUI();
-    alert("🌸 Thank you for your suggestion!");
-  }
-
-  function updateSuggestionsUI() {
-    const list = document.getElementById('suggestionList');
-    list.innerHTML = suggestions.map(s => `<div class="suggestion-item">✨ ${s}</div>`).join('');
-  }
-
-  let votes = { Mango: 42, Mint: 38, Berry: 29, Citrus: 21 };
-  function vote(flavor) {
-    if (votes[flavor] !== undefined) {
-      votes[flavor]++;
-      updatePollUI();
-      alert(`🗳️ Voted for ${flavor}!`);
+      `).join('');
     }
-  }
 
-  function updatePollUI() {
-    const results = document.getElementById('pollResults');
-    results.innerHTML = Object.keys(votes).map(f => `
-      <div class="poll-result">${f}: <b>${votes[f]}</b> votes</div>
-    `).join('');
-  }
+    function renderPoll() {
+      const total = pollData.reduce((s, i) => s + i.votes, 0);
+      document.getElementById('pollList').innerHTML = pollData.map((item, idx) => {
+        const pct = Math.round((item.votes / total) * 100);
+        return `
+          <div style="background:var(--bg-obsidian); border:1px solid var(--border-hairline); padding:10px 12px; border-radius:10px; margin-bottom:8px; cursor:pointer;" onclick="votePoll(${idx})">
+            <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-weight:600;">
+              <span>${item.name}</span><span style="color:var(--accent-gold);">${pct}%</span>
+            </div>
+            <div style="height:5px; background:rgba(255,255,255,0.08); border-radius:99px; margin-top:6px;">
+              <div style="height:100%; width:${pct}%; background:var(--accent-gold); border-radius:99px;"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
 
-  // Side Panels & Age Gate Event Listeners
-  const cartPanel = document.getElementById('cartPanel');
-  const favoritesPanel = document.getElementById('favoritesPanel');
-  const overlay = document.getElementById('overlay');
+    function votePoll(idx) { pollData[idx].votes++; renderPoll(); }
 
-  document.getElementById('openCartBtn').addEventListener('click', () => {
-    cartPanel.classList.add('open');
-    overlay.classList.add('show');
-    updateCartUI();
-  });
-  document.getElementById('closeCart').addEventListener('click', () => {
-    cartPanel.classList.remove('open');
-    overlay.classList.remove('show');
-  });
+    function updateCartUI() {
+      document.getElementById('sideCartCount').innerText = cart.length;
+      document.getElementById('drawerCartCount').innerText = cart.length;
+      const list = document.getElementById('cartItemsList');
+      if (!cart.length) {
+        list.innerHTML = 'Your cart is currently empty.';
+        document.getElementById('cartTotal').innerText = 'Total: KES 0';
+        return;
+      }
+      let total = 0;
+      list.innerHTML = cart.map((item, i) => {
+        total += item.price;
+        return `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border-hairline);">
+            <div>
+              <div style="font-weight:600; color:var(--text-primary); font-size:0.88rem;">${item.name}</div>
+              <div style="font-size:0.78rem; color:var(--accent-gold);">KES ${item.price.toLocaleString()}</div>
+            </div>
+            <button onclick="removeCart(${i})" style="background:none; border:none; color:var(--accent-ember); cursor:pointer; font-size:0.8rem;">Remove</button>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('cartTotal').innerText = `Total: KES ${total.toLocaleString()}`;
+    }
 
-  document.getElementById('openFavoritesBtn').addEventListener('click', () => {
-    favoritesPanel.classList.add('open');
-    overlay.classList.add('show');
-    updateFavoritesUI();
-  });
-  document.getElementById('closeFavorites').addEventListener('click', () => {
-    favoritesPanel.classList.remove('open');
-    overlay.classList.remove('show');
-  });
+    function removeCart(i) { cart.splice(i, 1); updateCartUI(); }
 
-  overlay.addEventListener('click', () => {
-    cartPanel.classList.remove('open');
-    favoritesPanel.classList.remove('open');
-    overlay.classList.remove('show');
-  });
+    function checkoutWhatsApp() {
+      if (!cart.length) return alert('Pick at least one item first!');
+      const grouped = {};
+      let grandTotal = 0;
+      cart.forEach(item => {
+        grandTotal += item.price;
+        if (grouped[item.id]) grouped[item.id].qty += 1;
+        else grouped[item.id] = { name: item.name, dots: item.dots ? ` (${item.dots} Dots)` : '', price: item.price, qty: 1 };
+      });
 
-  document.getElementById('checkoutWA').addEventListener('click', () => {
-    if (!cart.length) { alert("Your cart is empty!"); return; }
-    let text = "Hello Gold Catalog! I would like to order:%0A";
-    let total = 0;
-    cart.forEach(item => {
-      text += `- ${item.name} x${item.quantity} (KES ${item.price * item.quantity})%0A`;
-      total += item.price * item.quantity;
-    });
-    text += `%0ATotal: KES ${total.toLocaleString()}`;
-    window.open(`https://wa.me/?text=${text}`, '_blank');
-  });
+      const lines = Object.values(grouped)
+        .map((e, idx) => `${idx + 1}. ${e.qty}x ${e.name}${e.dots} — KES ${(e.price * e.qty).toLocaleString()}`)
+        .join('\n');
 
-  document.getElementById('confirmAge').addEventListener('click', () => {
-    document.getElementById('ageGate').style.display = 'none';
-  });
-  document.getElementById('denyAge').addEventListener('click', () => {
-    alert("You must be 18+ to access this catalog.");
-    window.location.reload();
-  });
+      const landmark = document.getElementById('customLandmark').value.trim();
+      const loc = landmark ? `${selectedZone} — ${landmark}` : selectedZone;
 
-  // Floating background flowers generator
-  function createFlower() {
-    const flower = document.createElement('div');
-    flower.className = 'flower';
-    flower.style.left = Math.random() * window.innerWidth + 'px';
-    flower.style.animationDuration = (8 + Math.random() * 8) + 's';
-    document.body.appendChild(flower);
-    setTimeout(() => flower.remove(), 12000);
-  }
-  setInterval(createFlower, 2000);
+      const msg = `Hello Vibes on Vibes,\nI would like to purchase:\n${lines}\n\nTotal: KES ${grandTotal.toLocaleString()}\nDelivery Zone: ${loc}\n\nPlease confirm availability.`;
 
-  // Initial load
-  renderProducts();
-  updatePollUI();
-</script>
+      // Increment VIP Streak
+      const prev = parseInt(localStorage.getItem('vov_orders') || '0', 10);
+      localStorage.setItem('vov_orders', prev + 1);
+      updateStreakUI();
+
+      window.open(`https://wa.me/254714693283?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function shareGroupCart() {
+      if (!cart.length) return alert('Add items to share with your group!');
+      const summary = cart.map(c => `• ${c.name} (KES ${c.price})`).join('\n');
+      navigator.clipboard?.writeText(`Vibes on Vibes Group Order:\n${summary}`);
+      alert('Group order list copied! Paste it in your WhatsApp group chat.');
+    }
+
+    function updateFact() {
+      document.getElementById('dykTag').innerText = `DID YOU KNOW? #${factIdx + 1}/100`;
+      document.getElementById('dykMsg').innerText = facts100[factIdx];
+    }
+    function nextFact() { factIdx = (factIdx + 1) % facts100.length; updateFact(); }
+
+    setInterval(nextFact, 9000);
+    renderCatalog();
+  </script>
 </body>
 </html>
