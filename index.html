@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +37,6 @@
 
     body { color: var(--text-primary); min-height: 100vh; overflow-x: hidden; padding-bottom: 70px; transition: color 0.3s ease; position: relative; }
     
-    /* LIVE LOOPING VIDEO BACKGROUND ACROSS ALL VIEWS & THEMES */
     .view-background-video {
       position: fixed; inset: 0; width: 100vw; height: 100vh;
       object-fit: cover; z-index: -2; pointer-events: none;
@@ -52,7 +50,6 @@
     .promo-strip { background: linear-gradient(90deg, #16130D, #221B0F, #16130D); border-bottom: 1px solid rgba(229, 169, 60, 0.25); padding: 7px 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.78rem; position: relative; z-index: 50; }
     .brand-title { font-weight: 700; color: #E5A93C; letter-spacing: 2.5px; font-size: 0.95rem; }
 
-    /* PREVIEW HERO BANNER */
     .preview-hero { text-align: center; padding: 4.5rem 1rem 3.5rem; position: relative; z-index: 2; border-bottom: 1px solid var(--border-hairline); background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%); }
     .preview-hero h1 { font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 800; color: var(--text-primary); letter-spacing: 1px; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
     .preview-hero p { font-size: 0.88rem; letter-spacing: 2.5px; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; }
@@ -80,10 +77,14 @@
     .product-card {
       background: var(--tile-bg); border: 1px solid var(--border-hairline); backdrop-filter: blur(14px);
       border-radius: 18px; padding: 1.35rem; cursor: pointer; transition: 0.25s ease;
-      position: relative; display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
     }
     .product-card:hover { transform: translateY(-3px); border-color: rgba(229, 169, 60, 0.5); }
 
+    .card-photo-thumb {
+      width: 100%; height: 130px; border-radius: 10px; object-fit: cover; margin-bottom: 10px;
+      border: 1px solid rgba(229, 169, 60, 0.3);
+    }
     .card-icon-preview {
       width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 10px;
       background: radial-gradient(circle, rgba(229, 169, 60, 0.25) 0%, rgba(0,0,0,0.5) 80%);
@@ -101,11 +102,6 @@
     .was-price { font-size: 0.76rem; color: var(--was-price-color); text-decoration: line-through; }
     .now-price { font-weight: 700; font-size: 1.05rem; color: var(--text-primary); }
     .card-inspect { font-size: 0.78rem; color: #E5A93C; font-weight: 600; }
-
-    .dots-row { display: flex; justify-content: center; gap: 4px; margin: 4px 0 10px; }
-    .v-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
-    .v-dot.filled { background: #E5A93C; }
-    .v-dot.max { background: var(--accent-ember); }
 
     .side-cart-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 150; background: #E5A93C; color: #000; border: none; padding: 16px 11px; border-radius: 12px 0 0 12px; font-weight: 700; font-size: 0.82rem; writing-mode: vertical-rl; cursor: pointer; }
 
@@ -162,8 +158,8 @@
 </head>
 <body data-theme="dark">
 
-  <!-- LIVE BACKGROUND VIDEO -->
-  <video class="view-background-video" autoplay muted loop playsinline>
+  <!-- DYNAMIC BACKGROUND VIDEO (Defaults to your uploaded Shisha video) -->
+  <video id="bgVideoPlayer" class="view-background-video" autoplay muted loop playsinline>
     <source src="14537842_2160_3840_60fps.mp4" type="video/mp4">
   </video>
   <div class="theme-overlay"></div>
@@ -183,7 +179,6 @@
     <span>📍 Ruiru Hub • Free Delivery in Ruiru on orders KES 2,500+ <span class="promo-code">RUIRUVIBES</span></span>
   </div>
 
-  <!-- PREVIEW HERO BANNER MATCHING THE REFERENCE PICTURE -->
   <div class="preview-hero" id="previewHero">
     <h1>VIBES ON VIBES • RUIRU DISPATCH HUB</h1>
     <p>CURATED CATALOGUE • ENTER THE LOUNGE</p>
@@ -192,12 +187,12 @@
 
   <header id="mainHeader">
     <div class="nav-pills">
-      <button class="nav-btn active" onclick="switchPage('velo', this)">Velo</button>
+      <button class="nav-btn active" onclick="switchPage('velo', this)">Pouches</button>
       <button class="nav-btn" onclick="switchPage('vape', this)">Vape</button>
       <button class="nav-btn" onclick="switchPage('shisha', this)">Shisha & Hookah</button>
     </div>
     <div class="header-actions">
-      <input type="text" id="searchInput" class="search-box" placeholder="Search Velo, Vapes, Hookahs..." oninput="handleSearch(this.value)">
+      <input type="text" id="searchInput" class="search-box" placeholder="Search pouches, vapes, hookahs..." oninput="handleSearch(this.value)">
       <button class="hub-btn" onclick="openDrawer('offers')">☰ Hub & Theme</button>
     </div>
   </header>
@@ -209,28 +204,27 @@
     <div class="product-grid" id="search-grid"></div>
   </section>
 
-  <!-- VELO PAGE -->
+  <!-- POUCHES PAGE (Features your photo 151411.jpg for Zonnic) -->
   <section id="velo-page" class="view-section active">
-    <div class="section-heading">Velo Pouches <span class="section-tag">2 Dots → 7 Dots Strongest</span></div>
+    <div class="section-heading">Nicotine Pouches <span class="section-tag">Zonnic & Velo Tiers</span></div>
     <div id="velo-catalog"></div>
   </section>
 
-  <!-- VAPE PAGE -->
+  <!-- VAPE PAGE (Triggers your uploaded Vape video background) -->
   <section id="vape-page" class="view-section">
     <div class="section-heading">Vapes & Disposables <span class="section-tag">Discounted Deals</span></div>
     <div class="product-grid" id="vape-grid"></div>
   </section>
 
-  <!-- SHISHA & HOOKAH PAGE WITH SUB-TABS -->
+  <!-- SHISHA & HOOKAH PAGE (Triggers your uploaded Shisha video background) -->
   <section id="shisha-page" class="view-section">
-    <div class="section-heading">Hookah & Shisha Catalogue <span class="section-tag">Pipes, Tobacco, Coals & Accessories</span></div>
+    <div class="section-heading">Hookah & Shisha Catalogue <span class="section-tag">Pipes, Tobacco & Coals</span></div>
     
     <div class="sub-tabs">
       <button class="sub-tab-btn active" onclick="filterHookahSub('all', this)">All Hookah Items</button>
       <button class="sub-tab-btn" onclick="filterHookahSub('pipe', this)">Hookah Pipes</button>
-      <button class="sub-tab-btn" onclick="filterHookahSub('tobacco', this)">Shisha Tobacco (Sizes)</button>
-      <button class="sub-tab-btn" onclick="filterHookahSub('coal', this)">Hookah Charcoal</button>
-      <button class="sub-tab-btn" onclick="filterHookahSub('accessory', this)">Accessories & Bowls</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('tobacco', this)">Shisha Tobacco</button>
+      <button class="sub-tab-btn" onclick="filterHookahSub('coal', this)">Charcoal</button>
     </div>
 
     <div class="product-grid" id="shisha-grid"></div>
@@ -305,34 +299,26 @@
   </div>
 
   <script>
-    // Complete catalogue with prices calculated at 130 KES per dollar from USD base
     const products = [
+      // Zonnic Pouch featuring your uploaded photo 151411.jpg
+      { id: 'zonnic-chill', cat: 'velo', image: '151411.jpg', name: 'Zonnic Chill Mint (4mg)', wasPrice: 750, price: 500, desc: '24 Nicotine replacement therapy pouches with refreshing mint.', strength: 80, goodness: 99 },
+      
       // Velo Pouches
-      { id: 'v2', cat: 'velo', dots: 2, icon: '2D', name: 'Velo Easy Mint', wasPrice: 650, price: 450, desc: 'Gentle spearmint & cooling menthol.', strength: 35, goodness: 94 },
-      { id: 'v3', cat: 'velo', dots: 3, icon: '3D', name: 'Velo Polar Mint', wasPrice: 700, price: 450, desc: 'Crisp Scandinavian peppermint.', strength: 50, goodness: 92 },
-      { id: 'v4', cat: 'velo', dots: 4, icon: '4D', name: 'Velo Tropic Breeze', wasPrice: 700, price: 450, desc: 'Mango & passionfruit fusion.', strength: 65, goodness: 96 },
-      { id: 'v5', cat: 'velo', dots: 5, icon: '5D', name: 'Velo Ruby Berry', wasPrice: 750, price: 500, desc: 'Red forest berries mix.', strength: 78, goodness: 95 },
-      { id: 'v6', cat: 'velo', dots: 6, icon: '6D', name: 'Velo Ice Cool Max', wasPrice: 800, price: 550, desc: 'Sub-zero peppermint blast.', strength: 90, goodness: 97 },
-      { id: 'v7', cat: 'velo', dots: 7, icon: '7D', name: 'Velo Mighty Peppermint 7-Dot', wasPrice: 850, price: 600, desc: 'Maximum intensity cooling.', strength: 99, goodness: 98 },
+      { id: 'v2', cat: 'velo', icon: '2D', name: 'Velo Easy Mint', wasPrice: 650, price: 450, desc: 'Gentle spearmint & cooling menthol.', strength: 35, goodness: 94 },
+      { id: 'v3', cat: 'velo', icon: '3D', name: 'Velo Polar Mint', wasPrice: 700, price: 450, desc: 'Crisp Scandinavian peppermint.', strength: 50, goodness: 92 },
+      { id: 'v6', cat: 'velo', icon: '6D', name: 'Velo Ice Cool Max', wasPrice: 800, price: 550, desc: 'Sub-zero peppermint blast.', strength: 90, goodness: 97 },
       
       // Vapes
       { id: 'vp1', cat: 'vape', icon: 'VP', name: 'Elf Bar BC5000 Watermelon Ice', wasPrice: 2300, price: 2000, desc: '5000 puffs, rechargeable.', strength: 82, goodness: 96 },
       { id: 'vp2', cat: 'vape', icon: 'VP', name: 'Lost Mary BM6000 Blueberry Sour', wasPrice: 2600, price: 2300, desc: '6000 puffs, flavor display.', strength: 86, goodness: 95 },
       
-      // Hookah & Shisha Catalogue (Calculated at 130 KES / USD)
-      { id: 'h1', cat: 'shisha', sub: 'pipe', icon: '💨', name: 'Traditional Brass Hookah Pipe', wasPrice: 7000, price: 5850, desc: 'Authentic single-hose handcrafted hookah ($45.00).', strength: 80, goodness: 95 },
-      { id: 'h2', cat: 'shisha', sub: 'pipe', icon: '💎', name: 'Premium Modern Glass Shisha', wasPrice: 13000, price: 11050, desc: 'Full glass chamber with LED base slot ($85.00).', strength: 90, goodness: 99 },
-      { id: 'h3', cat: 'shisha', sub: 'tobacco', icon: '🍃', name: 'Al Fakher Shisha Tobacco (50g)', wasPrice: 850, price: 650, desc: 'Personal session pack ($5.00).', strength: 70, goodness: 92 },
-      { id: 'h4', cat: 'shisha', sub: 'tobacco', icon: '🍇', name: 'Adalya Love 66 Shisha (250g)', wasPrice: 2400, price: 2080, desc: 'Watermelon, melon & mint blend ($16.00).', strength: 76, goodness: 99 },
-      { id: 'h5', cat: 'shisha', sub: 'tobacco', icon: '🍎', name: 'Al Fakher Double Apple Shisha (1kg)', wasPrice: 8000, price: 7150, desc: 'Master bulk size for lounges ($55.00).', strength: 85, goodness: 97 },
-      { id: 'h6', cat: 'shisha', sub: 'coal', icon: '🔥', name: 'CocoNara Coconut Charcoal (1kg / 72 pcs)', wasPrice: 1450, price: 1170, desc: '100% natural coconut shell cubes ($9.00).', strength: 95, goodness: 97 },
-      { id: 'h7', cat: 'shisha', sub: 'coal', icon: '🔥', name: 'Tom Cococha Gold Cubes (1kg)', wasPrice: 1650, price: 1365, desc: 'Ultra-high density long burning coals ($10.50).', strength: 97, goodness: 96 },
-      { id: 'h8', cat: 'shisha', sub: 'accessory', icon: '🔧', name: 'Premium Silicone Hookah Hose', wasPrice: 1900, price: 1560, desc: 'Washable soft touch hose with aluminum handle ($12.00).', strength: 75, goodness: 94 },
-      { id: 'h9', cat: 'shisha', sub: 'accessory', icon: '🏺', name: 'Clay Phunnel Shisha Bowl', wasPrice: 1400, price: 1105, desc: 'Glazed clay bowl for juice retention ($8.50).', strength: 80, goodness: 95 },
-      { id: 'h10', cat: 'shisha', sub: 'accessory', icon: '⚡', name: 'Heat Management Device (HMD)', wasPrice: 2350, price: 1950, desc: 'Foil-free aluminum heat regulator ($15.00).', strength: 92, goodness: 98 }
+      // Hookah & Shisha
+      { id: 'h1', cat: 'shisha', sub: 'pipe', icon: '💨', name: 'Traditional Brass Hookah Pipe', wasPrice: 7000, price: 5850, desc: 'Authentic single-hose handcrafted hookah.', strength: 80, goodness: 95 },
+      { id: 'h4', cat: 'shisha', sub: 'tobacco', icon: '🍇', name: 'Adalya Love 66 Shisha (250g)', wasPrice: 2400, price: 2080, desc: 'Watermelon, melon & mint blend.', strength: 76, goodness: 99 },
+      { id: 'h6', cat: 'shisha', sub: 'coal', icon: '🔥', name: 'CocoNara Coconut Charcoal (1kg)', wasPrice: 1450, price: 1170, desc: '100% natural coconut shell cubes.', strength: 95, goodness: 97 }
     ];
 
-    const facts100 = Array.from({ length: 100 }, (_, i) => `Smoke Culture Archive Insight #${i + 1}: Early waterpipes in 16th-century Persia were crafted from hollowed-out coconuts.`);
+    const facts100 = Array.from({ length: 100 }, (_, i) => `Smoke Culture Archive Insight #${i + 1}: Velo and Zonnic nicotine pouches provide clean tobacco-free satisfaction.`);
 
     let cart = [];
     let activeProduct = null;
@@ -356,17 +342,19 @@
     }
 
     function buildCard(item) {
-      let dotsHTML = '';
-      if (item.dots) {
-        dotsHTML = '<div class="dots-row">' + Array.from({ length: 7 }, (_, i) => `<div class="v-dot ${i < item.dots ? (item.dots >= 6 ? 'max' : 'filled') : ''}"></div>`).join('') + '</div>';
+      let visualContent = '';
+      if (item.image) {
+        visualContent = `<img src="${item.image}" class="card-photo-thumb" alt="${item.name}">`;
+      } else {
+        visualContent = `<div class="card-icon-preview">${item.icon || '✨'}</div>`;
       }
+
       return `
         <div class="product-card" onclick="openModal('${item.id}')">
           <div>
-            <div class="card-icon-preview">${item.icon || '✨'}</div>
-            <div class="card-meta">${item.cat} ${item.dots ? '• ' + item.dots + ' Dots' : ''} ${item.sub ? '• ' + item.sub : ''}</div>
+            ${visualContent}
+            <div class="card-meta">${item.cat} ${item.sub ? '• ' + item.sub : ''}</div>
             <div class="card-title">${item.name}</div>
-            ${dotsHTML}
             <div class="card-desc">${item.desc}</div>
           </div>
           <div class="card-footer">
@@ -400,7 +388,7 @@
       const items = currentHookahSub === 'all' 
         ? products.filter(p => p.cat === 'shisha')
         : products.filter(p => p.cat === 'shisha' && p.sub === currentHookahSub);
-      document.getElementById('shisha-grid').innerHTML = items.length ? items.map(buildCard).join('') : '<p style="color:var(--text-secondary);">No items found in this category.</p>';
+      document.getElementById('shisha-grid').innerHTML = items.length ? items.map(buildCard).join('') : '<p style="color:var(--text-secondary);">No items found.</p>';
     }
 
     function switchPage(page, btn) {
@@ -408,6 +396,15 @@
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(`${page}-page`).classList.add('active');
       if (btn) btn.classList.add('active');
+
+      // SWITCH BACKGROUND VIDEO DYNAMICALLY BASED ON YOUR UPLOADED FILES
+      const videoPlayer = document.getElementById('bgVideoPlayer');
+      if (page === 'vape') {
+        videoPlayer.src = '16550919_1920_1080_25fps.mp4'; // Vape Video
+      } else {
+        videoPlayer.src = '14537842_2160_3840_60fps.mp4'; // Shisha/Pouches Video
+      }
+      videoPlayer.play();
     }
 
     function handleSearch(val) {
@@ -423,7 +420,7 @@
     function openModal(id) {
       activeProduct = products.find(p => p.id === id);
       if (!activeProduct) return;
-      document.getElementById('modalMeta').innerText = `${activeProduct.cat.toUpperCase()} ${activeProduct.dots ? '• ' + activeProduct.dots + ' DOTS' : ''}`;
+      document.getElementById('modalMeta').innerText = `${activeProduct.cat.toUpperCase()}`;
       document.getElementById('modalTitle').innerText = activeProduct.name;
       document.getElementById('modalDesc').innerText = activeProduct.desc;
       document.getElementById('modalWasPrice').innerText = `Was KES ${activeProduct.wasPrice.toLocaleString()}`;
