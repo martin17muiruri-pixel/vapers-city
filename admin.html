@@ -143,8 +143,8 @@
           <input type="text" id="pSpec" placeholder="e.g. 10mg per pouch · 20 cans">
         </div>
         <div>
-          <label>Product Photo Filename or Image URL</label>
-          <input type="text" id="pImage" placeholder="e.g. images/velo-freeze.jpg">
+          <label>Product Sub-Type (for pouches: nrt or rec)</label>
+          <input type="text" id="pType" placeholder="e.g. rec or nrt">
         </div>
       </div>
 
@@ -164,10 +164,9 @@
   </div>
 
   <script>
-    // This is the SHA-256 hash of the PIN "166003". The raw PIN is nowhere in this file.
+    // SHA-256 hash of the PIN "166003"
     const TARGET_PIN_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
 
-    // Helper function to hash any string using browser crypto API
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message);
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -175,19 +174,23 @@
       return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    const starterCatalog = [
-      { id: 1, name: "Zonnic Chill Mint (4mg)", cat: "pouches", price: 500, wasPrice: 750, spec: "4mg · 24 pouches", image: "151411.jpg", desc: "Refreshing mint · nicotine replacement therapy pouch", inStock: true },
-      { id: 2, name: "Velo Easy Mint", cat: "pouches", price: 450, wasPrice: 650, spec: "6mg · 20 pouches", image: "", desc: "Gentle spearmint & cooling menthol", inStock: true },
-      { id: 3, name: "Happy Bar 5,000", cat: "vapes", price: 1600, wasPrice: 0, spec: "5,000 Puffs · Rechargeable", image: "", desc: "Rechargeable disposable · flavour confirmed on order", inStock: true },
-      { id: 4, name: "Hookah Starter Set", cat: "hookah", price: 5500, wasPrice: 6500, spec: "Complete Set", image: "", desc: "Stem, base, hose, bowl, tongs included", inStock: true }
+    const defaultCatalog = [
+      { id: 1, name: "Zonnic Chill Mint (4mg)", cat: "pouches", type: "nrt", price: 500, wasPrice: 750, spec: "4mg · 24 pouches", image: "", desc: "Refreshing mint · nicotine replacement therapy pouch", inStock: true },
+      { id: 2, name: "Velo Easy Mint", cat: "pouches", type: "rec", price: 450, wasPrice: 650, spec: "6mg · 20 pouches", image: "", desc: "Gentle spearmint & cooling menthol", inStock: true },
+      { id: 3, name: "Velo Polar Mint", cat: "pouches", type: "rec", price: 450, wasPrice: 700, spec: "6mg · 20 pouches", image: "", desc: "Crisp Scandinavian peppermint", inStock: true },
+      { id: 4, name: "Velo Ice Cool Max", cat: "pouches", type: "rec", price: 550, wasPrice: 800, spec: "10mg · 20 pouches", image: "", desc: "Sub-zero peppermint blast", inStock: true },
+      { id: 5, name: "OXBAR Mini", cat: "vapes", type: "vape", price: 1800, wasPrice: 0, spec: "2,200 Puffs · Non-rechargeable", image: "", desc: "Compact disposable · multiple flavours in store", inStock: true },
+      { id: 6, name: "Supersense 3,000 Puffs", cat: "vapes", type: "vape", price: 1300, wasPrice: 0, spec: "3,000 Puffs · Rechargeable", image: "", desc: "Rechargeable disposable · flavour confirmed on order", inStock: true },
+      { id: 7, name: "Happy Bar 5,000", cat: "vapes", type: "vape", price: 1600, wasPrice: 0, spec: "5,000 Puffs · Rechargeable", image: "", desc: "Rechargeable disposable · flavour confirmed on order", inStock: true },
+      { id: 8, name: "Hookah Starter Set", cat: "hookah", type: "hookah", price: 5500, wasPrice: 6500, spec: "Complete Set", image: "", desc: "Stem, base, hose, bowl, tongs included", inStock: true }
     ];
 
     let catalog = [];
     try {
       const saved = localStorage.getItem('vov_admin_catalog');
-      catalog = saved ? JSON.parse(saved) : starterCatalog;
+      catalog = saved ? JSON.parse(saved) : defaultCatalog;
     } catch (e) {
-      catalog = starterCatalog;
+      catalog = defaultCatalog;
     }
 
     async function checkLogin() {
@@ -228,7 +231,7 @@
       const price = parseInt(document.getElementById('pPrice').value, 10);
       const wasPrice = parseInt(document.getElementById('pWasPrice').value, 10) || 0;
       const spec = document.getElementById('pSpec').value.trim();
-      const image = document.getElementById('pImage').value.trim();
+      const type = document.getElementById('pType').value.trim() || cat;
       const desc = document.getElementById('pDesc').value.trim();
 
       if (!name || !price) {
@@ -238,13 +241,12 @@
 
       catalog.unshift({
         id: Date.now(),
-        name, cat, price, wasPrice, spec, image, desc,
+        name, cat, type, price, wasPrice, spec, desc,
         inStock: true
       });
 
       saveCatalog();
-
-      ['pName', 'pPrice', 'pWasPrice', 'pSpec', 'pImage', 'pDesc'].forEach(id => document.getElementById(id).value = '');
+      ['pName', 'pPrice', 'pWasPrice', 'pSpec', 'pType', 'pDesc'].forEach(id => document.getElementById(id).value = '');
       alert(`"${name}" added to your inventory!`);
     }
 
@@ -283,8 +285,8 @@
             <p>${item.cat.toUpperCase()} • ${item.spec || 'Standard'} • ${item.desc}</p>
           </div>
           <div class="item-actions">
-            <button class="stock-toggle ${item.inStock ? 'in-stock' : 'out-stock'}" onclick="toggleStock(${item.id})">
-              ${item.inStock ? '✓ In Stock' : '✕ Out of Stock'}
+            <button class="stock-toggle ${item.inStock !== false ? 'in-stock' : 'out-stock'}" onclick="toggleStock(${item.id})">
+              ${item.inStock !== false ? '✓ In Stock' : '✕ Out of Stock'}
             </button>
             <button class="btn btn-ghost" style="padding:6px 10px; font-size:12px;" onclick="editPrice(${item.id})">Edit Price</button>
             <button class="btn-danger" onclick="deleteProduct(${item.id})">Delete</button>
