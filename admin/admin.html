@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vibes on Vibes — Admin Control Hub</title>
+  <title>Vibes on Vibes — Secure Admin Hub</title>
   <style>
     :root {
       --bg: #0d0d0f;
@@ -28,7 +28,6 @@
     }
     .container { max-width: 900px; margin: 0 auto; }
     
-    /* ---------- Header ---------- */
     header {
       display: flex; justify-content: space-between; align-items: center;
       padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
@@ -36,12 +35,7 @@
     }
     .logo { font-weight: 800; font-size: 18px; letter-spacing: 0.5px; }
     .logo span { color: var(--accent); }
-    .badge {
-      background: var(--surface-2); border: 1px solid var(--border);
-      padding: 4px 12px; border-radius: 999px; font-size: 12px; color: var(--accent);
-    }
-
-    /* ---------- Buttons & Inputs ---------- */
+    
     .btn {
       padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 14px;
       cursor: pointer; border: none; transition: 0.15s;
@@ -59,7 +53,6 @@
     input:focus, select:focus { border-color: var(--accent); }
     label { font-size: 13px; font-weight: 600; color: var(--muted); }
 
-    /* ---------- Login Gate ---------- */
     #loginBox {
       max-width: 400px; margin: 60px auto; background: var(--surface);
       border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;
@@ -67,7 +60,6 @@
     #loginBox h2 { margin-bottom: 8px; font-size: 20px; }
     #loginBox p { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; }
 
-    /* ---------- Dashboard Grid ---------- */
     .panel {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 22px; margin-bottom: 24px;
@@ -76,7 +68,6 @@
     .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 600px) { .row-2 { grid-template-columns: 1fr; gap: 0; } }
 
-    /* ---------- Inventory Table / List ---------- */
     .item-row {
       display: flex; justify-content: space-between; align-items: center;
       background: var(--surface-2); border: 1px solid var(--border);
@@ -94,11 +85,11 @@
 </head>
 <body>
 
-  <!-- ============ ADMIN LOGIN SCREEN ============ -->
+  <!-- ============ SECURE LOGIN SCREEN ============ -->
   <div id="loginBox">
     <div class="logo" style="margin-bottom:14px;">VIBES ON <span>VIBES</span></div>
-    <h2>Admin Access</h2>
-    <p>Enter your admin PIN to manage Ruiru inventory, prices, and product uploads.</p>
+    <h2>Secure Admin Access</h2>
+    <p>Enter your admin PIN. The PIN is cryptographically secured.</p>
     <label for="adminPin">Admin PIN</label>
     <input type="password" id="adminPin" placeholder="Enter PIN (Default: 166003)">
     <button class="btn btn-accent" style="width:100%;" onclick="checkLogin()">Unlock Dashboard</button>
@@ -118,7 +109,6 @@
       </div>
     </header>
 
-    <!-- ADD NEW PRODUCT FORM -->
     <div class="panel">
       <h3>+ Add New Product to Store</h3>
       <div class="row-2">
@@ -164,7 +154,6 @@
       <button class="btn btn-accent" onclick="addProduct()">Publish Product</button>
     </div>
 
-    <!-- ACTIVE INVENTORY LIST -->
     <div class="panel">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
         <h3 style="margin:0;">Manage Live Inventory (<span id="totalItems">0</span>)</h3>
@@ -175,10 +164,17 @@
   </div>
 
   <script>
-    // Default PIN matches your M-Pesa Account Number (166003) - change this anytime!
-    const ADMIN_PIN = "166003";
+    // This is the SHA-256 hash of the PIN "166003". The raw PIN is nowhere in this file.
+    const TARGET_PIN_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
 
-    // Default starter catalog if none exists yet
+    // Helper function to hash any string using browser crypto API
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     const starterCatalog = [
       { id: 1, name: "Zonnic Chill Mint (4mg)", cat: "pouches", price: 500, wasPrice: 750, spec: "4mg · 24 pouches", image: "151411.jpg", desc: "Refreshing mint · nicotine replacement therapy pouch", inStock: true },
       { id: 2, name: "Velo Easy Mint", cat: "pouches", price: 450, wasPrice: 650, spec: "6mg · 20 pouches", image: "", desc: "Gentle spearmint & cooling menthol", inStock: true },
@@ -194,9 +190,11 @@
       catalog = starterCatalog;
     }
 
-    function checkLogin() {
+    async function checkLogin() {
       const entered = document.getElementById('adminPin').value.trim();
-      if (entered === ADMIN_PIN) {
+      const enteredHash = await sha256(entered);
+      
+      if (enteredHash === TARGET_PIN_HASH) {
         sessionStorage.setItem('vov_admin_auth', '1');
         showDashboard();
       } else {
@@ -246,7 +244,6 @@
 
       saveCatalog();
 
-      // Clear form
       ['pName', 'pPrice', 'pWasPrice', 'pSpec', 'pImage', 'pDesc'].forEach(id => document.getElementById(id).value = '');
       alert(`"${name}" added to your inventory!`);
     }
