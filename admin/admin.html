@@ -1,0 +1,27 @@
+// 1. Save or remove a favorite item on the customer's phone
+function toggleFavorite(productName) {
+  let favs = JSON.parse(localStorage.getItem('vov_favorites') || '[]');
+  if (favs.includes(productName)) {
+    favs = favs.filter(item => item !== productName);
+  } else {
+    favs.push(productName);
+  }
+  localStorage.setItem('vov_favorites', JSON.stringify(favs));
+  renderFavoritesBanner();
+}
+
+// 2. Automatically save their order right when they click "Send enquiry on WhatsApp"
+function saveLastOrder(currentCart) {
+  if (currentCart.length > 0) {
+    localStorage.setItem('vov_last_order', JSON.stringify(currentCart));
+  }
+}
+
+// 3. One-tap "Reorder Last Order" button when they return to the site
+function reorderLast() {
+  const lastOrder = JSON.parse(localStorage.getItem('vov_last_order') || '[]');
+  if (!lastOrder.length) return;
+  cart = lastOrder;
+  saveCart();
+  openCart();
+}
