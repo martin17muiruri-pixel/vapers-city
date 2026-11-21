@@ -24,7 +24,6 @@
   { "name": "IVG 2400 Puffs", "flavor": "Vanilla Custard", "price": "1,100 KES", "puffs": "2400", "tagline": "SWEET CLOUDS", "image": "images/ivg-2400.jpg", "refillable": false, "order": 23 },
   { "name": "Aroma King 7000", "flavor": "Pineapple", "price": "2,000 KES", "puffs": "7000", "tagline": "AROMA BLISS", "image": "images/aromaking-7000.jpg", "refillable": false, "order": 24 },
   { "name": "R&M 9000 Puffs", "flavor": "Lychee Ice", "price": "2,300 KES", "puffs": "9000", "tagline": "R&M STYLE", "image": "images/randm-9000.jpg", "refillable": false, "order": 25 },
-  { "name": "Fume Ultra 2500", "flavor": "Melon Twist", "price": "1,200 KES", "puffs": "2500", "tagline": "FUME UP", "image": "images/fume-ultra2500.jpg", "refillable": false, "order":
   { "name": "Fume Ultra 2500", "flavor": "Melon Twist", "price": "1,200 KES", "puffs": "2500", "tagline": "FUME UP", "image": "images/fume-ultra2500.jpg", "refillable": false, "order": 26 },
   { "name": "Fume Infinity 3500", "flavor": "Banana Ice", "price": "1,400 KES", "puffs": "3500", "tagline": "INFINITE CLOUDS", "image": "images/fume-infinity3500.jpg", "refillable": false, "order": 27 },
   { "name": "Fume Extra 1500", "flavor": "Mango Guava", "price": "1,000 KES", "puffs": "1500", "tagline": "EXTRA FLAVOR", "image": "images/fume-extra1500.jpg", "refillable": false, "order": 28 },
